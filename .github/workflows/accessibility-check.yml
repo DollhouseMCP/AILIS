@@ -1,0 +1,133 @@
+name: ♿ Accessibility Check
+
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
+      - '**/*.html'
+  push:
+    branches: [main]
+    paths:
+      - '**/*.md'
+      - '**/*.html'
+
+jobs:
+  accessibility-check:
+    name: Check Accessibility Standards
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: 📥 Install Accessibility Tools
+        run: |
+          npm install -g markdown-link-check
+          npm install -g remark-cli remark-lint
+          pip install accessibility-checker-py
+          
+      - name: 🔍 Check Markdown Accessibility
+        run: |
+          echo "## ♿ Accessibility Check Results" > accessibility-report.md
+          echo "" >> accessibility-report.md
+          
+          # Check for heading structure
+          echo "### 📋 Heading Structure Analysis" >> accessibility-report.md
+          find . -name "*.md" -not -path "./node_modules/*" -exec grep -H "^#" {} \; | sort > headings.txt
+          
+          # Check for alt text in images
+          echo "### 🖼️ Image Alt Text Check" >> accessibility-report.md
+          echo "Checking for images without alt text..." >> accessibility-report.md
+          
+          # Find images without alt text
+          grep -r "!\[\](" . --include="*.md" || echo "✅ No images without alt text found" >> accessibility-report.md
+          grep -r "!\[  *\](" . --include="*.md" || echo "✅ No images with empty alt text found" >> accessibility-report.md
+          
+          # Check for meaningful link text
+          echo "### 🔗 Link Text Analysis" >> accessibility-report.md
+          echo "Checking for non-descriptive link text..." >> accessibility-report.md
+          
+          # Find potentially problematic link text
+          grep -r "\[click here\]" . --include="*.md" || echo "✅ No 'click here' links found" >> accessibility-report.md
+          grep -r "\[here\]" . --include="*.md" || echo "✅ No 'here' links found" >> accessibility-report.md
+          grep -r "\[read more\]" . --include="*.md" || echo "✅ No 'read more' links found" >> accessibility-report.md
+          
+          # Check heading hierarchy
+          echo "### 📊 Heading Hierarchy Check" >> accessibility-report.md
+          python3 << 'EOF'
+          import re
+          import os
+          import sys
+          
+          def check_heading_hierarchy(file_path):
+              with open(file_path, 'r', encoding='utf-8') as f:
+                  content = f.read()
+              
+              headings = re.findall(r'^(#+)\s+(.+)', content, re.MULTILINE)
+              if not headings:
+                  return []
+              
+              issues = []
+              prev_level = 0
+              
+              for heading_marks, heading_text in headings:
+                  current_level = len(heading_marks)
+                  
+                  if prev_level > 0 and current_level > prev_level + 1:
+                      issues.append(f"Heading level jump: '{heading_text}' (H{current_level} after H{prev_level})")
+                  
+                  prev_level = current_level
+              
+              return issues
+          
+          all_issues = []
+          for root, dirs, files in os.walk('.'):
+              if 'node_modules' in root or '.git' in root:
+                  continue
+              for file in files:
+                  if file.endswith('.md'):
+                      file_path = os.path.join(root, file)
+                      issues = check_heading_hierarchy(file_path)
+                      if issues:
+                          all_issues.extend([f"{file_path}: {issue}" for issue in issues])
+          
+          if all_issues:
+              print("❌ Heading hierarchy issues found:")
+              for issue in all_issues:
+                  print(f"  - {issue}")
+              sys.exit(1)
+          else:
+              print("✅ Heading hierarchy looks good")
+          EOF
+          
+      - name: 📊 Generate Accessibility Summary
+        if: always()
+        run: |
+          echo "## ♿ Accessibility Check Summary" >> $GITHUB_STEP_SUMMARY
+          echo "### Checks Performed:" >> $GITHUB_STEP_SUMMARY
+          echo "- 🖼️ Alt text for images" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔗 Descriptive link text" >> $GITHUB_STEP_SUMMARY
+          echo "- 📋 Proper heading hierarchy" >> $GITHUB_STEP_SUMMARY
+          echo "- 📊 Document structure" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Accessibility Guidelines:" >> $GITHUB_STEP_SUMMARY
+          echo "- Use descriptive alt text for all images" >> $GITHUB_STEP_SUMMARY
+          echo "- Avoid generic link text like 'click here' or 'read more'" >> $GITHUB_STEP_SUMMARY
+          echo "- Maintain proper heading hierarchy (don't skip levels)" >> $GITHUB_STEP_SUMMARY
+          echo "- Use semantic markup for better screen reader support" >> $GITHUB_STEP_SUMMARY
+          echo "- 📅 Last checked: $(date -u)" >> $GITHUB_STEP_SUMMARY
+          
+      - name: 📤 Upload Accessibility Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-report
+          path: |
+            accessibility-report.md
+            headings.txt
+          retention-days: 30

@@ -1,0 +1,227 @@
+name: 💬 Enhanced Discussion Notifications
+
+on:
+  issues:
+    types: [opened, labeled, commented]
+  pull_request:
+    types: [opened, review_requested, commented]
+  pull_request_review:
+    types: [submitted]
+  discussion:
+    types: [created, answered, commented]
+  schedule:
+    # Weekly activity digest on Mondays at 9 AM UTC
+    - cron: '0 9 * * 1'
+
+permissions:
+  issues: read
+  pull-requests: read
+  discussions: read
+
+jobs:
+  notify-maintainers:
+    name: Enhanced Notifications
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🚨 High Priority Notifications
+        if: |
+          (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'feedback')) ||
+          (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'urgent')) ||
+          (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'proposal'))
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            let notification = "";
+            let title = "";
+            
+            if (context.eventName === 'issues') {
+              const issue = context.payload.issue;
+              const labels = issue.labels.map(label => label.name);
+              
+              if (labels.includes('feedback')) {
+                title = "🔔 New Feedback Received";
+                notification = `**New feedback issue**: [${issue.title}](${issue.html_url})\n`;
+                notification += `**Author**: @${issue.user.login}\n`;
+                notification += `**Labels**: ${labels.join(', ')}\n\n`;
+                notification += `**Summary**: ${issue.body.substring(0, 200)}...\n\n`;
+                notification += `This requires maintainer attention for community engagement.`;
+              } else if (labels.includes('urgent')) {
+                title = "🚨 Urgent Issue Created";
+                notification = `**Urgent issue**: [${issue.title}](${issue.html_url})\n`;
+                notification += `**Author**: @${issue.user.login}\n`;
+                notification += `**Priority**: HIGH\n\n`;
+                notification += `This issue needs immediate maintainer attention.`;
+              }
+            } else if (context.eventName === 'pull_request') {
+              const pr = context.payload.pull_request;
+              const labels = pr.labels ? pr.labels.map(label => label.name) : [];
+              
+              if (labels.includes('proposal')) {
+                title = "📋 New Proposal Submitted";
+                notification = `**New proposal PR**: [${pr.title}](${pr.html_url})\n`;
+                notification += `**Author**: @${pr.user.login}\n`;
+                notification += `**Files changed**: ${pr.changed_files}\n\n`;
+                notification += `A new proposal has been submitted for the RFC process.`;
+              }
+            }
+            
+            if (notification) {
+              // Create a notification issue for maintainers
+              await github.rest.issues.create({
+                owner,
+                repo,
+                title: \`[NOTIFICATION] \${title}\`,
+                body: \`\${notification}\n\n---\n*This is an automated notification. Original event: \${context.eventName}*\`,
+                labels: ['notification', 'maintainer-attention']
+              });
+            }
+            
+      - name: 📊 Weekly Activity Digest
+        if: github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+            
+            let digest = "# 📊 Weekly Activity Digest\\n\\n";
+            digest += \`**Period**: \${oneWeekAgo.toISOString().split('T')[0]} to \${new Date().toISOString().split('T')[0]}\\n\\n\`;
+            
+            // Get recent issues
+            const issues = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: 'all',
+              since: oneWeekAgo.toISOString(),
+              per_page: 100
+            });
+            
+            const newIssues = issues.data.filter(issue => !issue.pull_request);
+            const newPRs = issues.data.filter(issue => issue.pull_request);
+            
+            // Categorize by labels
+            const feedbackIssues = newIssues.filter(issue => 
+              issue.labels.some(label => label.name === 'feedback')
+            );
+            const proposalPRs = newPRs.filter(pr => 
+              pr.labels.some(label => label.name === 'proposal')
+            );
+            
+            digest += \`## 📈 New Activity\\n\`;
+            digest += \`- **Issues**: \${newIssues.length}\\n\`;
+            digest += \`- **Pull Requests**: \${newPRs.length}\\n\`;
+            digest += \`- **Feedback Issues**: \${feedbackIssues.length}\\n\`;
+            digest += \`- **Proposal PRs**: \${proposalPRs.length}\\n\\n\`;
+            
+            if (feedbackIssues.length > 0) {
+              digest += \`## 💬 Recent Feedback\\n\`;
+              for (const issue of feedbackIssues.slice(0, 5)) {
+                digest += \`- [\${issue.title}](\${issue.html_url}) by @\${issue.user.login}\\n\`;
+              }
+              digest += \`\\n\`;
+            }
+            
+            if (proposalPRs.length > 0) {
+              digest += \`## 📋 New Proposals\\n\`;
+              for (const pr of proposalPRs.slice(0, 5)) {
+                digest += \`- [\${pr.title}](\${pr.html_url}) by @\${pr.user.login}\\n\`;
+              }
+              digest += \`\\n\`;
+            }
+            
+            // Get repo stats
+            const repoData = await github.rest.repos.get({ owner, repo });
+            digest += \`## 📊 Repository Stats\\n\`;
+            digest += \`- **Stars**: \${repoData.data.stargazers_count}\\n\`;
+            digest += \`- **Forks**: \${repoData.data.forks_count}\\n\`;
+            digest += \`- **Open Issues**: \${repoData.data.open_issues_count}\\n\`;
+            digest += \`- **Watchers**: \${repoData.data.subscribers_count}\\n\\n\`;
+            
+            // Action items for maintainers
+            digest += \`## 🎯 Action Items\\n\`;
+            if (feedbackIssues.length > 0) {
+              digest += \`- Review \${feedbackIssues.length} new feedback issue(s)\\n\`;
+            }
+            if (proposalPRs.length > 0) {
+              digest += \`- Review \${proposalPRs.length} new proposal PR(s)\\n\`;
+            }
+            
+            const oldDraftPRs = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: 'open',
+              per_page: 100
+            });
+            
+            const staleDrafts = oldDraftPRs.data.filter(pr => {
+              const created = new Date(pr.created_at);
+              const monthAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+              return created < monthAgo && pr.labels?.some(label => label.name === 'stage/draft');
+            });
+            
+            if (staleDrafts.length > 0) {
+              digest += \`- Consider moving \${staleDrafts.length} month-old draft(s) to review stage\\n\`;
+            }
+            
+            digest += \`\\n---\\n*Generated on \${new Date().toISOString()}*\`;
+            
+            // Create digest issue
+            await github.rest.issues.create({
+              owner,
+              repo,
+              title: \`📊 Weekly Activity Digest - \${new Date().toISOString().split('T')[0]}\`,
+              body: digest,
+              labels: ['digest', 'maintainer-attention']
+            });
+            
+      - name: 📋 Discussion Mentions Monitor
+        if: github.event_name == 'discussion'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const discussion = context.payload.discussion;
+            const action = context.payload.action;
+            
+            // Check if AILIS is mentioned in title or body
+            const text = (discussion.title + ' ' + discussion.body).toLowerCase();
+            const mentions = ['ailis', 'ai layer', 'layer model', 'osi model'];
+            const hasMention = mentions.some(mention => text.includes(mention));
+            
+            if (hasMention && action === 'created') {
+              const notification = \`## 💬 AILIS Discussion Created
+              
+**Discussion**: [\${discussion.title}](\${discussion.html_url})
+**Author**: @\${discussion.user.login}
+**Category**: \${discussion.category.name}
+
+**Preview**: \${discussion.body.substring(0, 300)}...
+
+This discussion mentions AILIS and may need maintainer engagement.\`;
+
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: '[NOTIFICATION] New AILIS Discussion',
+                body: notification,
+                labels: ['notification', 'discussion', 'maintainer-attention']
+              });
+            }
+            
+      - name: 📈 Notification Summary
+        if: always()
+        run: |
+          echo "## 💬 Discussion Notification Summary" >> $GITHUB_STEP_SUMMARY
+          echo "### Monitoring:" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔔 Feedback issues (immediate notification)" >> $GITHUB_STEP_SUMMARY
+          echo "- 📋 New proposals (immediate notification)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🚨 Urgent issues (immediate notification)" >> $GITHUB_STEP_SUMMARY
+          echo "- 💬 AILIS discussions (immediate notification)" >> $GITHUB_STEP_SUMMARY
+          echo "- 📊 Weekly activity digest (Mondays 9 AM UTC)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "All notifications create issues with 'maintainer-attention' label." >> $GITHUB_STEP_SUMMARY
+          echo "📅 Last checked: $(date -u)" >> $GITHUB_STEP_SUMMARY

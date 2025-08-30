@@ -1,0 +1,45 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [],
+  "dictionaries": [
+    "en_US",
+    "companies",
+    "softwareTerms",
+    "misc",
+    "project-words",
+    "names"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "project-words",
+      "path": "./.github/cspell-project-words.txt",
+      "description": "AILIS project-specific technical terms"
+    },
+    {
+      "name": "names", 
+      "path": "./.github/cspell-names.txt",
+      "description": "Personal and company names"
+    }
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    ".git/**",
+    "*.log",
+    "*.lock",
+    "package-lock.json",
+    "yarn.lock"
+  ],
+  "ignoreRegExpList": [
+    "\\b[A-Z]{2,}\\b",
+    "\\b[0-9]+\\b",
+    "\\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\\b",
+    "https?://[^\\s]+",
+    "\\{[^}]+\\}",
+    "\\[[^\\]]+\\]\\([^)]+\\)"
+  ],
+  "includeRegExpList": [],
+  "flagWords": [],
+  "allowCompoundWords": true,
+  "caseSensitive": false
+}

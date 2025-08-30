@@ -1,0 +1,60 @@
+name: 🔗 Link Validation
+
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
+      - '**/*.yml'
+      - '**/*.yaml'
+  push:
+    branches: [main]
+    paths:
+      - '**/*.md'
+      - '**/*.yml'
+      - '**/*.yaml'
+  schedule:
+    # Check links weekly on Sundays at 3 AM UTC
+    - cron: '0 3 * * 0'
+
+jobs:
+  validate-links:
+    name: Validate All Links
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🔗 Check Internal Links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'yes'
+          config-file: '.github/mlc_config.json'
+          
+      - name: 🌐 Check External Links
+        uses: lycheeverse/lychee-action@v1.10.0
+        with:
+          args: |
+            --verbose
+            --no-progress
+            --accept=200,203,204,206,300,301,302,303,304,307,308,429
+            --timeout=30
+            --retry-wait-time=5
+            --max-retries=3
+            --exclude-mail
+            --exclude="^javascript:"
+            --exclude="^mailto:"
+            --exclude="localhost"
+            --exclude="127.0.0.1"
+            "**/*.md"
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          
+      - name: 📊 Link Check Summary
+        if: always()
+        run: |
+          echo "## 🔗 Link Validation Results" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Internal links: Check completed" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌐 External links: Check completed" >> $GITHUB_STEP_SUMMARY
+          echo "- 📅 Last checked: $(date -u)" >> $GITHUB_STEP_SUMMARY

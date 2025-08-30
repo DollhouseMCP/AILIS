@@ -1,0 +1,256 @@
+name: 📋 Proposal Lifecycle Tracking
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    paths:
+      - 'proposals/**'
+  pull_request_target:
+    types: [labeled, unlabeled]
+  schedule:
+    # Check proposal stages daily at 6 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force update all proposal stages'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  track-proposal-lifecycle:
+    name: Track Proposal Stages
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: 🏷️ Auto-Label New Proposals
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const pr = context.payload.pull_request;
+            
+            // Check if PR contains proposal files
+            const files = await github.rest.pulls.listFiles({
+              owner,
+              repo,
+              pull_number: pr.number
+            });
+            
+            const hasProposalFiles = files.data.some(file => 
+              file.filename.startsWith('proposals/') && file.filename.endsWith('.md')
+            );
+            
+            if (hasProposalFiles) {
+              // Add initial stage label
+              await github.rest.issues.addLabels({
+                owner,
+                repo,
+                issue_number: pr.number,
+                labels: ['stage/draft', 'proposal']
+              });
+              
+              // Add initial comment with lifecycle info
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: pr.number,
+                body: `## 📋 Proposal Lifecycle Tracking
+
+Welcome! This PR contains proposal documents and has been automatically labeled with:
+- \`stage/draft\` - Proposal is under development
+- \`proposal\` - Content type identifier
+
+### Next Steps:
+1. **Development Phase**: Continue refining your proposal
+2. **Review Phase**: After 4 weeks minimum, this will be eligible for \`stage/review\`
+3. **Final Comment**: Last call period before decision
+4. **Decision**: Proposal will be accepted or declined
+
+### Timeline:
+- **Opened**: ${new Date().toISOString().split('T')[0]}
+- **Minimum Review Date**: ${new Date(Date.now() + 28 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
+
+Maintainers can override these stages as needed using admin privileges.`
+              });
+            }
+            
+      - name: 🔄 Check Review Period Eligibility
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            
+            // Get all open PRs with stage/draft label
+            const prs = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: 'open',
+              per_page: 100
+            });
+            
+            const fourWeeksAgo = new Date(Date.now() - 28 * 24 * 60 * 60 * 1000);
+            
+            for (const pr of prs.data) {
+              // Get PR labels
+              const prLabels = await github.rest.issues.listLabelsOnIssue({
+                owner,
+                repo,
+                issue_number: pr.number
+              });
+              
+              const labels = prLabels.data.map(label => label.name);
+              const isDraft = labels.includes('stage/draft');
+              const isProposal = labels.includes('proposal');
+              const createdDate = new Date(pr.created_at);
+              
+              if (isDraft && isProposal && createdDate < fourWeeksAgo) {
+                // Eligible for review stage
+                await github.rest.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number: pr.number,
+                  body: `## ⏰ Review Period Eligibility
+
+This proposal has been in draft stage for over 4 weeks and is now eligible for the review phase.
+
+### Options:
+- **Continue Development**: Keep in draft stage for further refinement
+- **Enter Review**: Ready for community feedback (\`stage/review\`)
+- **Request Final Comment**: Move to final decision phase
+
+Maintainers can update the stage label as appropriate.
+
+**Draft opened**: ${createdDate.toISOString().split('T')[0]}  
+**Review eligible**: ${new Date().toISOString().split('T')[0]}`
+                });
+              }
+            }
+            
+      - name: 🎯 Auto-Merge Accepted Proposals
+        if: github.event.action == 'labeled' && github.event.label.name == 'stage/accepted'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const pr = context.payload.pull_request;
+            
+            // Add acceptance comment
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: pr.number,
+              body: `## ✅ Proposal Accepted
+
+This proposal has been accepted and will be automatically merged.
+
+Thank you for your contribution to the AILIS framework! 🎉`
+            });
+            
+            // Auto-merge the PR
+            try {
+              await github.rest.pulls.merge({
+                owner,
+                repo,
+                pull_number: pr.number,
+                merge_method: 'squash',
+                commit_title: `Accept proposal: ${pr.title}`,
+                commit_message: `Proposal has been accepted through the RFC process.\n\n🤖 Auto-merged via proposal lifecycle tracking`
+              });
+            } catch (error) {
+              console.log('Auto-merge failed, likely due to branch protection rules:', error.message);
+              
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: pr.number,
+                body: `## ⚠️ Auto-merge Failed
+
+The proposal was accepted but auto-merge failed (likely due to branch protection rules). A maintainer will need to manually merge this PR.
+
+Error: ${error.message}`
+              });
+            }
+            
+      - name: 📊 Generate Lifecycle Report
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            
+            // Get all PRs with proposal labels
+            const prs = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: 'all',
+              per_page: 100
+            });
+            
+            let report = "## 📋 Proposal Lifecycle Report\\n\\n";
+            
+            const stages = ['draft', 'review', 'final-comment', 'accepted', 'declined'];
+            const stageCounts = {};
+            
+            for (const stage of stages) {
+              stageCounts[stage] = 0;
+            }
+            
+            for (const pr of prs.data) {
+              const prLabels = await github.rest.issues.listLabelsOnIssue({
+                owner,
+                repo,
+                issue_number: pr.number
+              });
+              
+              const labels = prLabels.data.map(label => label.name);
+              const isProposal = labels.includes('proposal');
+              
+              if (isProposal) {
+                for (const stage of stages) {
+                  if (labels.includes(\`stage/\${stage}\`)) {
+                    stageCounts[stage]++;
+                  }
+                }
+              }
+            }
+            
+            report += "### Stage Distribution:\\n";
+            for (const [stage, count] of Object.entries(stageCounts)) {
+              const emoji = stage === 'draft' ? '📝' : stage === 'review' ? '👀' : stage === 'final-comment' ? '💬' : stage === 'accepted' ? '✅' : '❌';
+              report += \`- \${emoji} \${stage}: \${count}\\n\`;
+            }
+            
+            report += \`\\n📅 Last updated: \${new Date().toISOString()}\\n\`;
+            
+            console.log(report);
+            
+            // Add to step summary
+            await core.summary.addRaw(report).write();
+            
+      - name: 📈 Update Proposal Metrics
+        if: always()
+        run: |
+          echo "## 📋 Proposal Lifecycle Summary" >> $GITHUB_STEP_SUMMARY
+          echo "### Automated Actions:" >> $GITHUB_STEP_SUMMARY
+          echo "- 🏷️ Auto-labeling new proposals" >> $GITHUB_STEP_SUMMARY
+          echo "- ⏰ Review period eligibility tracking" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Auto-merge accepted proposals (with admin override)" >> $GITHUB_STEP_SUMMARY
+          echo "- 📊 Lifecycle reporting and metrics" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📅 Last checked: $(date -u)" >> $GITHUB_STEP_SUMMARY

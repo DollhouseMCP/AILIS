@@ -1,0 +1,98 @@
+name: 🔧 Validate Configuration Files
+
+on:
+  pull_request:
+    paths:
+      - '.github/**/*.json'
+      - '.github/**/cspell*.txt'
+  push:
+    branches: [main, initial-setup]
+    paths:
+      - '.github/**/*.json'
+      - '.github/**/cspell*.txt'
+  workflow_dispatch:
+
+concurrency:
+  group: validate-config-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-json-config:
+    name: Validate JSON Configuration Files
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 📋 Find JSON Configuration Files
+        id: find-files
+        run: |
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          find .github -name "*.json" -type f | tr '\n' ' '
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+      - name: ✅ Validate JSON Syntax
+        run: |
+          exit_code=0
+          for file in ${{ steps.find-files.outputs.files }}; do
+            echo "Validating: $file"
+            if ! python3 -m json.tool "$file" > /dev/null 2>&1; then
+              echo "❌ Invalid JSON syntax in: $file"
+              python3 -m json.tool "$file" || true
+              exit_code=1
+            else
+              echo "✓ Valid JSON: $file"
+            fi
+          done
+          exit $exit_code
+          
+      - name: 🔤 Validate CSpell Configuration Files
+        run: |
+          exit_code=0
+          
+          # Check cspell.json exists and is valid JSON
+          if [ -f ".github/cspell.json" ]; then
+            echo "Validating cspell.json..."
+            if python3 -m json.tool .github/cspell.json > /dev/null; then
+              echo "✓ CSpell JSON configuration is valid"
+            else
+              echo "❌ CSpell configuration has JSON syntax errors"
+              exit_code=1
+            fi
+          fi
+          
+          # Check word list files exist and are readable
+          for wordlist in .github/cspell-*.txt; do
+            if [ -f "$wordlist" ]; then
+              echo "Checking word list: $wordlist"
+              if [ -r "$wordlist" ]; then
+                word_count=$(wc -l < "$wordlist" 2>/dev/null || echo "0")
+                echo "✓ Word list $wordlist: $word_count words"
+              else
+                echo "❌ Cannot read word list: $wordlist"
+                exit_code=1
+              fi
+            fi
+          done
+          
+          exit $exit_code
+          
+      - name: 🔗 Validate Markdownlint Configuration
+        run: |
+          if [ -f ".github/markdownlint.json" ]; then
+            echo "Validating markdownlint.json..."
+            if python3 -m json.tool .github/markdownlint.json > /dev/null; then
+              echo "✓ Markdownlint JSON configuration is valid"
+            else
+              echo "❌ Markdownlint configuration has JSON syntax errors"
+              exit 1
+            fi
+          fi
+          
+      - name: 📊 Configuration Summary
+        run: |
+          echo "## Configuration Validation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "All JSON configuration files have been validated for syntax." >> $GITHUB_STEP_SUMMARY
+          echo "Word list files and basic structure checks completed." >> $GITHUB_STEP_SUMMARY

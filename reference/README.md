@@ -9,12 +9,15 @@ This directory contains reference implementations and examples demonstrating AIL
 - **Tools** - Utilities for working with AILIS
 - **Validators** - Tools to check AILIS compliance
 
+
 ## Contributing
 
 Reference implementations should:
+
 - Clearly demonstrate specific AILIS concepts
 - Include documentation explaining the implementation
 - Be minimal and focused (not production systems)
 - Include tests where applicable
+
 
 _This directory is currently being populated. Contributions welcome!_

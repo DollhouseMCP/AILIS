@@ -1,0 +1,81 @@
+name: ♿ Accessibility Check
+
+on:
+  pull_request:
+    paths:
+      - '**/*.md'
+      - '**/*.html'
+  push:
+    branches: [main]
+    paths:
+      - '**/*.md'
+      - '**/*.html'
+
+concurrency:
+  group: accessibility-check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  accessibility-check:
+    name: Check Accessibility Standards
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: 📥 Setup Dependencies Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            ~/.cache/pip
+          key: accessibility-deps-${{ runner.os }}-${{ hashFiles('.github/workflows/accessibility-check.yml') }}
+          restore-keys: |
+            accessibility-deps-${{ runner.os }}-
+            
+      - name: 📥 Install Dependencies
+        run: |
+          # Just install basic dependencies - no npm packages needed for our Python script
+          echo "Using built-in Python modules for accessibility checking"
+          echo "✅ Dependencies ready"
+          
+      - name: 🔍 Run Accessibility Checks
+        run: |
+          # Make script executable
+          chmod +x .github/scripts/check-accessibility.py
+          
+          # Run comprehensive accessibility check
+          python3 .github/scripts/check-accessibility.py --path . --report accessibility-report.md --verbose
+          
+      - name: 📊 Generate Accessibility Summary
+        if: always()
+        run: |
+          echo "## ♿ Accessibility Check Summary" >> $GITHUB_STEP_SUMMARY
+          echo "### Checks Performed:" >> $GITHUB_STEP_SUMMARY
+          echo "- 🖼️ Alt text for images" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔗 Descriptive link text" >> $GITHUB_STEP_SUMMARY
+          echo "- 📋 Proper heading hierarchy" >> $GITHUB_STEP_SUMMARY
+          echo "- 📊 Document structure" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Accessibility Guidelines:" >> $GITHUB_STEP_SUMMARY
+          echo "- Use descriptive alt text for all images" >> $GITHUB_STEP_SUMMARY
+          echo "- Avoid generic link text like 'click here' or 'read more'" >> $GITHUB_STEP_SUMMARY
+          echo "- Maintain proper heading hierarchy (don't skip levels)" >> $GITHUB_STEP_SUMMARY
+          echo "- Use semantic markup for better screen reader support" >> $GITHUB_STEP_SUMMARY
+          echo "- 📅 Last checked: $(date -u)" >> $GITHUB_STEP_SUMMARY
+          
+      - name: 📤 Upload Accessibility Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-report
+          path: |
+            accessibility-report.md
+            headings.txt
+          retention-days: 30

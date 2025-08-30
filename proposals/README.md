@@ -10,13 +10,17 @@ This directory contains formal proposals for the AILIS framework.
 - **Accepted** - Approved and merged to main
 - **Declined** - Not proceeding (with rationale preserved)
 
+
 ## Current Proposals
 
 ### Core Framework
+
 - [AILIS Primer](AILIS_Primer.md) - Overview of the 16+ layer model
 - [AILIS Cheat Sheet](AILIS_Cheat_Sheet.md) - Quick reference
 
+
 ### In Development
+
 _New proposals will appear here as they're submitted_
 
 ## How to Submit a Proposal
@@ -26,5 +30,6 @@ _New proposals will appear here as they're submitted_
 3. Create a draft branch: `draft/your-proposal-name`
 4. Submit a PR with your proposal document
 5. Participate in the review process
+
 
 See [CONTRIBUTING.md](../CONTRIBUTING.md) for detailed guidelines.

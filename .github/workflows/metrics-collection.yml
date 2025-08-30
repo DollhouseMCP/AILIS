@@ -1,0 +1,160 @@
+name: 📊 Workflow Metrics Collection
+
+on:
+  schedule:
+    # Daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      period_days:
+        description: 'Number of days to analyze'
+        required: false
+        default: '30'
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  collect-metrics:
+    name: Collect Workflow Metrics
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: '.github/requirements-metrics.txt'
+          
+      - name: 📦 Install Dependencies
+        run: |
+          echo "requests>=2.31.0" > .github/requirements-metrics.txt
+          pip install -r .github/requirements-metrics.txt
+          
+      - name: 📊 Collect Workflow Metrics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          chmod +x .github/scripts/collect-metrics.py
+          python3 .github/scripts/collect-metrics.py
+          
+      - name: 📈 Generate Metrics Badge Data
+        id: badge-data
+        run: |
+          if [ -f workflow-metrics.json ]; then
+            SUCCESS_RATE=$(python3 -c "
+            import json
+            with open('workflow-metrics.json') as f:
+                data = json.load(f)
+            rate = data['summary']['overall_success_rate']
+            color = 'brightgreen' if rate >= 90 else 'yellow' if rate >= 75 else 'red'
+            print(f'{rate}%25-{color}')
+            ")
+            echo "success_rate_badge=${SUCCESS_RATE}" >> $GITHUB_OUTPUT
+            
+            TOTAL_RUNS=$(python3 -c "
+            import json
+            with open('workflow-metrics.json') as f:
+                data = json.load(f)
+            print(data['summary']['total_runs_all_workflows'])
+            ")
+            echo "total_runs=${TOTAL_RUNS}" >> $GITHUB_OUTPUT
+          else
+            echo "success_rate_badge=unknown-lightgrey" >> $GITHUB_OUTPUT
+            echo "total_runs=0" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: 📊 Update Step Summary
+        if: always()
+        run: |
+          echo "## 📊 Workflow Metrics Collection" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f workflow-metrics.json ]; then
+            echo "### 📈 Key Metrics" >> $GITHUB_STEP_SUMMARY
+            echo "- **Success Rate**: ${{ steps.badge-data.outputs.success_rate_badge }}%" >> $GITHUB_STEP_SUMMARY
+            echo "- **Total Runs**: ${{ steps.badge-data.outputs.total_runs }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **Period**: 30 days" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            echo "### 🎯 Performance Insights" >> $GITHUB_STEP_SUMMARY
+            python3 << 'EOF'
+          import json
+          try:
+              with open('workflow-metrics.json') as f:
+                  data = json.load(f)
+              
+              print("| Workflow | Runs | Success Rate | Avg Duration |")
+              print("|----------|------|--------------|--------------|")
+              
+              for workflow, metrics in data['workflows'].items():
+                  name = workflow.replace('.yml', '').replace('-', ' ').title()
+                  runs = metrics['total_runs']
+                  success_rate = f"{metrics['success_rate']}%"
+                  duration = f"{metrics['avg_duration_minutes']}min"
+                  print(f"| {name} | {runs} | {success_rate} | {duration} |")
+              
+          except FileNotFoundError:
+              print("No metrics file found.")
+          EOF
+          else
+            echo "❌ Failed to collect metrics" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📅 Last updated: $(date -u)" >> $GITHUB_STEP_SUMMARY
+          
+      - name: 📤 Upload Metrics Artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: workflow-metrics
+          path: workflow-metrics.json
+          retention-days: 90
+          
+      - name: 🚨 Notify on Poor Performance
+        if: success() && steps.badge-data.outputs.success_rate_badge < 75
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const rate = ${{ steps.badge-data.outputs.success_rate_badge }};
+            const runs = ${{ steps.badge-data.outputs.total_runs }};
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🚨 Workflow Success Rate Below Threshold',
+              body: `## 📊 Workflow Performance Alert
+              
+**Current Success Rate**: ${rate}%
+**Total Runs (30 days)**: ${runs}
+**Threshold**: 75%
+
+The overall workflow success rate has fallen below the acceptable threshold. This may indicate:
+- Infrastructure issues affecting CI/CD
+- Configuration problems in workflows
+- Changes that broke existing functionality
+
+**Recommended Actions**:
+1. Review recent failed workflow runs
+2. Check for common failure patterns
+3. Update workflow configurations if needed
+4. Consider reverting recent changes if they caused the decline
+
+This issue was automatically created by the metrics collection workflow.`,
+              labels: ['metrics', 'performance', 'urgent']
+            });
+            
+      - name: 📈 Success Summary
+        if: success()
+        run: |
+          echo "✅ Metrics collection completed successfully"
+          echo "📊 Success Rate: ${{ steps.badge-data.outputs.success_rate_badge }}%"
+          echo "🔢 Total Runs: ${{ steps.badge-data.outputs.total_runs }}"

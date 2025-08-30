@@ -136,8 +136,8 @@ Whether you have a comprehensive analysis or just a gut reaction, we want to hea
 ## Contact
 
 - **GitHub Issues**: Preferred method for public feedback
+- **Discussions**: Use GitHub Discussions for longer conversations
 - **Email**: [Contact information if you choose to provide it]
-- **Community**: Join discussions in the Dollhouse MCP community
 
 ---
 

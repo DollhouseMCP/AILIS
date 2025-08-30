@@ -42,7 +42,10 @@ def fetch_workflow_runs(repo: str, workflow_file: str, days: int = 30) -> List[D
         response.raise_for_status()
         return response.json().get('workflow_runs', [])
     except requests.RequestException as e:
-        print(f"Error fetching workflow runs: {e}")
+        if hasattr(e, 'response') and e.response is not None and e.response.status_code == 403 and 'rate limit' in str(e).lower():
+            print(f"Rate limited. Consider using authenticated requests: {e}")
+        else:
+            print(f"Error fetching workflow runs: {e}")
         return []
 
 

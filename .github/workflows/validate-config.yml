@@ -1,0 +1,136 @@
+name: 🔧 Validate Configuration Files
+
+on:
+  pull_request:
+    paths:
+      - '.github/**/*.json'
+      - '.github/**/cspell*.txt'
+  push:
+    branches: [main, initial-setup]
+    paths:
+      - '.github/**/*.json'
+      - '.github/**/cspell*.txt'
+  workflow_dispatch:
+
+concurrency:
+  group: validate-config-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-json-config:
+    name: Validate JSON Configuration Files
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 📋 Find JSON Configuration Files
+        id: find-files
+        run: |
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          find .github -name "*.json" -type f | tr '\n' ' '
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+      - name: ✅ Validate JSON Syntax
+        run: |
+          exit_code=0
+          for file in ${{ steps.find-files.outputs.files }}; do
+            echo "Validating: $file"
+            if ! python3 -m json.tool "$file" > /dev/null 2>&1; then
+              echo "❌ Invalid JSON syntax in: $file"
+              python3 -m json.tool "$file" || true
+              exit_code=1
+            else
+              echo "✓ Valid JSON: $file"
+            fi
+          done
+          exit $exit_code
+          
+      - name: 🔤 Validate CSpell Configuration Files
+        run: |
+          exit_code=0
+          
+          # Check cspell.json structure
+          if [ -f ".github/cspell.json" ]; then
+            echo "Validating cspell.json structure..."
+            if ! python3 -c "
+import json
+with open('.github/cspell.json') as f:
+    config = json.load(f)
+    required_keys = ['version', 'language', 'words', 'dictionaries']
+    missing = [k for k in required_keys if k not in config]
+    if missing:
+        print(f'Missing required keys in cspell.json: {missing}')
+        exit(1)
+    print('✓ cspell.json structure is valid')
+"; then
+              echo "✓ CSpell configuration structure is valid"
+            else
+              echo "❌ CSpell configuration has structural issues"
+              exit_code=1
+            fi
+          fi
+          
+          # Check word list files exist and are readable
+          for wordlist in .github/cspell-*.txt; do
+            if [ -f "$wordlist" ]; then
+              echo "Checking word list: $wordlist"
+              if [ -r "$wordlist" ]; then
+                word_count=$(wc -l < "$wordlist")
+                echo "✓ Word list $wordlist: $word_count words"
+              else
+                echo "❌ Cannot read word list: $wordlist"
+                exit_code=1
+              fi
+            fi
+          done
+          
+          exit $exit_code
+          
+      - name: 🔗 Validate Markdownlint Configuration
+        run: |
+          if [ -f ".github/markdownlint.json" ]; then
+            echo "Validating markdownlint.json rules..."
+            python3 -c "
+import json
+with open('.github/markdownlint.json') as f:
+    config = json.load(f)
+    
+    # Check for common rule configurations
+    important_rules = ['MD013', 'MD049', 'MD050']
+    for rule in important_rules:
+        if rule in config:
+            print(f'✓ Rule {rule} configured: {config[rule]}')
+        else:
+            print(f'⚠️  Rule {rule} not explicitly configured')
+    
+    # Validate line length settings if present
+    if 'MD013' in config and isinstance(config['MD013'], dict):
+        line_length = config['MD013'].get('line_length', 80)
+        if line_length < 80 or line_length > 200:
+            print(f'⚠️  Unusual line length setting: {line_length}')
+        else:
+            print(f'✓ Line length setting: {line_length}')
+    
+    print('✓ Markdownlint configuration appears valid')
+"
+          fi
+          
+      - name: 📊 Configuration Summary
+        run: |
+          echo "## Configuration Validation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| File | Status | Notes |" >> $GITHUB_STEP_SUMMARY  
+          echo "|------|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          
+          for file in ${{ steps.find-files.outputs.files }}; do
+            if python3 -m json.tool "$file" > /dev/null 2>&1; then
+              echo "| \`$file\` | ✅ Valid | JSON syntax correct |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| \`$file\` | ❌ Invalid | JSON syntax errors |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "All configuration files have been validated for syntax and basic structure." >> $GITHUB_STEP_SUMMARY

@@ -88,6 +88,19 @@ body:
     validations:
       required: false
 
+  - type: textarea
+    id: timeline
+    attributes:
+      label: Proposed Timeline
+      description: Expected timeline for review and implementation
+      placeholder: |
+        - Week 1-2: Initial feedback and refinement
+        - Week 3-4: Detailed review and iteration
+        - Week 5: Final comment period
+        - Implementation: 2-3 weeks after acceptance (if applicable)
+    validations:
+      required: false
+
   - type: checkboxes
     id: checklist
     attributes:

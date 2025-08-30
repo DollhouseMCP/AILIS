@@ -79,9 +79,16 @@ Proposal document should include:
 ## Git Workflow
 
 ### Branches
-- `main` - Accepted proposals only
+- `main` - Accepted proposals only (protected)
 - `draft/[proposal-name]` - Individual proposals
 - `discussion/[topic]` - Exploratory work
+
+### Branch Protection Rules (main)
+- **Required PR reviews**: 2 approvals minimum
+- **Dismiss stale reviews**: Enabled
+- **Require conversation resolution**: Yes
+- **Admin bypass**: Available for emergency fixes
+- **No direct pushes**: All changes via PR
 
 ### Commit Messages
 ```
@@ -93,6 +100,25 @@ Refs: #issue-number
 ```
 
 Types: `proposal:`, `fix:`, `docs:`, `refactor:`, `test:`
+
+Examples:
+```
+proposal: Add L17 for domain-specific reasoning
+
+Introduces new layer for vertical AI applications
+like medical diagnosis and legal research.
+
+Refs: #42
+```
+
+```
+docs: Clarify L11 registry manifest format
+
+Adds JSON schema example and explains
+version compatibility requirements.
+
+Refs: #15
+```
 
 ### Pull Requests
 - Use the PR template
@@ -120,6 +146,22 @@ Types: `proposal:`, `fix:`, `docs:`, `refactor:`, `test:`
 - **Compatibility** - Does it fit with AILIS?
 - **Completeness** - Are edge cases considered?
 - **Simplicity** - Could it be simpler?
+
+## Label Taxonomy
+
+### Proposal Stages
+- `stage/draft` - Proposal is under development
+- `stage/review` - Open for community review (4 weeks)
+- `stage/final-comment` - Last call for feedback
+- `stage/accepted` - Proposal has been accepted
+- `stage/declined` - Proposal will not proceed
+
+### Content Types
+- `proposal` - New proposal for AILIS
+- `feedback` - Feedback or critique
+- `use-case` - Real-world use case or example
+- `alternative` - Alternative approach or design
+- `breaking-change` - This change breaks compatibility
 
 ## Community Guidelines
 

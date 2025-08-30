@@ -43,7 +43,7 @@ We're particularly interested in:
 - [📝 All Proposals](proposals/) - Current and upcoming proposals
 - [🔬 Reference Implementations](reference/) - Code examples and tools
 - [📊 Case Studies](studies/) - Real-world system mappings
-- [💬 Discussions](discussions/) - Community feedback and alternatives
+- [💬 Discussions](https://github.com/DollhouseMCP/AILIS/discussions) - Community feedback and alternatives
 
 ## Join the Conversation
 

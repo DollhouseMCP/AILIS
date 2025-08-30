@@ -52,11 +52,11 @@ def fix_line_length(content, max_length=120):
 
 
 def fix_emphasis_style(content):
-    """Convert asterisk emphasis to underscore."""
-    # Replace bold **text** with __text__
-    content = re.sub(r'\*\*([^*]+)\*\*', r'__\1__', content)
-    # Replace italic *text* with _text_
-    content = re.sub(r'(?<!\*)\*([^*]+)\*(?!\*)', r'_\1_', content)
+    """Convert underscore emphasis to asterisk."""
+    # Replace bold __text__ with **text**
+    content = re.sub(r'__([^_]+)__', r'**\1**', content)
+    # Replace italic _text_ with *text*
+    content = re.sub(r'(?<!_)_([^_]+)_(?!_)', r'*\1*', content)
     return content
 
 

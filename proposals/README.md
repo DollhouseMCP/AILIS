@@ -4,24 +4,24 @@ This directory contains formal proposals for the AILIS framework.
 
 ## Proposal States
 
-- __Draft__ - Under active development
-- __Review__ - Open for community feedback (minimum 4 weeks)
-- __Final Comment__ - Last call for input before decision
-- __Accepted__ - Approved and merged to main
-- __Declined__ - Not proceeding (with rationale preserved)
+- **Draft** - Under active development
+- **Review** - Open for community feedback (minimum 4 weeks)
+- **Final Comment** - Last call for input before decision
+- **Accepted** - Approved and merged to main
+- **Declined** - Not proceeding (with rationale preserved)
 
 
 ## Current Proposals
 
 ### Core Framework
 
-- [AILIS Primer](AILIS_Primer.md) - Overview of the 16+ layer model
-- [AILIS Cheat Sheet](AILIS_Cheat_Sheet.md) - Quick reference
+- [AILIS Primer](AILIS*Primer.md) - Overview of the 16+ layer model
+- [AILIS Cheat Sheet](AILIS*Cheat*Sheet.md) - Quick reference
 
 
 ### In Development
 
-_New proposals will appear here as they're submitted_
+*New proposals will appear here as they're submitted_
 
 ## How to Submit a Proposal
 

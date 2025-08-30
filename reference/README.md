@@ -4,10 +4,10 @@ This directory contains reference implementations and examples demonstrating AIL
 
 ## Contents
 
-- __Schemas__ - JSON/YAML schemas for AILIS components
-- __Examples__ - Code samples showing layer interactions
-- __Tools__ - Utilities for working with AILIS
-- __Validators__ - Tools to check AILIS compliance
+- **Schemas** - JSON/YAML schemas for AILIS components
+- **Examples** - Code samples showing layer interactions
+- **Tools** - Utilities for working with AILIS
+- **Validators** - Tools to check AILIS compliance
 
 
 ## Contributing
@@ -20,4 +20,4 @@ Reference implementations should:
 - Include tests where applicable
 
 
-_This directory is currently being populated. Contributions welcome!_
+*This directory is currently being populated. Contributions welcome!*

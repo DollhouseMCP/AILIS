@@ -89,7 +89,7 @@ Real systems compose **personas, prompts, templates, and skills**. Ensembles are
 
 ---
 
-## 7) How to use AIS‑14+ in your org
+## 7) How might AILIS be used in your organization?
 1. **Map products** to layers (primary/secondary).  
 2. **Identify gaps** in L11–L15; pick standards to adopt/publish.  
 3. **Instrument evaluation** and publish fingerprints to your registry.  
@@ -99,7 +99,7 @@ Real systems compose **personas, prompts, templates, and skills**. Ensembles are
 ---
 
 ## 8) FAQ
-- **Is AIS‑14+ meant to replace existing frameworks?** No. It’s a **map and a set of contracts**, not a framework.  
+- **Is AILIS meant to replace existing frameworks?** No. It's a **proposed map and a set of ideas for discussion**, not a framework.  
 - **Why not fewer layers?** The missing interoperability happens precisely in the “extra” layers (L11–L15).  
 - **Does it handle multi‑modal?** Yes—modalities live in manifests/fingerprints; layers remain the same.
 

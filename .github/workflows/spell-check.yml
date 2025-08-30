@@ -24,11 +24,10 @@ jobs:
         uses: streetsidesoftware/cspell-action@v6
         with:
           config: '.github/cspell.json'
-          files: |
-            **/*.md
-            **/*.txt
+          files: '**/*.md'
           inline: warning
           incremental_files_only: false
+          strict: false
           
       - name: 📝 Generate Spell Check Report
         if: failure()

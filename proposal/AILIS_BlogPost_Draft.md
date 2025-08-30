@@ -124,9 +124,9 @@ Entrepreneurs and architects can identify **white space**:
 
 ---
 
-## 4. Using AIS‑14+ in Practice
+## 4. How Might AILIS Be Used?
 
-1. **Map your product or idea** to AIS‑14+ layers. What’s primary, what’s secondary?  
+1. **Map your product or idea** to AILIS layers. What's primary, what's secondary?  
 2. **Check duplication density**: is this layer crowded with competition?  
 3. **Identify adjacent layers** you can connect to add differentiated value.  
 4. **Communicate clearly** with teams, investors, customers: “We’re a Layer 12–14 product, we don’t build Layer 6 models.”  
@@ -138,7 +138,7 @@ Entrepreneurs and architects can identify **white space**:
 
 AI is following the trajectory of networking: from monolithic, opaque stacks to modular, layered architectures with **interoperability standards**. Today, boundaries are blurred, hype conflates layers, and duplication hides where real innovation is needed.
 
-The **AIS‑14+ model** is a step toward shared language. It’s not perfect, but it helps frame:
+The **AILIS proposal** is offered as a potential step toward shared language. It's intentionally imperfect and incomplete, but it might help frame:
 - **What is infrastructure vs. application logic**
 - **What’s vendor-specific vs. what should be standardized**
 - **Where composable orchestration can deliver AGI-like behavior** without owning a frontier model.

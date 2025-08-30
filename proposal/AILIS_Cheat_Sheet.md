@@ -1,4 +1,4 @@
-# AIS‑14+ Cheat Sheet (One‑Pager)
+# AILIS Cheat Sheet (One-Pager)
 
 **Purpose:** A crisp reference for the AI stack’s middle layers so teams can design, build, and talk about interoperable systems.
 

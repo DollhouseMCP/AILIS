@@ -1,6 +1,6 @@
 # The AILIS Primer: A Proposed Layer Model for AI Systems
 
-*Version 0.1 - Draft for Discussion • August 2025*
+_Version 0.1 - Draft for Discussion • August 2025_
 
 > **Proposal:** Could an OSI-style mental model help us better understand and discuss AI systems? This document explores
 a possible 16+ layer framework for organizing our thinking about the AI stack.
@@ -54,6 +54,7 @@ Management/Observability, Security) apply across layers.
 - **Crowded:** L1–L7 (compute, models, inference) and L9 (vector DBs).  
 - **Under‑served:** **L11–L15** (registry, routing, transport semantics, session, governance). This is where
 
+
 multi‑provider, privacy‑aware, cost‑aware AI breaks down today.
 
 ---
@@ -105,9 +106,11 @@ changes can have large behavioral consequences.
 
 - **Fingerprint** = immutable record of (subject × platform × model‑version × env) performance: behavioral, performance,
 
+
 robustness, safety, compatibility.
 
 - **Capability vector** = compact features for routing decisions (reasoning, factuality, structure adherence,
+
 
 latency/cost bands).
 
@@ -139,6 +142,7 @@ latency/cost bands).
 ## 8) FAQ
 
 - **Is AILIS meant to replace existing frameworks?** No. It's a **proposed map and a set of ideas for discussion**, not
+
 
 a framework.
 

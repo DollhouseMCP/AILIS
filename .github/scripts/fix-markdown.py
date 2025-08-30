@@ -52,11 +52,11 @@ def fix_line_length(content, max_length=120):
 
 
 def fix_emphasis_style(content):
-    """Convert underscore emphasis to asterisk."""
-    # Replace bold __text__ with **text**
+    """Fix emphasis style according to markdownlint rules: bold=asterisk, italic=underscore."""
+    # Replace bold __text__ with **text** (MD050 wants asterisk for strong)
     content = re.sub(r'__([^_]+)__', r'**\1**', content)
-    # Replace italic _text_ with *text*
-    content = re.sub(r'(?<!_)_([^_]+)_(?!_)', r'*\1*', content)
+    # Replace italic *text* with _text_ (MD049 wants underscore for emphasis)
+    content = re.sub(r'(?<!\*)\*([^*]+)\*(?!\*)', r'_\1_', content)
     return content
 
 

@@ -37,4 +37,4 @@ Each case study should include:
 - Focus on architectural patterns, not implementation secrets
 
 
-*We're actively seeking case studies. Please contribute yours!*
+_We're actively seeking case studies. Please contribute yours!_

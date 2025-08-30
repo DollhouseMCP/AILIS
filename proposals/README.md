@@ -15,13 +15,13 @@ This directory contains formal proposals for the AILIS framework.
 
 ### Core Framework
 
-- [AILIS Primer](AILIS*Primer.md) - Overview of the 16+ layer model
-- [AILIS Cheat Sheet](AILIS*Cheat*Sheet.md) - Quick reference
+- [AILIS Primer](AILIS_Primer.md) - Overview of the 16+ layer model
+- [AILIS Cheat Sheet](AILIS_Cheat_Sheet.md) - Quick reference
 
 
 ### In Development
 
-*New proposals will appear here as they're submitted_
+_New proposals will appear here as they're submitted_
 
 ## How to Submit a Proposal
 

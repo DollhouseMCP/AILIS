@@ -1,7 +1,7 @@
 
 # The AILIS Proposal: Could We Use a Network-Style Map for the AI Stack?
 
-*By Mick Darling — Early draft for feedback*
+_By Mick Darling — Early draft for feedback_
 
 ---
 
@@ -28,72 +28,72 @@ where standards could be useful, and where innovation opportunities exist.
 
 ### **L0 – Facilities & Power**
 
-Physical datacenter infrastructure: power delivery, cooling, EMI shielding, physical security. *Think: data center
-operators, colocation facilities, power management systems.*
+Physical datacenter infrastructure: power delivery, cooling, EMI shielding, physical security. _Think: data center
+operators, colocation facilities, power management systems._
 
 ### **L1 – Compute Fabric**
 
-GPUs, NPUs, TPUs, CPUs, memory hierarchies, network interconnects (PCIe, NVLink, InfiniBand). *Think: NVIDIA H100, AMD
-MI300, Intel Gaudi.*
+GPUs, NPUs, TPUs, CPUs, memory hierarchies, network interconnects (PCIe, NVLink, InfiniBand). _Think: NVIDIA H100, AMD
+MI300, Intel Gaudi._
 
 ### **L2 – System & Driver Runtime**
 
-Vendor-specific runtime stacks for launching compute kernels and managing device memory. *Examples: CUDA, ROCm, Metal.*
+Vendor-specific runtime stacks for launching compute kernels and managing device memory. _Examples: CUDA, ROCm, Metal._
 
 ### **L3 – ML Graph & Compilation**
 
-Compilers and runtimes that transform a model graph into efficient kernels. *Examples: PyTorch, TensorRT, XLA, ONNX
-Runtime.*
+Compilers and runtimes that transform a model graph into efficient kernels. _Examples: PyTorch, TensorRT, XLA, ONNX
+Runtime._
 
 ### **L4 – Numeric Representation & Quantization**
 
-Data types (FP32, FP16, FP8, INT4), quantization and calibration pipelines, sparsity patterns. *Examples: INT4
-quantization toolchains, SmoothQuant, AWQ.*
+Data types (FP32, FP16, FP8, INT4), quantization and calibration pipelines, sparsity patterns. _Examples: INT4
+quantization toolchains, SmoothQuant, AWQ._
 
 ### **L5 – Tokenization & Encoding**
 
-Mapping bytes or multimodal inputs into token sequences. *Examples: BPE tokenizers, CLIP image encoders, speech
-patchifiers.*
+Mapping bytes or multimodal inputs into token sequences. _Examples: BPE tokenizers, CLIP image encoders, speech
+patchifiers._
 
 ### **L6 – Model Parameters & Architecture**
 
-The trained model weights and architecture definitions. *Examples: GPT-4 weights, Llama models, Mixtral, Mistral,
-Command R+.*
+The trained model weights and architecture definitions. _Examples: GPT-4 weights, Llama models, Mixtral, Mistral,
+Command R+._
 
 ### **L7 – Inference Engine & Decoding**
 
-Running a forward pass on the model, speculative decoding, caching, beam search, streaming tokens. *Examples: vLLM,
-Fireworks.ai, TensorRT-LLM.*
+Running a forward pass on the model, speculative decoding, caching, beam search, streaming tokens. _Examples: vLLM,
+Fireworks.ai, TensorRT-LLM._
 
 ### **L8 – Context Construction & Prompting**
 
-Prompt templates, system instructions, few-shot examples, scratchpads. *Examples: LangChain prompt templates, Semantic
-Kernel planners.*
+Prompt templates, system instructions, few-shot examples, scratchpads. _Examples: LangChain prompt templates, Semantic
+Kernel planners._
 
 ### **L9 – Knowledge Access & Retrieval**
 
-Embedding stores, vector search, rerankers, grounding documents, citations. *Examples: Pinecone, Weaviate,
-Elasticsearch, RAG pipelines.*
+Embedding stores, vector search, rerankers, grounding documents, citations. _Examples: Pinecone, Weaviate,
+Elasticsearch, RAG pipelines._
 
 ### **L10 – Tool & Function Invocation**
 
-Calling external capabilities—databases, APIs, code execution, calculators—via structured I/O. *Examples: MCP servers,
-function calling APIs, ReAct tool frameworks.*
+Calling external capabilities—databases, APIs, code execution, calculators—via structured I/O. _Examples: MCP servers,
+function calling APIs, ReAct tool frameworks._
 
 ### **L11 – Addressing & Service Discovery**
 
-How models, tools, and services are named and found. *Analogy: DNS for AI.* Currently fragmented—each provider has its
+How models, tools, and services are named and found. _Analogy: DNS for AI._ Currently fragmented—each provider has its
 own catalog.
 
 ### **L12 – Routing & Policy Forwarding**
 
-Deciding **which model/tool route** to call given cost, latency, privacy, region, and evaluation feedback. *Think:
-multi-provider routers, policy engines, orchestration planners.*
+Deciding **which model/tool route** to call given cost, latency, privacy, region, and evaluation feedback. _Think:
+multi-provider routers, policy engines, orchestration planners._
 
 ### **L13 – Transport, Flow & Streaming**
 
 The wire protocols that carry requests/responses, handle streaming tokens, retries, cancellations, multiplexed
-sub-streams. *Examples: HTTP, gRPC, WebSockets—but lacking AI-specific semantics today.*
+sub-streams. _Examples: HTTP, gRPC, WebSockets—but lacking AI-specific semantics today._
 
 ### **L14 – Session, Identity & State**
 
@@ -106,8 +106,8 @@ Output structuring (JSON, DSL), schema validation, input/output redaction, polic
 
 ### **L16 – Application & Domain Logic**
 
-User-facing apps, workflows, agent frameworks, product logic, human-in-the-loop reviews. *Examples: ChatGPT UI,
-Perplexity, GitHub Copilot, Notion AI.*
+User-facing apps, workflows, agent frameworks, product logic, human-in-the-loop reviews. _Examples: ChatGPT UI,
+Perplexity, GitHub Copilot, Notion AI._
 
 ---
 
@@ -159,9 +159,7 @@ Entrepreneurs and architects can identify **white space**:
 2. **Check duplication density**: is this layer crowded with competition?  
 3. **Identify adjacent layers** you can connect to add differentiated value.  
 4. **Communicate clearly** with teams, investors, customers: "We're a Layer 12–14 product, we don't build Layer 6
-
-models."
-
+   models."
 5. **Contribute to open standards** where layers lack protocols (L11–L13 especially).
 
 
@@ -186,4 +184,4 @@ next era of AI.
 
 ---
 
-*Feedback welcome: this draft is open for comments before publication.*
+_Feedback welcome: this draft is open for comments before publication._

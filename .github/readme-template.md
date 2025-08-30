@@ -41,7 +41,7 @@ The AILIS framework proposes 16+ functional layers plus cross-cutting planes:
 - **L16**: Application and Domain Logic
 - **Cross-cutting**: Control, Management/Observability, and Security planes
 
-For detailed layer descriptions, see the [AILIS Primer](proposals/AILIS_Primer.md).
+For detailed layer descriptions, see the [AILIS Primer](../proposals/AILIS_Primer.md).
 
 ---
 

@@ -1,0 +1,98 @@
+name: Use Case Submission
+description: Share how you're using or would use AILIS
+title: "[Use Case] "
+labels: ["use-case"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us understand how AILIS works (or doesn't) in practice.
+        Real-world examples are incredibly valuable for refining the framework.
+
+  - type: input
+    id: organization
+    attributes:
+      label: Organization/Project
+      description: Optional - helps us understand context
+      placeholder: "Your organization or project name"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: system-type
+    attributes:
+      label: System Type
+      options:
+        - AI Application
+        - Infrastructure/Platform
+        - Development Tool
+        - Research Project
+        - Enterprise System
+        - Open Source Project
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: system-description
+    attributes:
+      label: System Description
+      description: Brief overview of your system
+      placeholder: What does your system do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: layer-mapping
+    attributes:
+      label: AILIS Layer Mapping
+      description: How does your system map to AILIS layers?
+      placeholder: |
+        Example:
+        - L6-L7: We use OpenAI GPT-4 for inference
+        - L9: Vector database for RAG
+        - L10: Custom tool integrations
+        - L11-L15: This is where we had challenges...
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-worked
+    attributes:
+      label: What Worked Well
+      description: Where did AILIS help you understand or organize your system?
+      placeholder: |
+        - Clear separation of concerns at...
+        - Helpful terminology for...
+        - Good mental model for...
+    validations:
+      required: false
+
+  - type: textarea
+    id: challenges
+    attributes:
+      label: Challenges or Gaps
+      description: Where did AILIS not fit your needs?
+      placeholder: |
+        - Couldn't figure out where X belongs
+        - Layer Y seems to combine unrelated concepts
+        - Missing consideration for Z
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggestions
+    attributes:
+      label: Suggested Improvements
+      description: Based on your experience, what would help?
+      placeholder: Your suggestions for making AILIS more useful
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: sharing
+    attributes:
+      label: Sharing Preferences
+      options:
+        - label: You may reference this use case publicly
+        - label: You may contact me for follow-up questions

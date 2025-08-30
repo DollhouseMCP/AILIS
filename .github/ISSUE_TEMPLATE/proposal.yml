@@ -1,0 +1,98 @@
+name: AILIS Proposal
+description: Propose a new addition or change to the AILIS framework
+title: "[Proposal] "
+labels: ["proposal", "stage/draft"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for contributing to AILIS! This template helps structure your proposal.
+        Remember, we welcome all ideas - even those that challenge our current approach.
+
+  - type: input
+    id: proposal-id
+    attributes:
+      label: Proposal ID
+      description: "Suggested format: AILIS-XXX (we'll assign the number)"
+      placeholder: "AILIS-XXX"
+    validations:
+      required: false
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Brief overview of your proposal (2-3 sentences)
+      placeholder: What are you proposing?
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why is this needed? What problem does it solve?
+      placeholder: |
+        - What gap does this fill?
+        - What use cases does it enable?
+        - Who would benefit from this?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal-details
+    attributes:
+      label: Detailed Proposal
+      description: The full details of your proposal
+      placeholder: |
+        Describe your proposal in detail. Consider including:
+        - Specific changes to layers or interfaces
+        - New concepts or terminology
+        - Examples of how it would work
+        - Diagrams or code samples if helpful
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other approaches did you consider?
+      placeholder: |
+        - Alternative approach 1 and why it wasn't chosen
+        - Alternative approach 2 and why it wasn't chosen
+        - Doing nothing (status quo)
+    validations:
+      required: false
+
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility Impact
+      description: How does this affect existing AILIS concepts?
+      placeholder: |
+        - Does this change existing layers?
+        - Does this affect current terminology?
+        - Is this backwards compatible?
+    validations:
+      required: false
+
+  - type: textarea
+    id: open-questions
+    attributes:
+      label: Open Questions
+      description: What questions need community input?
+      placeholder: |
+        - Question 1?
+        - Question 2?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Proposal Checklist
+      options:
+        - label: I've searched existing proposals to avoid duplication
+        - label: I've read the CONTRIBUTING guidelines
+        - label: I'm open to feedback and iteration on this proposal

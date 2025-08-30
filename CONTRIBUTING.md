@@ -2,118 +2,159 @@
 
 Thank you for your interest in contributing to the AILIS proposal! This is an early-stage exploration, and we genuinely value all perspectives—whether supportive, critical, or offering alternatives.
 
-## The Spirit of Contribution
+## Quick Start
 
-We're not building a standard or specification that needs strict compliance. We're having a conversation about how we might better understand and discuss AI system architectures. Your contribution might be:
+1. **Have an idea?** Open an issue using our templates
+2. **Want to discuss?** Join the GitHub Discussions
+3. **Ready to propose?** Follow the proposal workflow below
 
-- **Questions** that challenge our assumptions
-- **Critiques** that highlight problems with the approach
-- **Alternatives** that suggest better ways to think about these concepts
-- **Examples** that test whether the model holds up in practice
-- **Clarifications** that help make the ideas more accessible
-- **Connections** to existing work we should learn from
+## Contribution Types
 
-## Ways to Contribute
+### 📝 Proposals
+Formal additions or changes to the AILIS framework
+- Use the "AILIS Proposal" issue template
+- Create a `draft/proposal-name` branch
+- Submit PR with detailed documentation
+- Participate in 4-week review period
 
-### 1. Share Your Thoughts
+### 💬 Feedback
+Critiques, concerns, or suggestions
+- Use the "Feedback or Critique" issue template
+- No formal process required - just share your thoughts
+- Critical feedback is especially valuable
 
-The easiest way to contribute is to share your perspective:
+### 🔍 Use Cases
+Real-world examples and case studies
+- Use the "Use Case Submission" issue template
+- Help us understand where AILIS works (or doesn't)
+- Can be developed into full case studies
 
-- **Open an Issue**: Use GitHub issues to share feedback, ask questions, or start discussions
-- **Comment on Existing Issues**: Join ongoing conversations
-- **Share Use Cases**: Help us understand where this model works or breaks down
+### 🛠 Reference Implementations
+Code, schemas, and tools
+- Submit to `/reference` directory
+- Include clear documentation
+- Keep examples minimal and focused
 
-### 2. Propose Changes
+## The Proposal Workflow
 
-If you have specific improvements in mind:
+### 1. Pre-Proposal Discussion
+- Open an issue to discuss your idea
+- Get community feedback
+- Refine the concept
 
-- **Documentation**: Clarify explanations, fix errors, add examples
-- **Structure**: Suggest better ways to organize the layers
-- **Terminology**: Propose clearer names or definitions
-- **Scope**: Identify what's missing or what doesn't belong
+### 2. Draft Phase
+```bash
+# Create your proposal branch
+git checkout -b draft/your-proposal-name
 
-### 3. Submit Alternative Approaches
+# Add your proposal document
+proposals/AILIS-XXX-your-proposal.md
+```
 
-We actively welcome competing ideas:
+Proposal document should include:
+- **Summary** - Brief overview (2-3 sentences)
+- **Motivation** - Why is this needed?
+- **Detailed Proposal** - Full specification
+- **Alternatives** - Other approaches considered
+- **Compatibility** - Impact on existing concepts
+- **Open Questions** - Areas needing input
 
-- Create a document in `discussions/alternatives/` describing your approach
-- Explain where you think AILIS falls short
-- Show how your alternative addresses those shortcomings
+### 3. Review Phase (4 weeks minimum)
+- Submit PR with `stage/draft` label
+- Community provides feedback via PR reviews
+- Iterate based on feedback
+- Must remain in review for at least 4 weeks
 
-## How to Submit Changes
+### 4. Final Comment Period
+- Label changes to `stage/final-comment`
+- Last call for community input (1 week)
+- Address any final concerns
 
-1. **Fork the repository** to your own GitHub account
-2. **Create a branch** for your changes: `git checkout -b your-feature-name`
-3. **Make your changes** following the guidelines below
-4. **Commit with clear messages** explaining what and why
-5. **Push to your fork** and create a Pull Request
-6. **Engage in discussion** - PRs are conversations, not just merges
+### 5. Decision
+- Maintainers and community reach consensus
+- Proposal is either:
+  - **Accepted** - Merged to main
+  - **Declined** - Closed with rationale preserved
 
-## Guidelines for Changes
+## Git Workflow
 
-### Tone and Approach
+### Branches
+- `main` - Accepted proposals only
+- `draft/[proposal-name]` - Individual proposals
+- `discussion/[topic]` - Exploratory work
 
-- **Stay humble**: Use "might," "could," "perhaps" rather than "must," "should," "will"
-- **Ask questions**: Frame ideas as explorations rather than declarations
-- **Acknowledge uncertainty**: It's okay to say "we don't know" or "this might be wrong"
-- **Credit others**: Reference existing work and inspirations
+### Commit Messages
+```
+type: brief description
 
-### Documentation Style
+Longer explanation if needed.
 
-- **Clear over clever**: Simple language helps more people engage
-- **Examples help**: Concrete examples make abstract concepts accessible
-- **Acknowledge trade-offs**: Most design decisions have pros and cons
-- **Version everything**: Mark documents as drafts with version numbers
+Refs: #issue-number
+```
 
-### Technical Contributions
+Types: `proposal:`, `fix:`, `docs:`, `refactor:`, `test:`
 
-If contributing code or schemas:
+### Pull Requests
+- Use the PR template
+- Link related issues
+- Be responsive to feedback
+- Squash commits when merging
 
-- Follow existing patterns in the repository
-- Include comments explaining non-obvious decisions
-- Add examples showing how to use your contribution
-- Test your code/schemas with real-world scenarios
+## Review Guidelines
 
-## What We're Especially Looking For
+### For Authors
+- Be open to feedback and iteration
+- Respond to reviews promptly
+- Update proposals based on consensus
+- Document rationale for decisions
 
-### Right Now (v0.1)
+### For Reviewers
+- Focus on constructive critique
+- Consider multiple perspectives
+- Suggest specific improvements
+- Respect different viewpoints
 
-- **Reality checks**: Does this model make sense for your use cases?
-- **Missing pieces**: What important aspects of AI systems are we not capturing?
-- **Better names**: Are there clearer terms for the layers and concepts?
-- **Prior art**: What existing work should we reference or build upon?
+### Review Criteria
+- **Clarity** - Is it understandable?
+- **Motivation** - Is it needed?
+- **Compatibility** - Does it fit with AILIS?
+- **Completeness** - Are edge cases considered?
+- **Simplicity** - Could it be simpler?
 
-### Coming Soon
+## Community Guidelines
 
-- **Case studies**: Real systems mapped to the AILIS layers
-- **Implementation examples**: Code showing how the layers might interact
-- **Evaluation criteria**: How do we know if this model is useful?
+### The Spirit of Contribution
+We're exploring how to better understand AI systems. Your contribution might be:
+- **Questions** that challenge assumptions
+- **Critiques** highlighting problems
+- **Alternatives** suggesting better approaches
+- **Examples** testing the model
+- **Clarifications** improving accessibility
+- **Connections** to existing work
 
-## Questions or Concerns?
-
-If you're unsure about whether or how to contribute something, please open an issue and ask! We'd rather have the conversation than miss out on your perspective.
-
-## Code of Conduct
-
-We're committed to maintaining a welcoming, inclusive environment. Please:
-
-- Be respectful of different viewpoints and experiences
+### Code of Conduct
+- Be respectful and inclusive
+- Welcome diverse perspectives
+- Focus on ideas, not individuals
 - Accept constructive criticism gracefully
-- Focus on what's best for the community and the goals of the project
-- Show empathy toward other contributors
+- Help others contribute
 
-Harassment, dismissive behavior, or personal attacks will not be tolerated.
+## Getting Help
+
+- **Questions?** Open a discussion
+- **Stuck?** Ask in your PR/issue
+- **Ideas?** Share them freely
 
 ## Recognition
 
-All contributors will be acknowledged in our documentation. If you prefer to contribute anonymously or pseudonymously, please let us know.
+All contributors will be acknowledged. Significant contributions may be invited to join as maintainers.
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the same terms as the project:
+By contributing, you agree that your contributions will be licensed under:
 - Documentation: CC-BY 4.0
 - Code: Apache 2.0
 
 ---
 
-Thank you for helping explore these ideas with us. Every perspective helps refine and improve our understanding of how AI systems might be better organized and discussed.
+Remember: This is a proposal, not a standard. We're learning together, and every perspective helps improve our understanding.

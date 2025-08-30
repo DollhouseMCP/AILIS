@@ -38,10 +38,12 @@ We're particularly interested in:
 
 ## Explore the Proposal
 
-- [📄 AILIS Primer](proposal/AILIS_Primer.md) - Overview of the layer model
-- [🔍 Detailed Explorations](explorations/) - Deeper dives into specific layers
-- [💭 Design Considerations](explorations/design/) - Our thinking on various architectural decisions
-- [💬 Discussions](discussions/) - Community feedback and alternative approaches
+- [📄 AILIS Primer](proposals/AILIS_Primer.md) - Overview of the layer model
+- [📋 Quick Reference](proposals/AILIS_Cheat_Sheet.md) - One-page summary
+- [📝 All Proposals](proposals/) - Current and upcoming proposals
+- [🔬 Reference Implementations](reference/) - Code examples and tools
+- [📊 Case Studies](studies/) - Real-world system mappings
+- [💬 Discussions](discussions/) - Community feedback and alternatives
 
 ## Join the Conversation
 
@@ -49,12 +51,20 @@ This is an open invitation to think together about how we might better organize 
 
 ### How to Contribute
 
-- **Share your thoughts**: Open an issue with feedback, criticisms, or alternatives
-- **Propose changes**: Submit PRs with improvements or corrections
-- **Join discussions**: Participate in ongoing conversations about specific aspects
-- **Share use cases**: Help us understand where this model works or breaks down
+We follow an RFC-style process for proposals:
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for more details, and [FEEDBACK.md](FEEDBACK.md) for specific areas where we're seeking input.
+1. **💡 Have an idea?** Open an issue to discuss
+2. **📝 Ready to propose?** Create a `draft/your-proposal` branch
+3. **👀 Get feedback** During 4-week review period
+4. **✅ Reach consensus** Proposal accepted or declined with rationale
+
+Quick ways to help:
+- **Share feedback** - Use our issue templates
+- **Submit use cases** - Show us real-world examples
+- **Propose alternatives** - Challenge our assumptions
+- **Review proposals** - Help evaluate new ideas
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full process, and [FEEDBACK.md](FEEDBACK.md) for specific areas where we're seeking input.
 
 ## Context and Origins
 

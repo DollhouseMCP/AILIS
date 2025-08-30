@@ -1,0 +1,73 @@
+name: Feedback or Critique
+description: Share feedback, critiques, or concerns about AILIS
+title: "[Feedback] "
+labels: ["feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We genuinely value all feedback, especially critical perspectives.
+        Your input helps us understand where AILIS works and where it doesn't.
+
+  - type: dropdown
+    id: feedback-type
+    attributes:
+      label: Type of Feedback
+      options:
+        - General critique
+        - Specific layer concern
+        - Terminology issue
+        - Scope concern
+        - Alternative approach
+        - Use case that doesn't fit
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: feedback-summary
+    attributes:
+      label: Summary
+      description: Brief overview of your feedback
+      placeholder: What's your main concern or suggestion?
+    validations:
+      required: true
+
+  - type: textarea
+    id: detailed-feedback
+    attributes:
+      label: Detailed Feedback
+      description: Please elaborate on your feedback
+      placeholder: |
+        Be as specific as possible. We especially value:
+        - Real-world examples where AILIS falls short
+        - Conceptual problems with the approach
+        - Missing pieces or oversights
+        - Better ways to think about these problems
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestions
+    attributes:
+      label: Suggested Improvements
+      description: How could we address your concerns?
+      placeholder: |
+        - Suggestion 1
+        - Suggestion 2
+        (It's okay if you don't have suggestions - identifying problems is valuable too!)
+    validations:
+      required: false
+
+  - type: textarea
+    id: affected-areas
+    attributes:
+      label: Affected Areas
+      description: Which parts of AILIS does this feedback relate to?
+      placeholder: |
+        - Specific layers (L1-L16)
+        - Cross-cutting concerns
+        - Overall approach
+        - Documentation
+    validations:
+      required: false

@@ -58,9 +58,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for more details, and [FEEDBACK.md](FEEDB
 
 ## Context and Origins
 
-This proposal emerges from work at [Dollhouse MCP](https://github.com/DollhouseMCP), where we've been building tools for AI persona management and composition. In trying to explain where our tools fit in the broader ecosystem, we found ourselves wishing for a clearer map.
+This proposal emerges from practical experience building AI tools and observing the challenges of interoperability in the current ecosystem. We found ourselves wishing for a clearer map to understand how different capabilities relate to each other.
 
-Rather than create Yet Another Vendor Stack Diagram™, we wondered: could we contribute something more broadly useful?
+Rather than create Yet Another Stack Diagram™, we wondered: could we contribute something more broadly useful to the community?
 
 ## License
 
@@ -83,4 +83,4 @@ This proposal draws inspiration from:
 
 ---
 
-*Questions? Thoughts? We'd love to hear from you. Open an issue or reach out through the Dollhouse MCP community channels.*
+*Questions? Thoughts? We'd love to hear from you. Open an issue to start a discussion.*

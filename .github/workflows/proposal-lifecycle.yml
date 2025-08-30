@@ -5,8 +5,6 @@ on:
     types: [opened, synchronize, reopened, closed]
     paths:
       - 'proposals/**'
-  pull_request_target:
-    types: [labeled, unlabeled]
   schedule:
     # Check proposal stages daily at 6 AM UTC
     - cron: '0 6 * * *'
@@ -17,8 +15,12 @@ on:
         required: false
         default: 'false'
 
+concurrency:
+  group: proposal-lifecycle-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
   issues: write
 

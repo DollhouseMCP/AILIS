@@ -2,6 +2,13 @@
 
 *Version 0.1 - Early Draft for Discussion*
 
+<!-- Workflow Status Badges -->
+[![🔗 Link Validation](https://github.com/DollhouseMCP/AILIS/actions/workflows/link-validation.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/link-validation.yml)
+[![📝 Markdown Linting](https://github.com/DollhouseMCP/AILIS/actions/workflows/markdown-lint.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/markdown-lint.yml)
+[![📚 Spell Check](https://github.com/DollhouseMCP/AILIS/actions/workflows/spell-check.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/spell-check.yml)
+[![♿ Accessibility Check](https://github.com/DollhouseMCP/AILIS/actions/workflows/accessibility-check.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/accessibility-check.yml)
+[![📋 Proposal Lifecycle](https://github.com/DollhouseMCP/AILIS/actions/workflows/proposal-lifecycle.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/proposal-lifecycle.yml)
+
 ## What if we had a common language for the AI stack?
 
 The AI ecosystem is evolving rapidly, with countless tools, platforms, and frameworks emerging daily. Yet we lack a shared mental model—a common way to discuss where different capabilities sit, how they interact, and where the gaps might be.

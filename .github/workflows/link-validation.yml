@@ -16,6 +16,10 @@ on:
     # Check links weekly on Sundays at 3 AM UTC
     - cron: '0 3 * * 0'
 
+concurrency:
+  group: link-validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate-links:
     name: Validate All Links
@@ -38,15 +42,21 @@ jobs:
           args: |
             --verbose
             --no-progress
-            --accept=200,203,204,206,300,301,302,303,304,307,308,429
+            --accept=200,203,204,206,300,301,302,303,304,307,308,429,999
             --timeout=30
-            --retry-wait-time=5
-            --max-retries=3
+            --retry-wait-time=2
+            --max-retries=5
+            --exponential-backoff
+            --rate-limit=20
+            --rate-limit-period=1m
             --exclude-mail
             --exclude="^javascript:"
             --exclude="^mailto:"
             --exclude="localhost"
             --exclude="127.0.0.1"
+            --exclude="example.com"
+            --exclude="test.com"
+            --user-agent="AILIS-LinkChecker/1.0 (+https://github.com/DollhouseMCP/AILIS)"
             "**/*.md"
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

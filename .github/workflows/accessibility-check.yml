@@ -11,6 +11,10 @@ on:
       - '**/*.md'
       - '**/*.html'
 
+concurrency:
+  group: accessibility-check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   accessibility-check:
     name: Check Accessibility Standards
@@ -24,86 +28,35 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: '.github/package*.json'
           
-      - name: 📥 Install Accessibility Tools
+      - name: 📥 Setup Dependencies Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            ~/.cache/pip
+          key: accessibility-deps-${{ runner.os }}-${{ hashFiles('.github/workflows/accessibility-check.yml') }}
+          restore-keys: |
+            accessibility-deps-${{ runner.os }}-
+            
+      - name: 📥 Install Dependencies
         run: |
-          npm install -g markdown-link-check
-          npm install -g remark-cli remark-lint
-          pip install accessibility-checker-py
+          # Create minimal package.json for npm caching
+          mkdir -p .github/temp
+          echo '{"dependencies": {"remark-cli": "latest", "remark-lint": "latest"}}' > .github/temp/package.json
+          cd .github/temp && npm install
+          # Install Python dependencies
+          pip install --user markdown-link-check-py || echo "Optional Python dependency not available"
           
-      - name: 🔍 Check Markdown Accessibility
+      - name: 🔍 Run Accessibility Checks
         run: |
-          echo "## ♿ Accessibility Check Results" > accessibility-report.md
-          echo "" >> accessibility-report.md
+          # Make script executable
+          chmod +x .github/scripts/check-accessibility.py
           
-          # Check for heading structure
-          echo "### 📋 Heading Structure Analysis" >> accessibility-report.md
-          find . -name "*.md" -not -path "./node_modules/*" -exec grep -H "^#" {} \; | sort > headings.txt
-          
-          # Check for alt text in images
-          echo "### 🖼️ Image Alt Text Check" >> accessibility-report.md
-          echo "Checking for images without alt text..." >> accessibility-report.md
-          
-          # Find images without alt text
-          grep -r "!\[\](" . --include="*.md" || echo "✅ No images without alt text found" >> accessibility-report.md
-          grep -r "!\[  *\](" . --include="*.md" || echo "✅ No images with empty alt text found" >> accessibility-report.md
-          
-          # Check for meaningful link text
-          echo "### 🔗 Link Text Analysis" >> accessibility-report.md
-          echo "Checking for non-descriptive link text..." >> accessibility-report.md
-          
-          # Find potentially problematic link text
-          grep -r "\[click here\]" . --include="*.md" || echo "✅ No 'click here' links found" >> accessibility-report.md
-          grep -r "\[here\]" . --include="*.md" || echo "✅ No 'here' links found" >> accessibility-report.md
-          grep -r "\[read more\]" . --include="*.md" || echo "✅ No 'read more' links found" >> accessibility-report.md
-          
-          # Check heading hierarchy
-          echo "### 📊 Heading Hierarchy Check" >> accessibility-report.md
-          python3 << 'EOF'
-          import re
-          import os
-          import sys
-          
-          def check_heading_hierarchy(file_path):
-              with open(file_path, 'r', encoding='utf-8') as f:
-                  content = f.read()
-              
-              headings = re.findall(r'^(#+)\s+(.+)', content, re.MULTILINE)
-              if not headings:
-                  return []
-              
-              issues = []
-              prev_level = 0
-              
-              for heading_marks, heading_text in headings:
-                  current_level = len(heading_marks)
-                  
-                  if prev_level > 0 and current_level > prev_level + 1:
-                      issues.append(f"Heading level jump: '{heading_text}' (H{current_level} after H{prev_level})")
-                  
-                  prev_level = current_level
-              
-              return issues
-          
-          all_issues = []
-          for root, dirs, files in os.walk('.'):
-              if 'node_modules' in root or '.git' in root:
-                  continue
-              for file in files:
-                  if file.endswith('.md'):
-                      file_path = os.path.join(root, file)
-                      issues = check_heading_hierarchy(file_path)
-                      if issues:
-                          all_issues.extend([f"{file_path}: {issue}" for issue in issues])
-          
-          if all_issues:
-              print("❌ Heading hierarchy issues found:")
-              for issue in all_issues:
-                  print(f"  - {issue}")
-              sys.exit(1)
-          else:
-              print("✅ Heading hierarchy looks good")
-          EOF
+          # Run comprehensive accessibility check
+          python3 .github/scripts/check-accessibility.py --path . --report accessibility-report.md --verbose
           
       - name: 📊 Generate Accessibility Summary
         if: always()

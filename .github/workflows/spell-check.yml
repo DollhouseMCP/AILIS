@@ -11,6 +11,10 @@ on:
       - '**/*.md'
       - '**/*.txt'
 
+concurrency:
+  group: spell-check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   spell-check:
     name: Check Spelling

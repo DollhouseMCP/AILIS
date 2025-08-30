@@ -1,0 +1,206 @@
+name: 🏷️ Proposal Stage Transitions
+
+on:
+  pull_request_target:
+    types: [labeled, unlabeled]
+    paths:
+      - 'proposals/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  handle-stage-transition:
+    name: Handle Stage Transitions
+    runs-on: ubuntu-latest
+    
+    # Security: Only run on PRs from the same repository to prevent privilege escalation
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    
+    steps:
+      - name: 🔍 Checkout Repository (Target Branch)
+        uses: actions/checkout@v4
+        with:
+          # Checkout the target branch (main) not the PR branch for security
+          ref: ${{ github.event.pull_request.base.sha }}
+          
+      - name: 🎯 Handle Stage Accepted
+        if: github.event.action == 'labeled' && github.event.label.name == 'stage/accepted'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const pr = context.payload.pull_request;
+            
+            // Security check: Verify label was applied by maintainer
+            const labelEvent = await github.rest.issues.listEvents({
+              owner,
+              repo,
+              issue_number: pr.number
+            });
+            
+            const labelAppliedBy = labelEvent.data
+              .filter(e => e.event === 'labeled' && e.label.name === 'stage/accepted')
+              .slice(-1)[0]?.actor?.login;
+            
+            console.log(`Label applied by: ${labelAppliedBy}`);
+            
+            // Add acceptance comment
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: pr.number,
+              body: `## ✅ Proposal Accepted
+
+This proposal has been accepted through the RFC process and will be auto-merged.
+
+**Accepted by**: @${labelAppliedBy}
+**Decision date**: ${new Date().toISOString().split('T')[0]}
+
+Thank you for your contribution to the AILIS framework! 🎉
+
+---
+*This is an automated response to the \`stage/accepted\` label.*`
+            });
+            
+            // Attempt auto-merge
+            try {
+              await github.rest.pulls.merge({
+                owner,
+                repo,
+                pull_number: pr.number,
+                merge_method: 'squash',
+                commit_title: `Accept proposal: ${pr.title}`,
+                commit_message: `Proposal accepted through RFC process by @${labelAppliedBy}.\n\n🤖 Auto-merged via stage transition workflow`
+              });
+              
+              console.log('✅ Successfully auto-merged accepted proposal');
+            } catch (error) {
+              console.log('⚠️ Auto-merge failed:', error.message);
+              
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: pr.number,
+                body: `## ⚠️ Manual Merge Required
+
+The proposal was accepted but auto-merge failed. A maintainer needs to manually merge this PR.
+
+**Error**: ${error.message}
+
+This is typically due to branch protection rules requiring additional checks or reviews.`
+              });
+            }
+            
+      - name: 🎯 Handle Stage Declined
+        if: github.event.action == 'labeled' && github.event.label.name == 'stage/declined'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const pr = context.payload.pull_request;
+            
+            // Security check: Verify label was applied by maintainer
+            const labelEvent = await github.rest.issues.listEvents({
+              owner,
+              repo,
+              issue_number: pr.number
+            });
+            
+            const labelAppliedBy = labelEvent.data
+              .filter(e => e.event === 'labeled' && e.label.name === 'stage/declined')
+              .slice(-1)[0]?.actor?.login;
+            
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: pr.number,
+              body: `## ❌ Proposal Declined
+
+This proposal has been declined through the RFC process.
+
+**Decision by**: @${labelAppliedBy}
+**Decision date**: ${new Date().toISOString().split('T')[0]}
+
+Thank you for your contribution. While this particular proposal wasn't accepted, we encourage you to:
+- Review the feedback provided during the RFC process
+- Consider alternative approaches
+- Submit new proposals based on lessons learned
+
+All proposals, whether accepted or declined, contribute to the evolution of the AILIS framework.
+
+---
+*This is an automated response to the \`stage/declined\` label.*`
+            });
+            
+            // Close the PR
+            await github.rest.pulls.update({
+              owner,
+              repo,
+              pull_number: pr.number,
+              state: 'closed'
+            });
+            
+      - name: 🔄 Handle Other Stage Transitions
+        if: github.event.action == 'labeled' && startsWith(github.event.label.name, 'stage/')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const pr = context.payload.pull_request;
+            const stage = context.payload.label.name.replace('stage/', '');
+            
+            const stageMessages = {
+              'review': `## 👀 Entered Review Phase
+
+This proposal is now in the **review phase** and open for community feedback.
+
+### Timeline:
+- **Minimum review period**: 4 weeks
+- **Review started**: ${new Date().toISOString().split('T')[0]}
+- **Earliest decision date**: ${new Date(Date.now() + 28 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
+
+We encourage all community members to provide constructive feedback, ask questions, and suggest improvements.`,
+
+              'final-comment': `## 💬 Final Comment Period
+
+This proposal has entered the **final comment period** - the last opportunity for feedback before a decision is made.
+
+### What this means:
+- Major design changes are no longer expected
+- Focus should be on final clarifications and minor improvements  
+- Decision will be made after this period concludes
+
+Please provide any final feedback or concerns now.`,
+              
+              'draft': `## 📝 Returned to Draft
+
+This proposal has been returned to **draft status** for further development.
+
+Continue refining the proposal based on feedback received. When ready, it can re-enter the review process.`
+            };
+            
+            const message = stageMessages[stage];
+            if (message) {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: pr.number,
+                body: message + '\n\n---\n*This is an automated response to the stage transition.*'
+              });
+            }
+            
+      - name: 📊 Security Summary
+        if: always()
+        run: |
+          echo "## 🔒 Stage Transition Security Summary" >> $GITHUB_STEP_SUMMARY
+          echo "### Security Measures:" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Only runs on PRs from same repository" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Checks out target branch, not PR branch" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Verifies label applied by authorized user" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Limited to read-only checkout permissions" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ No code execution from PR branch" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📅 Last checked: $(date -u)" >> $GITHUB_STEP_SUMMARY

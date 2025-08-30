@@ -20,6 +20,12 @@ def check_heading_hierarchy(file_path):
         print(f"Warning: Could not read {file_path}: {e}")
         return []
     
+    # Remove code blocks to avoid false positives from bash comments etc.
+    # Remove fenced code blocks (```...```)
+    content = re.sub(r'```.*?```', '', content, flags=re.DOTALL)
+    # Remove inline code blocks (`...`)
+    content = re.sub(r'`[^`]+`', '', content)
+    
     headings = re.findall(r'^(#+)\s+(.+)', content, re.MULTILINE)
     if not headings:
         return []

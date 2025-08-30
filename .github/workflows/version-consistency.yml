@@ -1,0 +1,150 @@
+name: 🔢 Version Consistency Check
+
+on:
+  push:
+    branches: [main, initial-setup]
+    paths:
+      - '**/package.json'
+      - '**/pyproject.toml'
+      - '**/Cargo.toml'
+      - '**/version.txt'
+      - 'VERSION'
+      - 'CHANGELOG.md'
+      - 'proposals/**/*.md'
+  pull_request:
+    paths:
+      - '**/package.json'
+      - '**/pyproject.toml'
+      - '**/Cargo.toml'
+      - '**/version.txt'
+      - 'VERSION'
+      - 'CHANGELOG.md'
+      - 'proposals/**/*.md'
+  release:
+    types: [created, published]
+  workflow_dispatch:
+
+concurrency:
+  group: version-consistency-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check-version-consistency:
+    name: Check Version Consistency
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: 📦 Install Dependencies
+        run: |
+          pip install packaging semver toml pyyaml
+          
+      - name: 🔢 Run Version Consistency Check
+        id: version-check
+        run: python3 .github/scripts/check-version-consistency.py
+        
+      - name: 📊 Generate Report
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            // Read results if they exist
+            let results = {};
+            try {
+              const resultsFile = '.version-check-results.json';
+              if (fs.existsSync(resultsFile)) {
+                results = JSON.parse(fs.readFileSync(resultsFile, 'utf8'));
+              }
+            } catch (error) {
+              console.log('Could not read results file:', error.message);
+            }
+            
+            // Create summary
+            let summary = "## 🔢 Version Consistency Check Results\\n\\n";
+            
+            if (results.consistent === true) {
+              summary += "✅ **All versions are consistent**\\n\\n";
+            } else if (results.consistent === false) {
+              summary += "❌ **Version inconsistencies detected**\\n\\n";
+            } else {
+              summary += "⚠️ **Version check completed with warnings**\\n\\n";
+            }
+            
+            if (results.versions && Object.keys(results.versions).length > 0) {
+              summary += "### 📋 Version Summary\\n\\n";
+              summary += "| File | Version | Status |\\n";
+              summary += "|------|---------|---------|\\n";
+              
+              for (const [file, info] of Object.entries(results.versions)) {
+                const status = info.consistent ? "✅" : "❌";
+                summary += `| \`${file}\` | \`${info.version || 'N/A'}\` | ${status} |\\n`;
+              }
+              summary += "\\n";
+            }
+            
+            if (results.issues && results.issues.length > 0) {
+              summary += "### ⚠️ Issues Found\\n\\n";
+              for (const issue of results.issues) {
+                summary += `- **${issue.severity}**: ${issue.message}\\n`;
+              }
+              summary += "\\n";
+            }
+            
+            if (results.recommendations && results.recommendations.length > 0) {
+              summary += "### 💡 Recommendations\\n\\n";
+              for (const rec of results.recommendations) {
+                summary += `- ${rec}\\n`;
+              }
+              summary += "\\n";
+            }
+            
+            // Write to step summary
+            await core.summary.addRaw(summary).write();
+            
+            // Add comment on PR if there are issues
+            if (context.eventName === 'pull_request' && results.consistent === false) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: summary
+              });
+            }
+            
+      - name: 📊 Create Version Badge
+        if: github.ref == 'refs/heads/main'
+        run: |
+          # Create simple version badge info
+          if [ -f ".version-check-results.json" ]; then
+            VERSION=$(python3 -c "
+            import json
+            with open('.version-check-results.json') as f:
+                data = json.load(f)
+                print(data.get('primary_version', 'unknown'))
+            " 2>/dev/null || echo "unknown")
+            
+            echo "Primary version detected: $VERSION"
+            
+            # You could extend this to create actual badge files or update README
+            echo "VERSION=$VERSION" >> $GITHUB_ENV
+          fi
+          
+      - name: 🚨 Fail on Inconsistencies
+        if: steps.version-check.outputs.consistent == 'false'
+        run: |
+          echo "❌ Version inconsistencies detected!"
+          echo "Please review the version consistency report above and fix any issues."
+          exit 1

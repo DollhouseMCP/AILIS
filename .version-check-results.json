@@ -1,0 +1,63 @@
+{
+  "consistent": true,
+  "primary_version": "0.2.0",
+  "versions": {
+    "VERSION": {
+      "version": "0.2.0",
+      "type": "primary",
+      "consistent": true
+    }
+  },
+  "issues": [
+    {
+      "severity": "Warning",
+      "message": "Could not parse changelog CHANGELOG.md: unbalanced parenthesis at position 42"
+    },
+    {
+      "severity": "Warning",
+      "message": "Could not parse CONTRIBUTING.md: unbalanced parenthesis at position 36"
+    },
+    {
+      "severity": "Warning",
+      "message": "Could not parse FEEDBACK.md: unbalanced parenthesis at position 36"
+    },
+    {
+      "severity": "Warning",
+      "message": "Could not parse CLAUDE.md: unbalanced parenthesis at position 36"
+    },
+    {
+      "severity": "Warning",
+      "message": "Could not parse .github/pull_request_template.md: unbalanced parenthesis at position 36"
+    },
+    {
+      "severity": "Warning",
+      "message": "Could not parse .github/readme-template.md: unbalanced parenthesis at position 36"
+    },
+    {
+      "severity": "Warning",
+      "message": "Could not parse proposals/AILIS_Primer.md: unbalanced parenthesis at position 36"
+    },
+    {
+      "severity": "Warning",
+      "message": "Could not parse proposals/AILIS_Cheat_Sheet.md: unbalanced parenthesis at position 36"
+    },
+    {
+      "severity": "Warning",
+      "message": "Could not parse proposals/AILIS_BlogPost_Draft.md: unbalanced parenthesis at position 36"
+    },
+    {
+      "severity": "Warning",
+      "message": "Could not parse docs/session-notes/session-notes-2025-08-30-initial-repository-setup.md: unbalanced parenthesis at position 36"
+    },
+    {
+      "severity": "Warning",
+      "message": "Could not parse docs/session-notes/session-notes-2025-08-30-tier1-workflows-implementation.md: unbalanced parenthesis at position 36"
+    }
+  ],
+  "recommendations": [],
+  "summary": {
+    "total_files": 1,
+    "primary_files": 1,
+    "reference_files": 0
+  }
+}

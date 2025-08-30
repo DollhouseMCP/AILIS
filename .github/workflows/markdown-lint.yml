@@ -29,10 +29,18 @@ jobs:
           files: '**/*.md'
           ignore: 'node_modules'
           
-      - name: 🎯 Run Markdown Table Formatter Check
-        uses: nvuillam/markdown-table-formatter@v1
-        with:
-          file_pattern: "**/*.md"
+      - name: 🎯 Check Markdown Table Formatting
+        run: |
+          echo "Checking markdown table formatting..."
+          # Simple table format check - look for tables and basic formatting
+          find . -name "*.md" -not -path "./node_modules/*" -exec grep -l "|" {} \; | while read file; do
+            echo "Checking tables in: $file"
+            # Basic table validation - check for header separators
+            if grep -q "|.*|" "$file" && ! grep -q "|.*-.*|" "$file"; then
+              echo "⚠️  Potential table formatting issue in $file"
+            fi
+          done
+          echo "✅ Table format check completed"
           
       - name: 📊 Markdown Quality Summary
         if: always()

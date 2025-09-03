@@ -30,6 +30,22 @@
     {
       "pattern": "^docs/",
       "replacement": "{{GITHUB_WORKSPACE}}/docs/"
+    },
+    {
+      "pattern": "^proposals/",
+      "replacement": "{{GITHUB_WORKSPACE}}/proposals/"
+    },
+    {
+      "pattern": "^reference/",
+      "replacement": "{{GITHUB_WORKSPACE}}/reference/"
+    },
+    {
+      "pattern": "^studies/",
+      "replacement": "{{GITHUB_WORKSPACE}}/studies/"
+    },
+    {
+      "pattern": "^discussions/",
+      "replacement": "{{GITHUB_WORKSPACE}}/discussions/"
     }
   ],
   "httpStatusCodes": [200, 201, 202, 204, 206, 300, 301, 302, 303, 304, 307, 308],

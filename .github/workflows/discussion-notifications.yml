@@ -82,7 +82,7 @@ jobs:
             }
             
       - name: 📊 Weekly Activity Digest
-        if: github.event_name == 'schedule'
+        if: ${{ github.event_name == 'schedule' }}
         uses: actions/github-script@v7
         with:
           script: |
@@ -180,7 +180,7 @@ jobs:
             });
             
       - name: 📋 Discussion Mentions Monitor
-        if: github.event_name == 'discussion'
+        if: ${{ github.event_name == 'discussion' }}
         uses: actions/github-script@v7
         with:
           script: |

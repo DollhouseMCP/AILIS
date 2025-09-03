@@ -30,7 +30,7 @@ concurrency:
 
 permissions:
   contents: write
-  pull-requests: read
+  pull-requests: write  # Need write permission to create PRs
   issues: read
 
 jobs:

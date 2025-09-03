@@ -27,7 +27,7 @@ jobs:
           ref: ${{ github.event.pull_request.base.sha }}
           
       - name: 🎯 Handle Stage Accepted
-        if: github.event.action == 'labeled' && github.event.label.name == 'stage/accepted'
+        if: ${{ github.event.action == 'labeled' && github.event.label.name == 'stage/accepted' }}
         uses: actions/github-script@v7
         with:
           script: |
@@ -95,7 +95,7 @@ This is typically due to branch protection rules requiring additional checks or 
             }
             
       - name: 🎯 Handle Stage Declined
-        if: github.event.action == 'labeled' && github.event.label.name == 'stage/declined'
+        if: ${{ github.event.action == 'labeled' && github.event.label.name == 'stage/declined' }}
         uses: actions/github-script@v7
         with:
           script: |
@@ -144,7 +144,7 @@ All proposals, whether accepted or declined, contribute to the evolution of the 
             });
             
       - name: 🔄 Handle Other Stage Transitions
-        if: github.event.action == 'labeled' && startsWith(github.event.label.name, 'stage/')
+        if: ${{ github.event.action == 'labeled' && startsWith(github.event.label.name, 'stage/') }}
         uses: actions/github-script@v7
         with:
           script: |

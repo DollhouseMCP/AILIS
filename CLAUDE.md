@@ -2,6 +2,12 @@
 
 Welcome Claude! This document provides essential context for working on the AILIS project.
 
+## 🚨 IMPORTANT: Directory Context
+**YOU ARE IN: /Users/mick/Developer/Organizations/DollhouseMCP/active/AILIS**
+- Always verify with `pwd` if unsure
+- This is the AILIS repository (AI Layer Interface Specification)
+- NOT mcp-server, NOT experimental-server
+
 ## Project Overview
 AILIS (AI Layer Interface Specification) is a **proposal** for a 16+ layer model to help understand and discuss AI system architectures. Think of it as an OSI model for AI systems. This is intentionally positioned as an exploration and conversation starter, NOT a prescriptive standard.
 

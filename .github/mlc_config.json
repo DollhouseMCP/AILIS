@@ -19,19 +19,10 @@
       "pattern": "^mailto:"
     },
     {
-      "pattern": "docs/session-notes/"
+      "pattern": "^{{.*}}$"
     }
   ],
-  "replacementPatterns": [
-    {
-      "pattern": "^/",
-      "replacement": "{{GITHUB_WORKSPACE}}/"
-    },
-    {
-      "pattern": "^docs/",
-      "replacement": "{{GITHUB_WORKSPACE}}/docs/"
-    }
-  ],
+  "replacementPatterns": [],
   "httpStatusCodes": [200, 201, 202, 204, 206, 300, 301, 302, 303, 304, 307, 308],
   "timeout": "30s",
   "retryOn429": true,

@@ -1,0 +1,175 @@
+name: 📝 Changelog Automation
+
+on:
+  push:
+    branches: [main, initial-setup]
+  pull_request_target:
+    types: [closed]
+    branches: [main, initial-setup]
+  release:
+    types: [created, published]
+  schedule:
+    # Update changelog weekly on Sundays at 3 AM UTC
+    - cron: '0 3 * * 0'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to generate changelog for (e.g., v1.0.0)'
+        required: false
+      since_tag:
+        description: 'Generate changelog since this tag'
+        required: false
+      full_rebuild:
+        description: 'Rebuild entire changelog from scratch'
+        required: false
+        default: 'false'
+
+concurrency:
+  group: changelog-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: read
+  issues: read
+
+jobs:
+  update-changelog:
+    name: Update Changelog
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: 📦 Install Dependencies
+        run: |
+          pip install requests python-dateutil gitpython markdown
+          
+      - name: 📊 Gather Release Information
+        id: release-info
+        run: |
+          # Get latest tag if no version specified
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.1.0")
+            echo "version=${latest_tag}" >> $GITHUB_OUTPUT
+          fi
+          
+          # Get previous tag for comparison
+          if [ -n "${{ github.event.inputs.since_tag }}" ]; then
+            echo "since_tag=${{ github.event.inputs.since_tag }}" >> $GITHUB_OUTPUT
+          else
+            # Get second latest tag
+            prev_tag=$(git tag --sort=-version:refname | sed -n '2p' || echo "")
+            echo "since_tag=${prev_tag}" >> $GITHUB_OUTPUT
+          fi
+          
+          echo "date=$(date -u +"%Y-%m-%d")" >> $GITHUB_OUTPUT
+          echo "full_rebuild=${{ github.event.inputs.full_rebuild }}" >> $GITHUB_OUTPUT
+          
+      - name: 🔧 Generate Changelog
+        run: python3 .github/scripts/generate-changelog.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CURRENT_VERSION: ${{ steps.release-info.outputs.version }}
+          SINCE_TAG: ${{ steps.release-info.outputs.since_tag }}
+          RELEASE_DATE: ${{ steps.release-info.outputs.date }}
+          FULL_REBUILD: ${{ steps.release-info.outputs.full_rebuild }}
+          
+      - name: 🔍 Check for Changes
+        id: check-changes
+        run: |
+          if git diff --quiet CHANGELOG.md; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No changes detected in CHANGELOG.md"
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in CHANGELOG.md"
+            echo "## Changes Preview:" >> $GITHUB_STEP_SUMMARY
+            echo '```diff' >> $GITHUB_STEP_SUMMARY
+            git diff CHANGELOG.md >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+          
+      - name: 💾 Commit Changelog Updates
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          git add CHANGELOG.md
+          git commit -m "docs: Update changelog for ${{ steps.release-info.outputs.version }}
+
+          Auto-generated changelog update including:
+          - Recent commits and pull requests
+          - Categorized changes (features, fixes, docs, etc.)
+          - Contributor acknowledgments
+          
+          Date: ${{ steps.release-info.outputs.date }}
+          
+          🤖 Generated automatically by changelog automation workflow"
+          
+      - name: 🚀 Push Changes
+        if: steps.check-changes.outputs.changes == 'true' && github.event_name != 'pull_request_target'
+        run: git push
+        
+      - name: 📊 Create Release Notes
+        if: github.event_name == 'release' && steps.check-changes.outputs.changes == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            
+            // Read generated changelog section for this version
+            const changelogContent = fs.readFileSync('CHANGELOG.md', 'utf8');
+            const versionPattern = new RegExp(`## \\[${process.env.CURRENT_VERSION}\\].*?(?=## \\[|$)`, 's');
+            const versionMatch = changelogContent.match(versionPattern);
+            
+            if (versionMatch) {
+              const releaseNotes = versionMatch[0];
+              
+              await github.rest.repos.updateRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: context.payload.release.id,
+                body: `${context.payload.release.body}\\n\\n---\\n\\n${releaseNotes}`
+              });
+              
+              console.log('✅ Updated release notes with changelog content');
+            }
+            
+      - name: 📊 Generate Workflow Summary
+        if: always()
+        run: |
+          echo "## 📝 Changelog Automation Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Setting | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Current Version | \`${{ steps.release-info.outputs.version }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Since Tag | \`${{ steps.release-info.outputs.since_tag }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Release Date | ${{ steps.release-info.outputs.date }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Full Rebuild | ${{ steps.release-info.outputs.full_rebuild }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Changes Made | ${{ steps.check-changes.outputs.changes }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.check-changes.outputs.changes }}" = "true" ]; then
+            echo "✅ **Changelog was updated** with new entries." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "The changelog now includes:" >> $GITHUB_STEP_SUMMARY
+            echo "- Recent commits and merged pull requests" >> $GITHUB_STEP_SUMMARY
+            echo "- Categorized changes by type (feat, fix, docs, etc.)" >> $GITHUB_STEP_SUMMARY
+            echo "- Contributor acknowledgments" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ **No changes needed** - changelog is already up to date." >> $GITHUB_STEP_SUMMARY
+          fi

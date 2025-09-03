@@ -1,0 +1,155 @@
+name: 📄 README Compilation & Maintenance
+
+on:
+  push:
+    branches: [main, initial-setup]
+    paths:
+      - 'README.md'
+      - 'docs/readme-parts/**'
+      - '.github/readme-template.md'
+      - 'proposals/**/*.md'
+  pull_request:
+    paths:
+      - 'README.md'
+      - 'docs/readme-parts/**'
+      - '.github/readme-template.md'
+      - 'proposals/**/*.md'
+  schedule:
+    # Regenerate README weekly on Sundays at 2 AM UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+    inputs:
+      force_regenerate:
+        description: 'Force complete README regeneration'
+        required: false
+        default: 'false'
+
+concurrency:
+  group: readme-compilation-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  compile-readme:
+    name: Compile Dynamic README
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: 📦 Install Dependencies
+        run: |
+          pip install pyyaml jinja2 markdown beautifulsoup4 requests
+          
+      - name: 📊 Gather Repository Statistics
+        id: repo-stats
+        run: |
+          echo "contributors=$(git shortlog -sn --all | wc -l)" >> $GITHUB_OUTPUT
+          echo "commits=$(git rev-list --all --count)" >> $GITHUB_OUTPUT
+          echo "proposals=$(find proposals -name "*.md" -not -name "README.md" | wc -l)" >> $GITHUB_OUTPUT
+          echo "last_updated=$(date -u +"%Y-%m-%d %H:%M UTC")" >> $GITHUB_OUTPUT
+          echo "workflows=$(find .github/workflows -name "*.yml" | wc -l)" >> $GITHUB_OUTPUT
+          
+      - name: 🔧 Generate Dynamic README
+        run: python3 .github/scripts/compile-readme.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_CONTRIBUTORS: ${{ steps.repo-stats.outputs.contributors }}
+          REPO_COMMITS: ${{ steps.repo-stats.outputs.commits }}
+          REPO_PROPOSALS: ${{ steps.repo-stats.outputs.proposals }}
+          REPO_WORKFLOWS: ${{ steps.repo-stats.outputs.workflows }}
+          LAST_UPDATED: ${{ steps.repo-stats.outputs.last_updated }}
+          
+      - name: 📋 Generate Table of Contents
+        run: python3 .github/scripts/generate-toc.py README.md
+        
+      - name: 🔍 Check for Changes
+        id: check-changes
+        run: |
+          if git diff --quiet README.md; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No changes detected in README.md"
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in README.md"
+          fi
+          
+      - name: 💾 Commit Changes
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          git add README.md
+          git commit -m "docs: Auto-update README with latest project information
+
+          - Updated repository statistics and workflow badges
+          - Regenerated table of contents and proposal listings
+          - Synchronized with latest documentation changes
+          - Last updated: ${{ steps.repo-stats.outputs.last_updated }}
+          
+          🤖 Generated automatically by README compilation workflow"
+          
+      - name: 🚀 Push Changes
+        if: steps.check-changes.outputs.changes == 'true' && github.event_name != 'pull_request'
+        run: git push
+        
+      - name: 📊 Create PR Comment
+        if: steps.check-changes.outputs.changes == 'true' && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const prNumber = context.payload.pull_request.number;
+            
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: prNumber,
+              body: `## 📄 README Compilation Results
+              
+              ✅ **README has been automatically updated** with latest project information:
+              
+              - **Contributors**: ${{ steps.repo-stats.outputs.contributors }}
+              - **Total Commits**: ${{ steps.repo-stats.outputs.commits }}  
+              - **Proposals**: ${{ steps.repo-stats.outputs.proposals }}
+              - **Workflows**: ${{ steps.repo-stats.outputs.workflows }}
+              - **Last Updated**: ${{ steps.repo-stats.outputs.last_updated }}
+              
+              The README now reflects the current state of the repository and includes updated table of contents.
+              
+              *Note: Changes are committed to this branch and will be included in the PR.*`
+            });
+            
+      - name: 📊 Generate Workflow Summary
+        if: always()
+        run: |
+          echo "## 📄 README Compilation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Contributors | ${{ steps.repo-stats.outputs.contributors }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Total Commits | ${{ steps.repo-stats.outputs.commits }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Proposals | ${{ steps.repo-stats.outputs.proposals }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Workflows | ${{ steps.repo-stats.outputs.workflows }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Last Updated | ${{ steps.repo-stats.outputs.last_updated }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Changes Made | ${{ steps.check-changes.outputs.changes }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.check-changes.outputs.changes }}" = "true" ]; then
+            echo "✅ **README was updated** with current project information." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ **No changes needed** - README is already up to date." >> $GITHUB_STEP_SUMMARY
+          fi

@@ -41,7 +41,7 @@ jobs:
           node-version: '20'
           
       - name: 🏷️ Auto-Label New Proposals
-        if: github.event_name == 'pull_request' && github.event.action == 'opened'
+        if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
         uses: actions/github-script@v7
         with:
           script: |
@@ -147,7 +147,7 @@ Maintainers can update the stage label as appropriate.
             }
             
       - name: 🎯 Auto-Merge Accepted Proposals
-        if: github.event.action == 'labeled' && github.event.label.name == 'stage/accepted'
+        if: ${{ github.event.action == 'labeled' && github.event.label.name == 'stage/accepted' }}
         uses: actions/github-script@v7
         with:
           script: |

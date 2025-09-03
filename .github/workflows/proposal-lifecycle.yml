@@ -73,23 +73,25 @@ jobs:
                 owner,
                 repo,
                 issue_number: pr.number,
-                body: `## 📋 Proposal Lifecycle Tracking
-
-Welcome! This PR contains proposal documents and has been automatically labeled with:
-- \`stage/draft\` - Proposal is under development
-- \`proposal\` - Content type identifier
-
-### Next Steps:
-1. **Development Phase**: Continue refining your proposal
-2. **Review Phase**: After 4 weeks minimum, this will be eligible for \`stage/review\`
-3. **Final Comment**: Last call period before decision
-4. **Decision**: Proposal will be accepted or declined
-
-### Timeline:
-- **Opened**: ${new Date().toISOString().split('T')[0]}
-- **Minimum Review Date**: ${new Date(Date.now() + 28 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
-
-Maintainers can override these stages as needed using admin privileges.`
+                body: [
+                  '## 📋 Proposal Lifecycle Tracking',
+                  '',
+                  'Welcome! This PR contains proposal documents and has been automatically labeled with:',
+                  '* `stage/draft` - Proposal is under development',
+                  '* `proposal` - Content type identifier',
+                  '',
+                  '### Next Steps:',
+                  '1. **Development Phase**: Continue refining your proposal',
+                  '2. **Review Phase**: After 4 weeks minimum, this will be eligible for `stage/review`',
+                  '3. **Final Comment**: Last call period before decision',
+                  '4. **Decision**: Proposal will be accepted or declined',
+                  '',
+                  '### Timeline:',
+                  `* **Opened**: ${new Date().toISOString().split('T')[0]}`,
+                  `* **Minimum Review Date**: ${new Date(Date.now() + 28 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}`,
+                  '',
+                  'Maintainers can override these stages as needed using admin privileges.'
+                ].join('\n')
               });
             }
             
@@ -129,19 +131,21 @@ Maintainers can override these stages as needed using admin privileges.`
                   owner,
                   repo,
                   issue_number: pr.number,
-                  body: `## ⏰ Review Period Eligibility
-
-This proposal has been in draft stage for over 4 weeks and is now eligible for the review phase.
-
-### Options:
-- **Continue Development**: Keep in draft stage for further refinement
-- **Enter Review**: Ready for community feedback (\`stage/review\`)
-- **Request Final Comment**: Move to final decision phase
-
-Maintainers can update the stage label as appropriate.
-
-**Draft opened**: ${createdDate.toISOString().split('T')[0]}  
-**Review eligible**: ${new Date().toISOString().split('T')[0]}`
+                  body: [
+                  '## ⏰ Review Period Eligibility',
+                  '',
+                  'This proposal has been in draft stage for over 4 weeks and is now eligible for the review phase.',
+                  '',
+                  '### Options:',
+                  '* **Continue Development**: Keep in draft stage for further refinement',
+                  '* **Enter Review**: Ready for community feedback (`stage/review`)',
+                  '* **Request Final Comment**: Move to final decision phase',
+                  '',
+                  'Maintainers can update the stage label as appropriate.',
+                  '',
+                  `**Draft opened**: ${createdDate.toISOString().split('T')[0]}`,
+                  `**Review eligible**: ${new Date().toISOString().split('T')[0]}`
+                ].join('\n')
                 });
               }
             }
@@ -159,11 +163,13 @@ Maintainers can update the stage label as appropriate.
               owner,
               repo,
               issue_number: pr.number,
-              body: `## ✅ Proposal Accepted
-
-This proposal has been accepted and will be automatically merged.
-
-Thank you for your contribution to the AILIS framework! 🎉`
+              body: [
+                '## ✅ Proposal Accepted',
+                '',
+                'This proposal has been accepted and will be automatically merged.',
+                '',
+                'Thank you for your contribution to the AILIS framework! 🎉'
+              ].join('\n')
             });
             
             // Auto-merge the PR
@@ -182,16 +188,18 @@ Thank you for your contribution to the AILIS framework! 🎉`
                 owner,
                 repo,
                 issue_number: pr.number,
-                body: `## 🎊 Auto-Merge Successful!
-
-The accepted proposal has been successfully merged into main.
-
-**Merge Details:**
-- Merge commit: ${mergeResult.data.sha}
-- Merged by: Proposal Lifecycle Automation
-- Timestamp: ${new Date().toISOString()}
-
-Thank you for your contribution! The proposal is now part of the AILIS framework. 🚀`
+                body: [
+                  '## 🎊 Auto-Merge Successful!',
+                  '',
+                  'The accepted proposal has been successfully merged into main.',
+                  '',
+                  '**Merge Details:**',
+                  `* Merge commit: ${mergeResult.data.sha}`,
+                  '* Merged by: Proposal Lifecycle Automation',
+                  `* Timestamp: ${new Date().toISOString()}`,
+                  '',
+                  'Thank you for your contribution! The proposal is now part of the AILIS framework. 🚀'
+                ].join('\n')
               });
             } catch (error) {
               console.log('Auto-merge failed, likely due to branch protection rules:', error.message);
@@ -200,11 +208,13 @@ Thank you for your contribution! The proposal is now part of the AILIS framework
                 owner,
                 repo,
                 issue_number: pr.number,
-                body: `## ⚠️ Auto-merge Failed
-
-The proposal was accepted but auto-merge failed (likely due to branch protection rules). A maintainer will need to manually merge this PR.
-
-Error: ${error.message}`
+                body: [
+                  '## ⚠️ Auto-merge Failed',
+                  '',
+                  'The proposal was accepted but auto-merge failed (likely due to branch protection rules). A maintainer will need to manually merge this PR.',
+                  '',
+                  `Error: ${error.message}`
+                ].join('\n')
               });
             }
             

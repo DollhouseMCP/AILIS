@@ -35,17 +35,19 @@ jobs:
         uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:
           use-quiet-mode: 'yes'
-          use-verbose-mode: 'yes'
+          use-verbose-mode: 'no'
           config-file: '.github/mlc_config.json'
-          file-path: './README.md,./CONTRIBUTING.md,./FEEDBACK.md,./CLAUDE.md,./CHANGELOG.md'
+          folder-path: '.'
+          max-depth: 0
           
       - name: 🔗 Check Subdirectory Links
         uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:
           use-quiet-mode: 'yes'
-          use-verbose-mode: 'yes'
+          use-verbose-mode: 'no'
           config-file: '.github/mlc_config.json'
           folder-path: './proposals,./reference,./studies,./docs'
+          max-depth: -1
           
       - name: 🌐 Check External Links
         uses: lycheeverse/lychee-action@v1.10.0

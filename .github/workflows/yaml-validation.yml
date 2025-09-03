@@ -1,0 +1,67 @@
+name: 🧪 YAML Validation
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/*.yml'
+      - '.github/workflows/*.yaml'
+      - '.github/scripts/validate-workflows.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/*.yml'
+      - '.github/workflows/*.yaml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  
+jobs:
+  validate-workflows:
+    name: Validate Workflow YAML
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: 📦 Install Dependencies
+        run: |
+          pip install pyyaml
+          
+      - name: 🔧 Validate YAML Syntax
+        run: |
+          python3 .github/scripts/validate-workflows.py
+          
+      - name: 📊 Generate Validation Report
+        if: always()
+        run: |
+          echo "## 🧪 YAML Validation Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Run with JSON output for summary
+          if python3 .github/scripts/validate-workflows.py --json > validation.json 2>&1; then
+            echo "✅ **All workflow files are valid!**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Validation issues found**" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Validation Details:" >> $GITHUB_STEP_SUMMARY
+          echo '```json' >> $GITHUB_STEP_SUMMARY
+          cat validation.json >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+      - name: 💡 Check for Common Issues
+        if: always()
+        run: |
+          echo "### Common YAML Issues to Avoid:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "1. **Template literals in body fields**: Use array.join() instead" >> $GITHUB_STEP_SUMMARY
+          echo "2. **Unescaped conditionals**: Wrap with \${{ }}" >> $GITHUB_STEP_SUMMARY
+          echo "3. **Markdown syntax conflicts**: Avoid starting lines with - or * in multiline strings" >> $GITHUB_STEP_SUMMARY

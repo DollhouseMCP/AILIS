@@ -226,7 +226,7 @@ Error: ${error.message}`
               
               if (isProposal) {
                 for (const stage of stages) {
-                  if (labels.includes(\`stage/\${stage}\`)) {
+                  if (labels.includes(`stage/${stage}`)) {
                     stageCounts[stage]++;
                   }
                 }
@@ -236,10 +236,10 @@ Error: ${error.message}`
             report += "### Stage Distribution:\\n";
             for (const [stage, count] of Object.entries(stageCounts)) {
               const emoji = stage === 'draft' ? '📝' : stage === 'review' ? '👀' : stage === 'final-comment' ? '💬' : stage === 'accepted' ? '✅' : '❌';
-              report += \`- \${emoji} \${stage}: \${count}\\n\`;
+              report += `- ${emoji} ${stage}: ${count}\\n`;
             }
             
-            report += \`\\n📅 Last updated: \${new Date().toISOString()}\\n\`;
+            report += `\\n📅 Last updated: ${new Date().toISOString()}\\n`;
             
             console.log(report);
             

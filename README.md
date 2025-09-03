@@ -42,7 +42,8 @@ We're proposing a 16-layer model (plus cross-cutting concerns) that attempts to 
 - **L9 – Knowledge & Retrieval**: Vector/graph indexes, rerankers, grounding, citations
 - **L10 – Tool & Function Invocation**: Typed tool I/O (MCP), function calling, API bindings
 
-### The "Missing Middle" (L11-L15) - *Underserved Today*
+### The "Missing Middle" (L8, L11-L15) - *Underserved Today*
+- **L8 – Context Construction & Prompting**: System prompts, templates, few-shot *(haphazard for enterprises)*
 - **L11 – Addressing & Registry**: Signed manifests, discovery, capability vectors, fingerprints
 - **L12 – Routing, Planning & Policy**: Rule DSL + bandits, budgets, privacy, fallback/parallel
 - **L13 – Transport & Flow Semantics**: Idempotent runs, streaming, CANCEL/RESUME, multiplex
@@ -57,7 +58,7 @@ We're proposing a 16-layer model (plus cross-cutting concerns) that attempts to 
 - **Management/Observability**: Telemetry, evaluations, monitoring
 - **Security**: mTLS, key management, PII protection
 
-The proposal suggests that **layers 11-15 are particularly underserved** in today's ecosystem, creating friction when building multi-provider, privacy-aware, cost-conscious AI systems.
+The proposal suggests that **layers L8 and L11-L15 are particularly underserved** in today's ecosystem. L8 (Context Construction & Prompting) is handled haphazardly by most organizations, while L11-L15 create friction when building multi-provider, privacy-aware, cost-conscious AI systems.
 
 ## This is a conversation starter
 

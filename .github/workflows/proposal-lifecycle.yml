@@ -168,13 +168,30 @@ Thank you for your contribution to the AILIS framework! 🎉`
             
             // Auto-merge the PR
             try {
-              await github.rest.pulls.merge({
+              const mergeResult = await github.rest.pulls.merge({
                 owner,
                 repo,
                 pull_number: pr.number,
                 merge_method: 'squash',
                 commit_title: `Accept proposal: ${pr.title}`,
                 commit_message: `Proposal has been accepted through the RFC process.\n\n🤖 Auto-merged via proposal lifecycle tracking`
+              });
+              
+              // Notify of successful auto-merge
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: pr.number,
+                body: `## 🎊 Auto-Merge Successful!
+
+The accepted proposal has been successfully merged into main.
+
+**Merge Details:**
+- Merge commit: ${mergeResult.data.sha}
+- Merged by: Proposal Lifecycle Automation
+- Timestamp: ${new Date().toISOString()}
+
+Thank you for your contribution! The proposal is now part of the AILIS framework. 🚀`
               });
             } catch (error) {
               console.log('Auto-merge failed, likely due to branch protection rules:', error.message);

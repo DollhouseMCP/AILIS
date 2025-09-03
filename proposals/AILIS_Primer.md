@@ -40,7 +40,7 @@ Management/Observability, Security) apply across layers.
 **L11 – Addressing & Registry** — Signed manifests, discovery, capability vectors, fingerprints.  
 **L12 – Routing, Planning & Policy** — Rule DSL + bandits; budgets, privacy, fallback/parallel.  
 **L13 – Transport & Flow Semantics** — Idempotent runs, streaming, CANCEL/RESUME, multiplex.  
-**L14 – Session, Identity & Memory** — Portable session envelope, capability tokens, budgets; memory tiers (episodic/semantic/scratch).
+**L14 – Session, Identity & Memory** — Portable session envelope, capability tokens, budgets; memory tiers.
 **L15 – Governance, Safety & Schema** — Redaction, validation/repair, schema change control, audit.  
 **L16 – Application & Domain Logic** — Product UX, workflows, agent frameworks.
 

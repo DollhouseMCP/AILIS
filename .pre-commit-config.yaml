@@ -1,0 +1,45 @@
+# Pre-commit hooks for AILIS repository
+# Install with: pip install pre-commit && pre-commit install
+
+repos:
+  # YAML validation
+  - repo: local
+    hooks:
+      - id: validate-workflows
+        name: Validate GitHub Actions workflows
+        entry: python3 .github/scripts/validate-workflows.py
+        language: system
+        files: ^\.github/workflows/.*\.(yml|yaml)$
+        pass_filenames: false
+        
+  # YAML linting
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.32.0
+    hooks:
+      - id: yamllint
+        args: ['-d', '{extends: default, rules: {line-length: {max: 150}, comments-indentation: disable}}']
+        files: ^\.github/workflows/.*\.(yml|yaml)$
+        
+  # Check YAML syntax
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-yaml
+        args: ['--unsafe']  # Allow custom tags
+        files: ^\.github/workflows/.*\.(yml|yaml)$
+        
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.37.0
+    hooks:
+      - id: markdownlint
+        args: ['--fix']
+        
+  # Trailing whitespace
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-added-large-files
+        args: ['--maxkb=1000']

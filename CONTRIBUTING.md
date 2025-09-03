@@ -197,6 +197,99 @@ By contributing, you agree that your contributions will be licensed under:
 - Documentation: CC-BY 4.0
 - Code: Apache 2.0
 
+## GitHub Actions Workflow Development
+
+When developing GitHub Actions workflows, follow these patterns to avoid common YAML parsing issues:
+
+### Multiline Strings in JavaScript
+
+**Problem**: YAML interprets markdown list syntax (`-`) inside JavaScript template literals as YAML structure, causing parse failures.
+
+**❌ BAD** - Will cause YAML parsing errors:
+```yaml
+script: |
+  await github.rest.issues.createComment({
+    body: `## Title
+    - List item 1
+    - List item 2`
+  });
+```
+
+**✅ GOOD** - Use array.join() pattern:
+```yaml
+script: |
+  await github.rest.issues.createComment({
+    body: [
+      '## Title',
+      '* List item 1',  # Use asterisks instead of dashes
+      '* List item 2'
+    ].join('\n')
+  });
+```
+
+### Conditional Expressions
+
+Always wrap conditionals with `${{ }}`:
+
+**❌ BAD**:
+```yaml
+if: github.event.action == 'opened'
+```
+
+**✅ GOOD**:
+```yaml
+if: ${{ github.event.action == 'opened' }}
+```
+
+### Required Permissions
+
+Ensure workflows have necessary permissions:
+```yaml
+permissions:
+  contents: write      # For pushing changes
+  pull-requests: write # For creating PRs
+  issues: write        # For commenting
+```
+
+### Workflow Validation
+
+#### Pre-commit Hooks
+We use pre-commit hooks to validate workflows before commit:
+```bash
+# Install pre-commit
+pip install pre-commit
+
+# Install the hooks
+pre-commit install
+
+# Run manually
+pre-commit run --all-files
+```
+
+#### Manual Validation
+Test your workflows locally:
+```bash
+# Validate all workflows
+python3 .github/scripts/validate-workflows.py
+
+# Check specific file
+python3 -c "import yaml; yaml.safe_load(open('.github/workflows/my-workflow.yml'))"
+```
+
+#### CI Validation
+The YAML validation workflow runs automatically on:
+- Pull requests that modify `.github/workflows/*.yml`
+- Pushes to main branch
+- Manual workflow dispatch
+
+### Common YAML Issues to Avoid
+
+1. **Template literals with list syntax**: Use array.join() instead
+2. **Unescaped conditionals**: Always use `${{ }}` wrapper
+3. **Missing permissions**: Specify required permissions explicitly
+4. **Complex logic in YAML**: Extract to scripts when possible
+5. **Hardcoded secrets**: Use GitHub secrets instead
+
 ---
 
 Remember: This is a proposal, not a standard. We're learning together, and every perspective helps improve our understanding.

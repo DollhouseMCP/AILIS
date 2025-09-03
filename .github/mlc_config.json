@@ -19,9 +19,6 @@
       "pattern": "^mailto:"
     },
     {
-      "pattern": "/$"
-    },
-    {
       "pattern": "^{{.*}}$"
     }
   ],

@@ -25,13 +25,39 @@ Could something similar help in AI? We're not sure, but we think it's worth expl
 
 We're proposing a 16-layer model (plus cross-cutting concerns) that attempts to map the AI stack from physical infrastructure up through application logic:
 
-- **L0-L2**: Infrastructure and compute fabric
-- **L3-L7**: Model compilation, quantization, and inference
-- **L8-L10**: Context, knowledge, and tool invocation
-- **L11-L15**: The "missing middle"—addressing, routing, transport, sessions, and governance
-- **L16**: Application and domain logic
+### Infrastructure Foundation (L0-L2)
+- **L0 – Facilities & Power**: Datacenters, power/cooling, physical security
+- **L1 – Compute Fabric**: GPUs/TPUs/NPUs/CPUs, memory, interconnects  
+- **L2 – System & Driver Runtime**: CUDA/ROCm/Metal, device memory management
 
-The proposal suggests that layers 11-15 might be particularly underserved in today's ecosystem, creating friction when building multi-provider, privacy-aware, cost-conscious AI systems.
+### Model & Inference Stack (L3-L7)
+- **L3 – ML Graph & Compilation**: XLA/TVM/TensorRT-LLM/ONNX Runtime
+- **L4 – Numeric & Quantization**: FP16/FP8/INT4, sparsity, calibration
+- **L5 – Tokenization & Encoders**: BPE tokenizers, CLIP, audio patchifiers
+- **L6 – Model Parameters & Architecture**: Base/foundation weights, MoE, diffusion
+- **L7 – Inference Engine & Decoding**: Serving runtimes, caching, speculative decoding
+
+### AI Application Interface (L8-L10)
+- **L8 – Context Construction & Prompting**: System prompts, templates, few-shot
+- **L9 – Knowledge & Retrieval**: Vector/graph indexes, rerankers, grounding, citations
+- **L10 – Tool & Function Invocation**: Typed tool I/O (MCP), function calling, API bindings
+
+### The "Missing Middle" (L11-L15) - *Underserved Today*
+- **L11 – Addressing & Registry**: Signed manifests, discovery, capability vectors, fingerprints
+- **L12 – Routing, Planning & Policy**: Rule DSL + bandits, budgets, privacy, fallback/parallel
+- **L13 – Transport & Flow Semantics**: Idempotent runs, streaming, CANCEL/RESUME, multiplex
+- **L14 – Session, Identity & Memory**: Portable session envelope, capability tokens, memory tiers
+- **L15 – Governance, Safety & Schema**: Redaction, validation/repair, schema change control, audit
+
+### Application Layer (L16)
+- **L16 – Application & Domain Logic**: Product UX, workflows, agent frameworks
+
+### Cross-Cutting Planes
+- **Control**: Policy/configuration management
+- **Management/Observability**: Telemetry, evaluations, monitoring
+- **Security**: mTLS, key management, PII protection
+
+The proposal suggests that **layers 11-15 are particularly underserved** in today's ecosystem, creating friction when building multi-provider, privacy-aware, cost-conscious AI systems.
 
 ## This is a conversation starter
 

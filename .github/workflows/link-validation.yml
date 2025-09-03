@@ -39,6 +39,7 @@ jobs:
           config-file: '.github/mlc_config.json'
           base-branch: 'main'
           check-modified-files-only: 'no'
+          folder-path: './'
           
       - name: 🌐 Check External Links
         uses: lycheeverse/lychee-action@v1.10.0

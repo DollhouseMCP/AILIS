@@ -1,0 +1,6 @@
+.github/readme-template.md
+.github/pull_request_template.md
+.github/ISSUE_TEMPLATE/
+.github/scripts/
+.github/workflows/
+Docs/

@@ -3,6 +3,8 @@ name: 📝 Changelog Automation
 on:
   push:
     branches: [main, initial-setup]
+    paths-ignore:
+      - 'CHANGELOG.md'
   pull_request_target:
     types: [closed]
     branches: [main, initial-setup]

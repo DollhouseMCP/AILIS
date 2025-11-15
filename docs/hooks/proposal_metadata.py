@@ -24,6 +24,15 @@ def on_page_markdown(markdown: str, page: Page, config: Config, files) -> str:
         Modified markdown with enhanced metadata
     """
     try:
+        # Validate inputs
+        if not isinstance(markdown, str):
+            print(f"Warning: markdown is not a string (type: {type(markdown)})")
+            return markdown or ""
+
+        if not hasattr(page, 'file') or not hasattr(page.file, 'src_path'):
+            print("Warning: Invalid page object - missing file.src_path")
+            return markdown
+
         # Only process proposal pages
         if not page.file.src_path.startswith('proposals/'):
             return markdown

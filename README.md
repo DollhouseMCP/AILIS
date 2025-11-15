@@ -37,12 +37,13 @@ Could something similar help in AI? We're not sure, but we think it's worth expl
 - Review [open issues](https://github.com/DollhouseMCP/AILIS/issues) for active discussions
 
 **Building the website locally?**
-```bash
-pip install mkdocs-material mkdocs-git-revision-date-localized-plugin \
-  mkdocs-awesome-pages-plugin mkdocs-minify-plugin mkdocs-redirects \
-  pymdown-extensions mkdocs-rss-plugin mkdocs-glightbox mkdocs-git-authors-plugin
 
-mkdocs serve  # Preview at http://localhost:8000
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Preview site (with live reload)
+mkdocs serve  # http://localhost:8000
 ```
 
 ## The AILIS 16+ Proposal

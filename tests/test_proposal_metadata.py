@@ -156,8 +156,34 @@ def test_on_page_markdown_error_handling():
 
     result = on_page_markdown(markdown, page, None, None)
 
-    # Should return original (None) without raising
-    assert result is None
+    # Should return empty string for None input
+    assert result == ""
+
+
+def test_on_page_markdown_invalid_input_type():
+    """Test handling of non-string markdown input"""
+    page = MockPage('proposals/test.md')
+
+    # Test with integer
+    result = on_page_markdown(123, page, None, None)
+    assert result == 123  # Returns original invalid input
+
+    # Test with list
+    result = on_page_markdown([], page, None, None)
+    assert result == []
+
+
+def test_on_page_markdown_invalid_page_object():
+    """Test handling of invalid page object"""
+    markdown = "# Test"
+
+    # Page without file attribute
+    class BadPage:
+        pass
+
+    page = BadPage()
+    result = on_page_markdown(markdown, page, None, None)
+    assert result == markdown  # Returns unchanged
 
 
 def test_on_page_content_proposal_class():

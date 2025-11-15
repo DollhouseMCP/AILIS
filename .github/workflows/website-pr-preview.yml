@@ -67,13 +67,22 @@ jobs:
           echo "build_time=$(date -u +"%Y-%m-%d %H:%M UTC")" >> $GITHUB_OUTPUT
 
       - name: 🔧 Build Preview Site
+        env:
+          PR_NUMBER: ${{ steps.stats.outputs.pr_number }}
         run: |
-          echo "Building preview for PR #${{ steps.stats.outputs.pr_number }}..."
+          echo "Building preview for PR #${PR_NUMBER}..."
+
+          # Validate PR number is numeric (security: prevent injection)
+          if ! [[ "$PR_NUMBER" =~ ^[0-9]+$ ]]; then
+            echo "Error: Invalid PR number"
+            exit 1
+          fi
+
           mkdocs build --strict --verbose
 
-          # Add preview banner to all pages
-          find site -name "*.html" -type f -exec sed -i \
-            '/<body/a <div style="background:#ff9800;color:#000;padding:10px;text-align:center;font-weight:bold;">📋 Preview Build - PR #${{ steps.stats.outputs.pr_number }} | Not for production</div>' {} \;
+          # Add preview banner to all pages (PR_NUMBER validated above)
+          BANNER="<div style=\"background:#ff9800;color:#000;padding:10px;text-align:center;font-weight:bold;\">📋 Preview Build - PR #${PR_NUMBER} | Not for production</div>"
+          find site -name "*.html" -type f -exec sed -i "/<body/a ${BANNER}" {} \;
 
       - name: 📦 Upload Preview Artifact
         uses: actions/upload-artifact@v4

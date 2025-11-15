@@ -69,49 +69,20 @@ jobs:
       - name: 🔗 Check Live Site Links
         id: link-check
         if: github.event.inputs.check_type != 'quick'
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --accept=200,203,204,206,300,301,302,303,304,307,308,429,999
+            --timeout=30
+            --max-retries=3
+            --exclude-mail
+            --user-agent="AILIS-HealthCheck/1.0"
+            ${{ vars.SITE_URL || 'https://dollhousemcp.github.io/AILIS' }}
+          fail: false
         env:
-          SITE_URL: ${{ vars.SITE_URL || 'https://dollhousemcp.github.io/AILIS' }}
-        run: |
-          echo "Checking links on live site..."
-
-          # Use lychee for comprehensive link checking
-          # Version: 0.21.0 (latest as of 2025-01)
-          LYCHEE_VERSION="lychee-v0.21.0"
-          LYCHEE_URL="https://github.com/lycheeverse/lychee/releases/download/${LYCHEE_VERSION}/lychee-x86_64-unknown-linux-gnu.tar.gz"
-          LYCHEE_SHA256="a06547250f10021dcafc6ed5bb20fca75835b65711745b63cfdda34c29ff6a73"
-
-          # Download and verify checksum
-          echo "Downloading lychee ${LYCHEE_VERSION}..."
-          curl -sSL "${LYCHEE_URL}" -o lychee.tar.gz
-
-          echo "Verifying checksum..."
-          echo "${LYCHEE_SHA256}  lychee.tar.gz" | sha256sum -c -
-
-          echo "Extracting..."
-          tar -xzf lychee.tar.gz
-          rm lychee.tar.gz
-
-          ./lychee \
-            --verbose \
-            --no-progress \
-            --accept=200,203,204,206,300,301,302,303,304,307,308,429,999 \
-            --timeout=30 \
-            --max-retries=3 \
-            --exclude-mail \
-            --user-agent="AILIS-HealthCheck/1.0" \
-            "${SITE_URL}" \
-            > link-check-results.txt 2>&1 || true
-
-          # Parse results
-          broken_links=$(grep -c "✗" link-check-results.txt || echo "0")
-          echo "broken_links=${broken_links}" >> $GITHUB_OUTPUT
-
-          if [ "$broken_links" -gt "0" ]; then
-            echo "⚠️ Found ${broken_links} broken links"
-            cat link-check-results.txt
-          else
-            echo "✅ All links are working"
-          fi
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 📊 Check Site Performance
         id: performance

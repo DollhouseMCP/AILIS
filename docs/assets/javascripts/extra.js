@@ -119,12 +119,12 @@ function enhanceLayerReferences() {
 
   textNodes.forEach(node => {
     const text = node.textContent;
-    // Create new regex instance for each use to avoid state retention
-    const layerPattern = /Layer\s+(\d+|[IVX]+):/gi;
+    // Use non-global regex for test() to avoid state retention issues
+    const layerPattern = /Layer\s+(\d+|[IVX]+):/i;
 
     if (layerPattern.test(text)) {
       const span = document.createElement('span');
-      // Create fresh regex instance for replacement (avoid state retention from test)
+      // Use global regex for replace() to match all occurrences
       const replacementPattern = /Layer\s+(\d+|[IVX]+):/gi;
       span.innerHTML = text.replace(replacementPattern, '<span class="layer-reference">Layer $1</span>:');
       node.parentNode.replaceChild(span, node);

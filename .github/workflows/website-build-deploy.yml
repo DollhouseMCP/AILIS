@@ -49,16 +49,7 @@ jobs:
       - name: 📦 Install MkDocs & Dependencies
         run: |
           pip install --upgrade pip
-          pip install \
-            mkdocs-material \
-            mkdocs-git-revision-date-localized-plugin \
-            mkdocs-awesome-pages-plugin \
-            mkdocs-minify-plugin \
-            mkdocs-redirects \
-            pymdown-extensions \
-            mkdocs-rss-plugin \
-            mkdocs-glightbox \
-            mkdocs-git-authors-plugin
+          pip install -r requirements.txt
 
       - name: 📊 Gather Site Statistics
         id: stats

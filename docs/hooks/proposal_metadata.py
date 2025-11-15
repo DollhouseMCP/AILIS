@@ -23,20 +23,25 @@ def on_page_markdown(markdown: str, page: Page, config: Config, files) -> str:
     Returns:
         Modified markdown with enhanced metadata
     """
-    # Only process proposal pages
-    if not page.file.src_path.startswith('proposals/'):
+    try:
+        # Only process proposal pages
+        if not page.file.src_path.startswith('proposals/'):
+            return markdown
+
+        # Extract metadata from frontmatter or content
+        metadata = extract_metadata(markdown)
+
+        # Add metadata box if we found any
+        if metadata:
+            metadata_box = format_metadata_box(metadata)
+            # Insert after the first heading
+            markdown = insert_after_first_heading(markdown, metadata_box)
+
         return markdown
-
-    # Extract metadata from frontmatter or content
-    metadata = extract_metadata(markdown)
-
-    # Add metadata box if we found any
-    if metadata:
-        metadata_box = format_metadata_box(metadata)
-        # Insert after the first heading
-        markdown = insert_after_first_heading(markdown, metadata_box)
-
-    return markdown
+    except Exception as e:
+        # Log error but don't fail the build
+        print(f"Warning: Failed to process metadata for {page.file.src_path}: {e}")
+        return markdown
 
 
 def extract_metadata(markdown: str) -> dict:
@@ -152,8 +157,13 @@ def on_page_content(html: str, page: Page, config: Config, files) -> str:
     Returns:
         Modified HTML
     """
-    # Add proposal-specific classes
-    if page.file.src_path.startswith('proposals/'):
-        html = html.replace('<article', '<article class="proposal-page"', 1)
+    try:
+        # Add proposal-specific classes
+        if page.file.src_path.startswith('proposals/'):
+            html = html.replace('<article', '<article class="proposal-page"', 1)
 
-    return html
+        return html
+    except Exception as e:
+        # Log error but don't fail the build
+        print(f"Warning: Failed to add proposal class to {page.file.src_path}: {e}")
+        return html

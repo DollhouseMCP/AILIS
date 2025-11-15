@@ -22,6 +22,29 @@ In networking, the OSI model gave us a shared vocabulary. When someone says "Lay
 
 Could something similar help in AI? We're not sure, but we think it's worth exploring together.
 
+## Quick Start
+
+**New to AILIS?** Here's how to get oriented:
+
+1. **Read the [AILIS Primer](proposals/AILIS_Primer.md)** (10 min) - Comprehensive overview of the 16-layer model
+2. **Check the [Cheat Sheet](proposals/AILIS_Cheat_Sheet.md)** (2 min) - Quick reference for all layers
+3. **Browse [Case Studies](studies/)** - See how real systems map to the model
+4. **Join the [Discussion](https://github.com/DollhouseMCP/AILIS/discussions)** - Share your thoughts
+
+**Want to contribute?**
+- See [CONTRIBUTING.md](CONTRIBUTING.md) for the RFC process
+- Check [FEEDBACK.md](FEEDBACK.md) for areas where we need input
+- Review [open issues](https://github.com/DollhouseMCP/AILIS/issues) for active discussions
+
+**Building the website locally?**
+```bash
+pip install mkdocs-material mkdocs-git-revision-date-localized-plugin \
+  mkdocs-awesome-pages-plugin mkdocs-minify-plugin mkdocs-redirects \
+  pymdown-extensions mkdocs-rss-plugin mkdocs-glightbox mkdocs-git-authors-plugin
+
+mkdocs serve  # Preview at http://localhost:8000
+```
+
 ## The AILIS 16+ Proposal
 
 We're proposing a 16-layer model (plus cross-cutting concerns) that attempts to map the AI stack from physical infrastructure up through application logic:

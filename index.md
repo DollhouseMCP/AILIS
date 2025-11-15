@@ -25,6 +25,44 @@ In networking, the OSI model gave us a shared vocabulary. When someone says "Lay
 
 Could something similar help in AI? We're not sure, but we think it's worth exploring together.
 
+## Quick Start
+
+/// tip "New to AILIS?"
+**Get oriented in 3 steps:**
+
+1. :material-book-open-page-variant: **[Read the Primer](proposals/AILIS_Primer.md)** (10 min) - Full layer model overview
+2. :material-flash: **[Check the Cheat Sheet](proposals/AILIS_Cheat_Sheet.md)** (2 min) - Quick reference
+3. :material-forum: **[Join the Discussion](https://github.com/DollhouseMCP/AILIS/discussions)** - Share your thoughts
+///
+
+<div class="grid cards" markdown>
+
+- :fontawesome-solid-code: **Contributing**
+
+    ---
+
+    See [CONTRIBUTING.md](CONTRIBUTING.md) for the RFC process and how to submit proposals
+
+- :fontawesome-solid-comments: **Feedback Needed**
+
+    ---
+
+    Check [FEEDBACK.md](FEEDBACK.md) for specific areas where we need community input
+
+- :fontawesome-solid-bug: **Issues & Ideas**
+
+    ---
+
+    Browse [open issues](https://github.com/DollhouseMCP/AILIS/issues) to join active discussions
+
+- :fontawesome-solid-file-code: **Local Development**
+
+    ---
+
+    Run `mkdocs serve` to build and preview the site locally ([setup guide](docs/website-workflows.md))
+
+</div>
+
 ## The AILIS 16+ Proposal
 
 We're proposing a 16-layer model (plus cross-cutting concerns) that attempts to map the AI stack from physical infrastructure up through application logic:

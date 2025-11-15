@@ -124,7 +124,7 @@ function enhanceLayerReferences() {
 
     if (layerPattern.test(text)) {
       const span = document.createElement('span');
-      // Reset regex and apply replacement
+      // Create fresh regex instance for replacement (avoid state retention from test)
       const replacementPattern = /Layer\s+(\d+|[IVX]+):/gi;
       span.innerHTML = text.replace(replacementPattern, '<span class="layer-reference">Layer $1</span>:');
       node.parentNode.replaceChild(span, node);

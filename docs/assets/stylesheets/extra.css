@@ -1,0 +1,255 @@
+/* AILIS Custom Styles */
+/* Humble, exploratory, professional design */
+
+:root {
+  /* Custom color variables */
+  --ailis-accent: #5e35b1;
+  --ailis-highlight: #7e57c2;
+  --ailis-subtle: #f5f5f5;
+  --ailis-border: #e0e0e0;
+}
+
+/* Proposal-specific styling */
+.md-content article h1::before {
+  content: "📋 ";
+  opacity: 0.6;
+}
+
+/* Humble callout boxes */
+.admonition.note {
+  border-left: 4px solid var(--ailis-accent);
+}
+
+.admonition.tip {
+  border-left: 4px solid #4caf50;
+}
+
+.admonition.warning {
+  border-left: 4px solid #ff9800;
+}
+
+.admonition.question {
+  border-left: 4px solid #2196f3;
+  background-color: rgba(33, 150, 243, 0.05);
+}
+
+/* Proposal metadata */
+.proposal-meta {
+  background: var(--ailis-subtle);
+  border-left: 4px solid var(--ailis-accent);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.proposal-meta dt {
+  font-weight: 600;
+  color: var(--ailis-accent);
+  margin-top: 0.5rem;
+}
+
+.proposal-meta dd {
+  margin-left: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* RFC-style status badges */
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-draft {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.status-review {
+  background: #e3f2fd;
+  color: #0277bd;
+}
+
+.status-final {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-declined {
+  background: #fce4ec;
+  color: #c2185b;
+}
+
+/* Enhanced code blocks */
+.highlight code {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Better table styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+table th {
+  background: var(--ailis-accent);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--ailis-border);
+}
+
+table tr:hover {
+  background: var(--ailis-subtle);
+}
+
+/* Footnotes */
+.footnote-ref {
+  color: var(--ailis-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footnote-ref:hover {
+  text-decoration: underline;
+}
+
+/* Better blockquotes */
+blockquote {
+  border-left: 4px solid var(--ailis-accent);
+  padding-left: 1rem;
+  margin-left: 0;
+  font-style: italic;
+  color: #666;
+}
+
+/* Layer reference styling */
+.layer-reference {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Discussion prompts */
+.discussion-prompt {
+  background: #fff8e1;
+  border-left: 4px solid #ffa000;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.discussion-prompt::before {
+  content: "💭 Discussion Point";
+  display: block;
+  font-weight: 700;
+  color: #f57c00;
+  margin-bottom: 0.5rem;
+}
+
+/* Improved navigation */
+.md-nav__item--active > .md-nav__link {
+  color: var(--ailis-accent);
+  font-weight: 600;
+}
+
+/* Footer enhancements */
+.md-footer-meta {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Search result highlighting */
+.md-search-result__article--document {
+  border-left: 4px solid var(--ailis-accent);
+}
+
+/* Better spacing for lists */
+.md-typeset ul li,
+.md-typeset ol li {
+  margin-bottom: 0.5rem;
+}
+
+/* Humble banner for exploratory content */
+.exploratory-notice {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border: 2px solid var(--ailis-accent);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.exploratory-notice h3 {
+  margin: 0 0 1rem 0;
+  color: var(--ailis-accent);
+}
+
+.exploratory-notice p {
+  margin: 0;
+  font-style: italic;
+  color: #555;
+}
+
+/* Responsive tweaks */
+@media screen and (max-width: 768px) {
+  .proposal-meta {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .md-header,
+  .md-tabs,
+  .md-footer,
+  .md-sidebar {
+    display: none !important;
+  }
+
+  .md-content {
+    margin: 0;
+  }
+}
+
+/* Accessibility improvements */
+a:focus,
+button:focus {
+  outline: 3px solid var(--ailis-accent);
+  outline-offset: 2px;
+}
+
+/* Skip to content link */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--ailis-accent);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}

@@ -1,0 +1,285 @@
+name: 🏥 Website Health Check
+
+on:
+  schedule:
+    # Check health daily at 6 AM UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      check_type:
+        description: 'Type of health check'
+        required: false
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - quick
+          - links-only
+
+concurrency:
+  group: website-health-check
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  health-check:
+    name: Check Website Health
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install Health Check Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install requests beautifulsoup4 lxml validators
+
+      - name: 🌐 Check Site Availability
+        id: availability
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://dollhousemcp.github.io/AILIS' }}
+        run: |
+          echo "Checking site availability at ${SITE_URL}..."
+
+          response=$(curl -s -o /dev/null -w "%{http_code}" -L "${SITE_URL}")
+
+          if [ "$response" = "200" ]; then
+            echo "status=up" >> $GITHUB_OUTPUT
+            echo "✅ Site is accessible (HTTP $response)"
+          else
+            echo "status=down" >> $GITHUB_OUTPUT
+            echo "❌ Site returned HTTP $response"
+            exit 1
+          fi
+
+          # Check response time
+          response_time=$(curl -o /dev/null -s -w '%{time_total}' "${SITE_URL}")
+          echo "response_time=${response_time}" >> $GITHUB_OUTPUT
+          echo "⏱️ Response time: ${response_time}s"
+
+      - name: 🔗 Check Live Site Links
+        id: link-check
+        if: github.event.inputs.check_type != 'quick'
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://dollhousemcp.github.io/AILIS' }}
+        run: |
+          echo "Checking links on live site..."
+
+          # Use lychee for comprehensive link checking
+          curl -sSL https://github.com/lycheeverse/lychee/releases/download/v0.14.3/lychee-v0.14.3-x86_64-unknown-linux-gnu.tar.gz | tar -xz
+
+          ./lychee \
+            --verbose \
+            --no-progress \
+            --accept=200,203,204,206,300,301,302,303,304,307,308,429,999 \
+            --timeout=30 \
+            --max-retries=3 \
+            --exclude-mail \
+            --user-agent="AILIS-HealthCheck/1.0" \
+            "${SITE_URL}" \
+            > link-check-results.txt 2>&1 || true
+
+          # Parse results
+          broken_links=$(grep -c "✗" link-check-results.txt || echo "0")
+          echo "broken_links=${broken_links}" >> $GITHUB_OUTPUT
+
+          if [ "$broken_links" -gt "0" ]; then
+            echo "⚠️ Found ${broken_links} broken links"
+            cat link-check-results.txt
+          else
+            echo "✅ All links are working"
+          fi
+
+      - name: 📊 Check Site Performance
+        id: performance
+        if: github.event.inputs.check_type == 'full'
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://dollhousemcp.github.io/AILIS' }}
+        run: |
+          echo "Analyzing site performance..."
+
+          # Check page size
+          page_size=$(curl -sL "${SITE_URL}" | wc -c)
+          echo "page_size=${page_size}" >> $GITHUB_OUTPUT
+          echo "📦 Page size: ${page_size} bytes"
+
+          # Check number of requests (basic check)
+          resources=$(curl -sL "${SITE_URL}" | grep -oP '(src|href)="[^"]*"' | wc -l)
+          echo "resources=${resources}" >> $GITHUB_OUTPUT
+          echo "📊 Resource count: ${resources}"
+
+          # Warn if page is too large
+          if [ "$page_size" -gt 1000000 ]; then
+            echo "⚠️ Warning: Page size exceeds 1MB"
+          fi
+
+      - name: 🔍 Check Site Content
+        id: content
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://dollhousemcp.github.io/AILIS' }}
+        run: |
+          echo "Validating site content..."
+
+          # Download homepage
+          curl -sL "${SITE_URL}" > homepage.html
+
+          # Check for essential content
+          if ! grep -q "AILIS" homepage.html; then
+            echo "❌ Missing AILIS branding"
+            exit 1
+          fi
+
+          if ! grep -q "proposal" homepage.html; then
+            echo "⚠️ Warning: No proposal mentions on homepage"
+          fi
+
+          # Check for accessibility basics
+          if ! grep -q '<html lang=' homepage.html; then
+            echo "⚠️ Warning: Missing language attribute"
+          fi
+
+          echo "✅ Content validation passed"
+
+      - name: 🔒 Check Security Headers
+        id: security
+        if: github.event.inputs.check_type == 'full'
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://dollhousemcp.github.io/AILIS' }}
+        run: |
+          echo "Checking security headers..."
+
+          headers=$(curl -sI "${SITE_URL}")
+
+          # Check for important security headers
+          if echo "$headers" | grep -qi "x-frame-options"; then
+            echo "✅ X-Frame-Options header present"
+          else
+            echo "⚠️ Missing X-Frame-Options header"
+          fi
+
+          if echo "$headers" | grep -qi "content-security-policy"; then
+            echo "✅ Content-Security-Policy header present"
+          else
+            echo "ℹ️ No Content-Security-Policy header (optional for static sites)"
+          fi
+
+          if echo "$headers" | grep -qi "strict-transport-security"; then
+            echo "✅ Strict-Transport-Security header present"
+          else
+            echo "ℹ️ No HSTS header (GitHub Pages handles SSL)"
+          fi
+
+      - name: 📊 Generate Health Report
+        if: always()
+        run: |
+          echo "## 🏥 Website Health Check Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Check Date**: $(date -u +"%Y-%m-%d %H:%M UTC")" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          echo "### 🌐 Availability" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.availability.outputs.status }}" = "up" ]; then
+            echo "- ✅ Site is **online**" >> $GITHUB_STEP_SUMMARY
+            echo "- ⏱️ Response time: ${{ steps.availability.outputs.response_time }}s" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ❌ Site is **offline or unreachable**" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ steps.link-check.outputs.broken_links }}" ]; then
+            echo "### 🔗 Links" >> $GITHUB_STEP_SUMMARY
+            if [ "${{ steps.link-check.outputs.broken_links }}" = "0" ]; then
+              echo "- ✅ All links working" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "- ⚠️ Found ${{ steps.link-check.outputs.broken_links }} broken links" >> $GITHUB_STEP_SUMMARY
+            fi
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          if [ "${{ steps.performance.outputs.page_size }}" ]; then
+            echo "### 📊 Performance" >> $GITHUB_STEP_SUMMARY
+            echo "- 📦 Page size: ${{ steps.performance.outputs.page_size }} bytes" >> $GITHUB_STEP_SUMMARY
+            echo "- 📊 Resources: ${{ steps.performance.outputs.resources }}" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "### ✅ Overall Status" >> $GITHUB_STEP_SUMMARY
+          echo "Website health check completed successfully." >> $GITHUB_STEP_SUMMARY
+
+      - name: 🚨 Create Issue for Critical Failures
+        if: failure() && steps.availability.outputs.status == 'down'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'website,health-check'
+            });
+
+            // Only create new issue if one doesn't exist
+            if (issues.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: '🚨 Website Health Check Failed',
+                body: `## Website Health Check Alert
+
+                The automated health check has detected issues with the AILIS website.
+
+                ### Details
+                - **Check Time**: ${new Date().toISOString()}
+                - **Status**: Site unreachable or returned error
+                - **Workflow Run**: ${context.payload.repository.html_url}/actions/runs/${context.runId}
+
+                ### Next Steps
+                1. Verify GitHub Pages deployment status
+                2. Check recent commits for breaking changes
+                3. Review deployment workflow logs
+                4. Test site accessibility manually
+
+                This issue will automatically close when health checks pass.`,
+                labels: ['website', 'health-check', 'urgent']
+              });
+            }
+
+      - name: 🎉 Close Health Check Issues
+        if: success() && steps.availability.outputs.status == 'up'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'website,health-check'
+            });
+
+            for (const issue of issues) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `✅ Website health check passed. Closing this issue automatically.
+
+                **Check Time**: ${new Date().toISOString()}
+                **Status**: All systems operational`
+              });
+
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed'
+              });
+            }

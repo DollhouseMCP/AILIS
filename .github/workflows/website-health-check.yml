@@ -75,7 +75,21 @@ jobs:
           echo "Checking links on live site..."
 
           # Use lychee for comprehensive link checking
-          curl -sSL https://github.com/lycheeverse/lychee/releases/download/v0.14.3/lychee-v0.14.3-x86_64-unknown-linux-gnu.tar.gz | tar -xz
+          # Version: 0.21.0 (latest as of 2025-01)
+          LYCHEE_VERSION="lychee-v0.21.0"
+          LYCHEE_URL="https://github.com/lycheeverse/lychee/releases/download/${LYCHEE_VERSION}/lychee-x86_64-unknown-linux-gnu.tar.gz"
+          LYCHEE_SHA256="a06547250f10021dcafc6ed5bb20fca75835b65711745b63cfdda34c29ff6a73"
+
+          # Download and verify checksum
+          echo "Downloading lychee ${LYCHEE_VERSION}..."
+          curl -sSL "${LYCHEE_URL}" -o lychee.tar.gz
+
+          echo "Verifying checksum..."
+          echo "${LYCHEE_SHA256}  lychee.tar.gz" | sha256sum -c -
+
+          echo "Extracting..."
+          tar -xzf lychee.tar.gz
+          rm lychee.tar.gz
 
           ./lychee \
             --verbose \

@@ -22,14 +22,30 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
+ * Check if running in development mode
+ */
+function isDevelopmentMode() {
+  return window.location.hostname === 'localhost' ||
+         window.location.hostname === '127.0.0.1' ||
+         window.location.hostname === '' ||
+         window.location.port !== '';
+}
+
+/**
  * Safely execute a function with error handling
  */
 function safeExecute(fn) {
   try {
     fn();
   } catch (error) {
-    // Silently fail to prevent page crashes
-    // Error is logged but doesn't interrupt other enhancements
+    // Log errors in development mode for debugging
+    if (isDevelopmentMode()) {
+      console.error('AILIS Enhancement Error:', error);
+      console.error('Function:', fn.name || 'anonymous');
+      console.trace();
+    }
+    // Silently fail in production to prevent page crashes
+    // Error doesn't interrupt other enhancements
   }
 }
 

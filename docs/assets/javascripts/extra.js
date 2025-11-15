@@ -28,7 +28,7 @@ function isDevelopmentMode() {
   return window.location.hostname === 'localhost' ||
          window.location.hostname === '127.0.0.1' ||
          window.location.hostname === '' ||
-         window.location.port !== '';
+         (window.location.port && window.location.port !== '80' && window.location.port !== '443');
 }
 
 /**
@@ -123,11 +123,31 @@ function enhanceLayerReferences() {
     const layerPattern = /Layer\s+(\d+|[IVX]+):/i;
 
     if (layerPattern.test(text)) {
-      const span = document.createElement('span');
-      // Use global regex for replace() to match all occurrences
+      // Use DOM manipulation instead of innerHTML to prevent XSS
       const replacementPattern = /Layer\s+(\d+|[IVX]+):/gi;
-      span.innerHTML = text.replace(replacementPattern, '<span class="layer-reference">Layer $1</span>:');
-      node.parentNode.replaceChild(span, node);
+      const parts = text.split(replacementPattern);
+      const matches = text.match(replacementPattern) || [];
+
+      if (matches.length > 0) {
+        const fragment = document.createDocumentFragment();
+
+        // Interleave text parts with styled layer references
+        for (let i = 0; i < parts.length; i++) {
+          if (parts[i]) {
+            fragment.appendChild(document.createTextNode(parts[i]));
+          }
+          if (i < matches.length) {
+            const layerSpan = document.createElement('span');
+            layerSpan.className = 'layer-reference';
+            // Extract layer number from match (e.g., "Layer 5:" -> "Layer 5")
+            layerSpan.textContent = matches[i].slice(0, -1);
+            fragment.appendChild(layerSpan);
+            fragment.appendChild(document.createTextNode(':'));
+          }
+        }
+
+        node.parentNode.replaceChild(fragment, node);
+      }
     }
   });
 }

@@ -74,6 +74,17 @@ When context gets low or significant work is completed:
 - Credit existing work and inspirations
 - Avoid being prescriptive or authoritative
 
+### Emoji Usage Policy
+**Emojis are allowed and encouraged in specific contexts:**
+- ✅ **Workflow names**: `🌐 Website Build & Deploy`, `🔍 Website PR Preview`
+- ✅ **Status badges**: `📝 Draft`, `👀 In Review`, `✅ Final`
+- ✅ **Section headers**: `🚨 IMPORTANT`, `📊 Summary`
+- ✅ **UI elements**: Icons in website navigation, quick start guides
+- ❌ **User-facing code**: Avoid in code comments, variable names, or error messages
+- ❌ **Documentation prose**: Sparingly in docs, never as primary communication
+
+**Rationale**: Emojis improve visual scanning in workflows and UI but can cause issues in code editors, terminals, and accessibility tools. Use them to enhance, not replace, clear text.
+
 ## Technical Standards
 
 ### Commit Messages

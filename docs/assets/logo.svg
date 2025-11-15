@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- AILIS Logo - Representing layered architecture -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Layered stack representation -->
+  <rect x="20" y="15" width="60" height="8" rx="2" fill="url(#grad)" opacity="0.9"/>
+  <rect x="20" y="27" width="60" height="8" rx="2" fill="url(#grad)" opacity="0.8"/>
+  <rect x="20" y="39" width="60" height="8" rx="2" fill="url(#grad)" opacity="0.7"/>
+  <rect x="20" y="51" width="60" height="8" rx="2" fill="url(#grad)" opacity="0.6"/>
+  <rect x="20" y="63" width="60" height="8" rx="2" fill="url(#grad)" opacity="0.5"/>
+  <rect x="20" y="75" width="60" height="8" rx="2" fill="url(#grad)" opacity="0.4"/>
+
+  <!-- Connecting lines to show integration -->
+  <line x1="50" y1="23" x2="50" y2="27" stroke="#667eea" stroke-width="1.5"/>
+  <line x1="50" y1="35" x2="50" y2="39" stroke="#667eea" stroke-width="1.5"/>
+  <line x1="50" y1="47" x2="50" y2="51" stroke="#667eea" stroke-width="1.5"/>
+  <line x1="50" y1="59" x2="50" y2="63" stroke="#667eea" stroke-width="1.5"/>
+  <line x1="50" y1="71" x2="50" y2="75" stroke="#667eea" stroke-width="1.5"/>
+</svg>

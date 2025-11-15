@@ -89,8 +89,8 @@ theme:
     text: Roboto
     code: Roboto Mono
 
-  # Favicon
-  favicon: assets/favicon.ico
+  # Logo - Using SVG logo in assets
+  logo: assets/logo.svg
 
 # Plugins
 plugins:

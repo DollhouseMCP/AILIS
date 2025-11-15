@@ -3,23 +3,50 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   // Add exploratory notice to proposal pages
-  addExploratoryNotice();
+  safeExecute(addExploratoryNotice);
 
   // Enhance layer references
-  enhanceLayerReferences();
+  safeExecute(enhanceLayerReferences);
 
   // Add copy buttons to code blocks (if not already present)
-  enhanceCodeBlocks();
+  safeExecute(enhanceCodeBlocks);
 
   // Add status badges to proposals
-  addStatusBadges();
+  safeExecute(addStatusBadges);
 
   // Track outbound links
-  trackOutboundLinks();
+  safeExecute(trackOutboundLinks);
 
   // Improve accessibility
-  improveAccessibility();
+  safeExecute(improveAccessibility);
 });
+
+/**
+ * Safely execute a function with error handling
+ */
+function safeExecute(fn) {
+  try {
+    fn();
+  } catch (error) {
+    // Silently fail to prevent page crashes
+    // Error is logged but doesn't interrupt other enhancements
+  }
+}
+
+/**
+ * Get base path for the site
+ */
+function getBasePath() {
+  // Extract base path from current location
+  const path = window.location.pathname;
+  const parts = path.split('/').filter(p => p);
+
+  // If in subdirectory (GitHub Pages style), return base
+  if (parts.length > 0 && parts[0] === 'AILIS') {
+    return '/AILIS';
+  }
+  return '';
+}
 
 /**
  * Add exploratory notice to proposal pages
@@ -31,12 +58,14 @@ function addExploratoryNotice() {
   if (isProposalPage && content && !document.querySelector('.exploratory-notice')) {
     const notice = document.createElement('div');
     notice.className = 'exploratory-notice';
+
+    const basePath = getBasePath();
     notice.innerHTML = `
       <h3>🌱 Exploratory Proposal</h3>
       <p>
         This is a proposal for discussion, not a prescriptive standard.
         We welcome critical feedback, alternative approaches, and questions.
-        <a href="/FEEDBACK">Share your thoughts</a>.
+        <a href="${basePath}/FEEDBACK">Share your thoughts</a>.
       </p>
     `;
 
@@ -63,7 +92,6 @@ function enhanceLayerReferences() {
     false
   );
 
-  const layerPattern = /Layer\s+(\d+|[IVX]+):/gi;
   const textNodes = [];
 
   while (walker.nextNode()) {
@@ -75,9 +103,14 @@ function enhanceLayerReferences() {
 
   textNodes.forEach(node => {
     const text = node.textContent;
+    // Create new regex instance for each use to avoid state retention
+    const layerPattern = /Layer\s+(\d+|[IVX]+):/gi;
+
     if (layerPattern.test(text)) {
       const span = document.createElement('span');
-      span.innerHTML = text.replace(layerPattern, '<span class="layer-reference">Layer $1</span>:');
+      // Reset regex and apply replacement
+      const replacementPattern = /Layer\s+(\d+|[IVX]+):/gi;
+      span.innerHTML = text.replace(replacementPattern, '<span class="layer-reference">Layer $1</span>:');
       node.parentNode.replaceChild(span, node);
     }
   });
@@ -156,7 +189,7 @@ function trackOutboundLinks() {
     if (!link.hostname.includes('dollhousemcp.github.io')) {
       link.addEventListener('click', function(e) {
         // Analytics tracking would go here
-        console.log('Outbound link clicked:', link.href);
+        // Removed console.log for privacy
       });
 
       // Add external link indicator
@@ -281,16 +314,16 @@ function addReadingTime() {
   }
 }
 
-// Initialize reading time
-addReadingTime();
+// Initialize reading time with error handling
+safeExecute(addReadingTime);
 
 // Re-run enhancements when navigation occurs (for SPA-like behavior)
 if (typeof document$ !== 'undefined') {
   document$.subscribe(function() {
-    addExploratoryNotice();
-    enhanceLayerReferences();
-    enhanceCodeBlocks();
-    addStatusBadges();
-    addReadingTime();
+    safeExecute(addExploratoryNotice);
+    safeExecute(enhanceLayerReferences);
+    safeExecute(enhanceCodeBlocks);
+    safeExecute(addStatusBadges);
+    safeExecute(addReadingTime);
   });
 }

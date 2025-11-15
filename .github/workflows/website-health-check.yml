@@ -98,7 +98,7 @@ jobs:
           echo "📦 Page size: ${page_size} bytes"
 
           # Check number of requests (basic check)
-          resources=$(curl -sL "${SITE_URL}" | grep -oP '(src|href)="[^"]*"' | wc -l)
+          resources=$(curl -sL "${SITE_URL}" | grep -oE '(src|href)="[^"]*"' | wc -l)
           echo "resources=${resources}" >> $GITHUB_OUTPUT
           echo "📊 Resource count: ${resources}"
 

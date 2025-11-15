@@ -46,6 +46,12 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: ✅ Validate MkDocs Configuration
+        run: |
+          echo "Validating mkdocs.yml syntax..."
+          python3 -c "import yaml; yaml.safe_load(open('mkdocs.yml'))"
+          echo "✅ mkdocs.yml syntax is valid"
+
       - name: 📝 Configure Preview Build
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -81,8 +87,9 @@ jobs:
           mkdocs build --strict --verbose
 
           # Add preview banner to all pages (PR_NUMBER validated above)
-          BANNER="<div style=\"background:#ff9800;color:#000;padding:10px;text-align:center;font-weight:bold;\">📋 Preview Build - PR #${PR_NUMBER} | Not for production</div>"
-          find site -name "*.html" -type f -exec sed -i "/<body/a ${BANNER}" {} \;
+          # Use robust sed that works regardless of body tag formatting
+          BANNER="<div style=\\\"background:#ff9800;color:#000;padding:10px;text-align:center;font-weight:bold;\\\">📋 Preview Build - PR #${PR_NUMBER} | Not for production</div>"
+          find site -name "*.html" -type f -exec sed -i "s|<body[^>]*>|&${BANNER}|" {} \;
 
       - name: 📦 Upload Preview Artifact
         uses: actions/upload-artifact@v4

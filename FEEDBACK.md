@@ -1,6 +1,8 @@
 # Request for Feedback
 
-We're actively seeking input on the AILIS proposal. This document highlights specific areas where your perspective would be particularly valuable, though we welcome feedback on any aspect of the proposal.
+We're actively seeking input on the AILIS proposal. This document highlights specific areas
+where your perspective would be particularly valuable, though we welcome feedback on any
+aspect of the proposal.
 
 ## Core Questions We're Exploring
 
@@ -137,7 +139,8 @@ We're planning to iterate on this proposal based on feedback:
 
 ## No Feedback is Too Small
 
-Whether you have a comprehensive analysis or just a gut reaction, we want to hear it. This proposal will only improve through diverse perspectives.
+Whether you have a comprehensive analysis or just a gut reaction, we want to hear it.
+This proposal will only improve through diverse perspectives.
 
 ## Contact
 
@@ -147,4 +150,5 @@ Whether you have a comprehensive analysis or just a gut reaction, we want to hea
 
 ---
 
-Thank you for taking the time to consider and respond to this proposal. Your input shapes what this becomes—or whether it should become anything at all.
+Thank you for taking the time to consider and respond to this proposal. Your input shapes
+what this becomes—or whether it should become anything at all.

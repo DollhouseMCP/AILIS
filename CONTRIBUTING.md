@@ -1,6 +1,7 @@
 # Contributing to AILIS
 
-Thank you for your interest in contributing to the AILIS proposal! This is an early-stage exploration, and we genuinely value all perspectives—whether supportive, critical, or offering alternatives.
+Thank you for your interest in contributing to the AILIS proposal! This is an early-stage exploration,
+and we genuinely value all perspectives—whether supportive, critical, or offering alternatives.
 
 ## Quick Start
 
@@ -231,7 +232,8 @@ When developing GitHub Actions workflows, follow these patterns to avoid common 
 
 ### Multiline Strings in JavaScript
 
-**Problem**: YAML interprets markdown list syntax (`-`) inside JavaScript template literals as YAML structure, causing parse failures.
+**Problem**: YAML interprets markdown list syntax (`-`) inside JavaScript template literals
+as YAML structure, causing parse failures.
 
 **❌ BAD** - Will cause YAML parsing errors:
 

@@ -17,9 +17,9 @@ copyright: |
   Docs: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
 
 # Documentation configuration
-# Explicitly list README.md files that conflict with index.md
-# MkDocs will automatically exclude them, but listing them here suppresses warnings in strict mode
-not_in_nav: |
+# Exclude README.md files that conflict with index.md files
+# These README.md files serve GitHub but should not be processed by MkDocs
+exclude_docs: |
   README.md
   proposals/README.md
   reference/README.md

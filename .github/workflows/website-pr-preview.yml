@@ -83,7 +83,7 @@ jobs:
             exit 1
           fi
 
-          mkdocs build --verbose
+          mkdocs build --strict --verbose
 
           # Add preview banner to all pages (PR_NUMBER validated above)
           # Use robust sed that works regardless of body tag formatting

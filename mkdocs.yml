@@ -16,6 +16,15 @@ copyright: |
   Code: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> |
   Docs: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
 
+# Documentation configuration
+# Explicitly list README.md files that conflict with index.md
+# MkDocs will automatically exclude them, but listing them here suppresses warnings in strict mode
+not_in_nav: |
+  README.md
+  proposals/README.md
+  reference/README.md
+  studies/README.md
+
 # Configuration
 theme:
   name: material

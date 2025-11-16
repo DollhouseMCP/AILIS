@@ -259,10 +259,10 @@ nav:
 validation:
   nav:
     omitted_files: warn
-    not_found: warn
+    not_found: ignore  # Ignore ../paths in nav that reference parent directory
     absolute_links: warn
   links:
-    not_found: warn
+    not_found: ignore  # Ignore ../paths in markdown links
     absolute_links: warn
     unrecognized_links: warn
 

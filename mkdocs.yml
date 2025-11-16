@@ -257,7 +257,7 @@ nav:
 # Validation
 validation:
   nav:
-    omitted_files: warn
+    omitted_files: ignore  # Ignore internal docs not meant for public website
     not_found: ignore  # Ignore ../paths in nav that reference parent directory
     absolute_links: warn
   links:

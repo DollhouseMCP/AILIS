@@ -5,19 +5,6 @@ site_description: >-
 site_author: Mick Darling
 site_url: https://dollhousemcp.github.io/AILIS
 
-# Documentation directory
-docs_dir: .
-
-# Exclude patterns (don't process these directories/files)
-exclude_docs: |
-  .github/
-  .git/
-  site/
-  venv/
-  *.pyc
-  __pycache__/
-  requirements*.txt
-
 # Repository
 repo_name: DollhouseMCP/AILIS
 repo_url: https://github.com/DollhouseMCP/AILIS
@@ -247,26 +234,26 @@ extra:
 
 # Page tree
 nav:
-  - Home: index.md
+  - Home: ../index.md
   - Getting Started:
-      - Introduction: README.md
-      - Contributing: CONTRIBUTING.md
-      - Feedback: FEEDBACK.md
+      - Introduction: ../README.md
+      - Contributing: ../CONTRIBUTING.md
+      - Feedback: ../FEEDBACK.md
   - Proposals:
-      - proposals/index.md
-      - AILIS Primer: proposals/AILIS_Primer.md
-      - Cheat Sheet: proposals/AILIS_Cheat_Sheet.md
-      - Blog Post Draft: proposals/AILIS_BlogPost_Draft.md
+      - ../proposals/index.md
+      - AILIS Primer: ../proposals/AILIS_Primer.md
+      - Cheat Sheet: ../proposals/AILIS_Cheat_Sheet.md
+      - Blog Post Draft: ../proposals/AILIS_BlogPost_Draft.md
   - Reference:
-      - reference/index.md
+      - ../reference/index.md
   - Case Studies:
-      - studies/index.md
+      - ../studies/index.md
   - Documentation:
-      - docs/index.md
-      - Session Notes: docs/session-notes/
+      - index.md
+      - Session Notes: session-notes/
   - Project:
-      - Changelog: CHANGELOG.md
-      - License: LICENSE
+      - Changelog: ../CHANGELOG.md
+      - License: ../LICENSE
 
 # Validation
 validation:

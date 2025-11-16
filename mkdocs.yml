@@ -234,25 +234,25 @@ extra:
 
 # Page tree
 nav:
-  - Home: ../index.md
+  - Home: home-index.md
   - Getting Started:
-      - Introduction: ../README.md
-      - Contributing: ../CONTRIBUTING.md
-      - Feedback: ../FEEDBACK.md
+      - Introduction: README.md
+      - Contributing: CONTRIBUTING.md
+      - Feedback: FEEDBACK.md
   - Proposals:
-      - ../proposals/index.md
-      - AILIS Primer: ../proposals/AILIS_Primer.md
-      - Cheat Sheet: ../proposals/AILIS_Cheat_Sheet.md
-      - Blog Post Draft: ../proposals/AILIS_BlogPost_Draft.md
+      - proposals/index.md
+      - AILIS Primer: proposals/AILIS_Primer.md
+      - Cheat Sheet: proposals/AILIS_Cheat_Sheet.md
+      - Blog Post Draft: proposals/AILIS_BlogPost_Draft.md
   - Reference:
-      - ../reference/index.md
+      - reference/index.md
   - Case Studies:
-      - ../studies/index.md
+      - studies/index.md
   - Documentation:
       - index.md
   - Project:
-      - Changelog: ../CHANGELOG.md
-      - License: ../LICENSE
+      - Changelog: CHANGELOG.md
+      - License: LICENSE
 
 # Validation
 validation:

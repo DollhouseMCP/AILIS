@@ -24,17 +24,17 @@ The AILIS repository is organized as follows:
 
 New to AILIS? Start here:
 
-1. Read the [AILIS Primer](../proposals/AILIS_Primer.md) - understand the core framework
-2. Check the [Cheat Sheet](../proposals/AILIS_Cheat_Sheet.md) - quick reference
-3. Review [CONTRIBUTING.md](../CONTRIBUTING.md) - learn how to contribute
-4. Browse [FEEDBACK.md](../FEEDBACK.md) - see where we need help
+1. Read the [AILIS Primer](proposals/AILIS_Primer.md) - understand the core framework
+2. Check the [Cheat Sheet](proposals/AILIS_Cheat_Sheet.md) - quick reference
+3. Review [CONTRIBUTING.md](CONTRIBUTING.md) - learn how to contribute
+4. Browse [FEEDBACK.md](FEEDBACK.md) - see where we need help
 
 ## Development Resources
 
 ### For Contributors
 
-- **[Contributing Guide](../CONTRIBUTING.md)** - RFC workflow and guidelines
-- **[Feedback Areas](../FEEDBACK.md)** - Where we need input
+- **[Contributing Guide](CONTRIBUTING.md)** - RFC workflow and guidelines
+- **[Feedback Areas](FEEDBACK.md)** - Where we need input
 
 ### For Developers
 

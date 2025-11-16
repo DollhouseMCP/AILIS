@@ -47,7 +47,7 @@ class ChangelogGenerator:
             result = subprocess.run(cmd, capture_output=True, text=True, check=True)
             commits = []
             
-            for line in result.stdout.strip().split('\\n'):
+            for line in result.stdout.strip().split('\n'):
                 if '|' in line:
                     parts = line.split('|', 3)
                     if len(parts) >= 4:
@@ -111,7 +111,7 @@ class ChangelogGenerator:
     def parse_conventional_commit(self, message: str) -> Tuple[Optional[str], str, str]:
         """Parse conventional commit message."""
         # Pattern: type(scope): description
-        pattern = r'^(\\w+)(\\([^)]+\\))?: (.+)'
+        pattern = r'^(\w+)(\([^)]+\))?: (.+)'
         match = re.match(pattern, message)
         
         if match:
@@ -199,8 +199,8 @@ class ChangelogGenerator:
                     lines.append(f"- {change['message']} ({change['sha']} by {change['author']})")
                     
             lines.append("")
-            
-        return "\\n".join(lines)
+
+        return "\n".join(lines)
         
     def get_contributors_section(self, commits: List[Dict], prs: List[Dict]) -> str:
         """Generate contributors section."""
@@ -221,9 +221,9 @@ class ChangelogGenerator:
         
         for contributor in sorted(contributors):
             lines.append(f"- @{contributor}")
-            
+
         lines.append("")
-        return "\\n".join(lines)
+        return "\n".join(lines)
         
     def load_existing_changelog(self) -> str:
         """Load existing changelog content."""
@@ -281,12 +281,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
         
         if full_rebuild:
             # For full rebuild, replace entire changelog
-            new_content = existing_content.split('\\n')[:6]  # Keep header
+            new_content = existing_content.split('\n')[:6]  # Keep header
             new_content.extend(['', version_section, contributors_section])
-            updated_content = '\\n'.join(new_content)
+            updated_content = '\n'.join(new_content)
         else:
             # Insert new version at the top
-            lines = existing_content.split('\\n')
+            lines = existing_content.split('\n')
             
             # Find insertion point (after header)
             insert_idx = 6  # Default after standard header
@@ -296,10 +296,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
                     break
                     
             # Insert new content
-            new_lines = (lines[:insert_idx] + 
-                        ['', version_section, contributors_section] + 
+            new_lines = (lines[:insert_idx] +
+                        ['', version_section, contributors_section] +
                         lines[insert_idx:])
-            updated_content = '\\n'.join(new_lines)
+            updated_content = '\n'.join(new_lines)
         
         # Write updated changelog
         changelog_path = Path('CHANGELOG.md')

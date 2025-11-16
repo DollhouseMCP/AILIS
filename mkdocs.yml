@@ -19,8 +19,8 @@ copyright: |
 # Documentation configuration
 # Exclude README.md files that conflict with index.md files
 # These README.md files serve GitHub but should not be processed by MkDocs
-# Note: Root README.md is NOT excluded as it's used in navigation
 exclude_docs: |
+  README.md
   proposals/README.md
   reference/README.md
   studies/README.md

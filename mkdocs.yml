@@ -254,7 +254,6 @@ extra:
 nav:
   - Home: home-index.md
   - Getting Started:
-      - Introduction: README.md
       - Contributing: CONTRIBUTING.md
       - Feedback: FEEDBACK.md
   - Proposals:

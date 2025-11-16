@@ -137,6 +137,15 @@ plugins:
       authorship_threshold_percent: 0
       exclude:
         - index.md
+        - README.md
+        - CONTRIBUTING.md
+        - FEEDBACK.md
+        - CHANGELOG.md
+        - LICENSE
+        - home-index.md
+        - proposals/*
+        - reference/*
+        - studies/*
 
   - rss:
       match_path: proposals/.*

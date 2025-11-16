@@ -1,6 +1,7 @@
 # Contributing to AILIS
 
-Thank you for your interest in contributing to the AILIS proposal! This is an early-stage exploration, and we genuinely value all perspectives—whether supportive, critical, or offering alternatives.
+Thank you for your interest in contributing to the AILIS proposal! This is an early-stage exploration,
+and we genuinely value all perspectives—whether supportive, critical, or offering alternatives.
 
 ## Quick Start
 
@@ -11,26 +12,34 @@ Thank you for your interest in contributing to the AILIS proposal! This is an ea
 ## Contribution Types
 
 ### 📝 Proposals
+
 Formal additions or changes to the AILIS framework
+
 - Use the "AILIS Proposal" issue template
 - Create a `draft/proposal-name` branch
 - Submit PR with detailed documentation
 - Participate in 4-week review period
 
 ### 💬 Feedback
+
 Critiques, concerns, or suggestions
+
 - Use the "Feedback or Critique" issue template
 - No formal process required - just share your thoughts
 - Critical feedback is especially valuable
 
 ### 🔍 Use Cases
+
 Real-world examples and case studies
+
 - Use the "Use Case Submission" issue template
 - Help us understand where AILIS works (or doesn't)
 - Can be developed into full case studies
 
 ### 🛠 Reference Implementations
+
 Code, schemas, and tools
+
 - Submit to `/reference` directory
 - Include clear documentation
 - Keep examples minimal and focused
@@ -38,11 +47,13 @@ Code, schemas, and tools
 ## The Proposal Workflow
 
 ### 1. Pre-Proposal Discussion
+
 - Open an issue to discuss your idea
 - Get community feedback
 - Refine the concept
 
 ### 2. Draft Phase
+
 ```bash
 # Create your proposal branch
 git checkout -b draft/your-proposal-name
@@ -52,6 +63,7 @@ proposals/AILIS-XXX-your-proposal.md
 ```
 
 Proposal document should include:
+
 - **Summary** - Brief overview (2-3 sentences)
 - **Motivation** - Why is this needed?
 - **Detailed Proposal** - Full specification
@@ -60,17 +72,20 @@ Proposal document should include:
 - **Open Questions** - Areas needing input
 
 ### 3. Review Phase (4 weeks minimum)
+
 - Submit PR with `stage/draft` label
 - Community provides feedback via PR reviews
 - Iterate based on feedback
 - Must remain in review for at least 4 weeks
 
 ### 4. Final Comment Period
+
 - Label changes to `stage/final-comment`
 - Last call for community input (1 week)
 - Address any final concerns
 
 ### 5. Decision
+
 - Maintainers and community reach consensus
 - Proposal is either:
   - **Accepted** - Merged to main
@@ -79,11 +94,13 @@ Proposal document should include:
 ## Git Workflow
 
 ### Branches
+
 - `main` - Accepted proposals only (protected)
 - `draft/[proposal-name]` - Individual proposals
 - `discussion/[topic]` - Exploratory work
 
 ### Branch Protection Rules (main)
+
 - **Required PR reviews**: 2 approvals minimum
 - **Dismiss stale reviews**: Enabled
 - **Require conversation resolution**: Yes
@@ -91,7 +108,8 @@ Proposal document should include:
 - **No direct pushes**: All changes via PR
 
 ### Commit Messages
-```
+
+```text
 type: brief description
 
 Longer explanation if needed.
@@ -102,7 +120,8 @@ Refs: #issue-number
 Types: `proposal:`, `fix:`, `docs:`, `refactor:`, `test:`
 
 Examples:
-```
+
+```text
 proposal: Add L17 for domain-specific reasoning
 
 Introduces new layer for vertical AI applications
@@ -111,7 +130,7 @@ like medical diagnosis and legal research.
 Refs: #42
 ```
 
-```
+```text
 docs: Clarify L11 registry manifest format
 
 Adds JSON schema example and explains
@@ -121,6 +140,7 @@ Refs: #15
 ```
 
 ### Pull Requests
+
 - Use the PR template
 - Link related issues
 - Be responsive to feedback
@@ -129,18 +149,21 @@ Refs: #15
 ## Review Guidelines
 
 ### For Authors
+
 - Be open to feedback and iteration
 - Respond to reviews promptly
 - Update proposals based on consensus
 - Document rationale for decisions
 
 ### For Reviewers
+
 - Focus on constructive critique
 - Consider multiple perspectives
 - Suggest specific improvements
 - Respect different viewpoints
 
 ### Review Criteria
+
 - **Clarity** - Is it understandable?
 - **Motivation** - Is it needed?
 - **Compatibility** - Does it fit with AILIS?
@@ -150,6 +173,7 @@ Refs: #15
 ## Label Taxonomy
 
 ### Proposal Stages
+
 - `stage/draft` - Proposal is under development
 - `stage/review` - Open for community review (4 weeks)
 - `stage/final-comment` - Last call for feedback
@@ -157,6 +181,7 @@ Refs: #15
 - `stage/declined` - Proposal will not proceed
 
 ### Content Types
+
 - `proposal` - New proposal for AILIS
 - `feedback` - Feedback or critique
 - `use-case` - Real-world use case or example
@@ -166,7 +191,9 @@ Refs: #15
 ## Community Guidelines
 
 ### The Spirit of Contribution
+
 We're exploring how to better understand AI systems. Your contribution might be:
+
 - **Questions** that challenge assumptions
 - **Critiques** highlighting problems
 - **Alternatives** suggesting better approaches
@@ -175,6 +202,7 @@ We're exploring how to better understand AI systems. Your contribution might be:
 - **Connections** to existing work
 
 ### Code of Conduct
+
 - Be respectful and inclusive
 - Welcome diverse perspectives
 - Focus on ideas, not individuals
@@ -194,6 +222,7 @@ All contributors will be acknowledged. Significant contributions may be invited 
 ## License
 
 By contributing, you agree that your contributions will be licensed under:
+
 - Documentation: CC-BY 4.0
 - Code: Apache 2.0
 
@@ -203,9 +232,11 @@ When developing GitHub Actions workflows, follow these patterns to avoid common 
 
 ### Multiline Strings in JavaScript
 
-**Problem**: YAML interprets markdown list syntax (`-`) inside JavaScript template literals as YAML structure, causing parse failures.
+**Problem**: YAML interprets markdown list syntax (`-`) inside JavaScript template literals
+as YAML structure, causing parse failures.
 
 **❌ BAD** - Will cause YAML parsing errors:
+
 ```yaml
 script: |
   await github.rest.issues.createComment({
@@ -216,6 +247,7 @@ script: |
 ```
 
 **✅ GOOD** - Use array.join() pattern:
+
 ```yaml
 script: |
   await github.rest.issues.createComment({
@@ -232,11 +264,13 @@ script: |
 Always wrap conditionals with `${{ }}`:
 
 **❌ BAD**:
+
 ```yaml
 if: github.event.action == 'opened'
 ```
 
 **✅ GOOD**:
+
 ```yaml
 if: ${{ github.event.action == 'opened' }}
 ```
@@ -244,6 +278,7 @@ if: ${{ github.event.action == 'opened' }}
 ### Required Permissions
 
 Ensure workflows have necessary permissions:
+
 ```yaml
 permissions:
   contents: write      # For pushing changes
@@ -254,7 +289,9 @@ permissions:
 ### Workflow Validation
 
 #### Pre-commit Hooks
+
 We use pre-commit hooks to validate workflows before commit:
+
 ```bash
 # Install pre-commit
 pip install pre-commit
@@ -267,7 +304,9 @@ pre-commit run --all-files
 ```
 
 #### Manual Validation
+
 Test your workflows locally:
+
 ```bash
 # Validate all workflows
 python3 .github/scripts/validate-workflows.py
@@ -277,7 +316,9 @@ python3 -c "import yaml; yaml.safe_load(open('.github/workflows/my-workflow.yml'
 ```
 
 #### CI Validation
+
 The YAML validation workflow runs automatically on:
+
 - Pull requests that modify `.github/workflows/*.yml`
 - Pushes to main branch
 - Manual workflow dispatch

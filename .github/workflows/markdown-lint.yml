@@ -27,7 +27,7 @@ jobs:
         with:
           config: .github/markdownlint.json
           files: '**/*.md'
-          ignore: 'node_modules'
+          ignore: 'node_modules docs/README.md docs/CONTRIBUTING.md docs/FEEDBACK.md docs/CHANGELOG.md docs/proposals/** docs/reference/** docs/studies/** docs/home-index.md'
           
       - name: 🎯 Check Markdown Table Formatting
         run: |

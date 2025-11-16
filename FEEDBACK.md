@@ -1,6 +1,8 @@
 # Request for Feedback
 
-We're actively seeking input on the AILIS proposal. This document highlights specific areas where your perspective would be particularly valuable, though we welcome feedback on any aspect of the proposal.
+We're actively seeking input on the AILIS proposal. This document highlights specific areas
+where your perspective would be particularly valuable, though we welcome feedback on any
+aspect of the proposal.
 
 ## Core Questions We're Exploring
 
@@ -13,6 +15,7 @@ We're actively seeking input on the AILIS proposal. This document highlights spe
 ### 2. Are we drawing the boundaries correctly?
 
 We've proposed 16+ layers, but we're not sure if we've:
+
 - **Split things too finely** (should some layers be combined?)
 - **Lumped things together** (should some layers be split?)
 - **Put things in the right layer** (are capabilities correctly categorized?)
@@ -102,22 +105,27 @@ If you have a different approach:
 ## Specific Stakeholder Perspectives We Need
 
 ### From Model Builders
+
 - Does this help explain where your models fit in the ecosystem?
 - What layers do you actually think about when building?
 
 ### From Infrastructure Teams
+
 - Does this align with how you architect AI systems?
 - What's missing from an ops/deployment perspective?
 
 ### From Application Developers
+
 - Does this help you understand the stack below your code?
 - Would this model help you make technology choices?
 
 ### From Researchers
+
 - Is this academically sound?
 - What theoretical frameworks should we consider?
 
 ### From Standards Bodies
+
 - Is this something that could evolve into a useful standard?
 - What would need to change to make it standards-ready?
 
@@ -131,7 +139,8 @@ We're planning to iterate on this proposal based on feedback:
 
 ## No Feedback is Too Small
 
-Whether you have a comprehensive analysis or just a gut reaction, we want to hear it. This proposal will only improve through diverse perspectives.
+Whether you have a comprehensive analysis or just a gut reaction, we want to hear it.
+This proposal will only improve through diverse perspectives.
 
 ## Contact
 
@@ -141,4 +150,5 @@ Whether you have a comprehensive analysis or just a gut reaction, we want to hea
 
 ---
 
-Thank you for taking the time to consider and respond to this proposal. Your input shapes what this becomes—or whether it should become anything at all.
+Thank you for taking the time to consider and respond to this proposal. Your input shapes
+what this becomes—or whether it should become anything at all.

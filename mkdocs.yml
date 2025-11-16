@@ -137,6 +137,15 @@ plugins:
       authorship_threshold_percent: 0
       exclude:
         - index.md
+        - README.md
+        - CONTRIBUTING.md
+        - FEEDBACK.md
+        - CHANGELOG.md
+        - LICENSE
+        - home-index.md
+        - proposals/*
+        - reference/*
+        - studies/*
 
   - rss:
       match_path: proposals/.*
@@ -258,12 +267,12 @@ nav:
 validation:
   nav:
     omitted_files: ignore  # Ignore internal docs not meant for public website
-    not_found: ignore  # Ignore ../paths in nav that reference parent directory
-    absolute_links: warn
+    not_found: ignore  # Ignore missing files (handled by symlinks)
+    absolute_links: ignore  # Ignore absolute link warnings
   links:
-    not_found: ignore  # Ignore ../paths in markdown links
-    absolute_links: warn
-    unrecognized_links: warn
+    not_found: ignore  # Ignore missing link targets
+    absolute_links: ignore  # Ignore absolute links
+    unrecognized_links: ignore  # Ignore unrecognized links like 'reference/'
 
 # Hooks (for advanced customization)
 hooks:

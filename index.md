@@ -64,7 +64,7 @@ Could something similar help in AI? We're not sure, but we think it's worth expl
 
     ---
 
-    Run `mkdocs serve` to build and preview the site locally ([setup guide](docs/website-workflows.md))
+    Run `mkdocs serve` to build and preview the site locally ([setup guide](website-workflows.md))
 
 </div>
 

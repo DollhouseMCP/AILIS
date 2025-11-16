@@ -23,7 +23,7 @@ Browse the [session notes directory](session-notes/) to see the development hist
 
 The AILIS repository is organized as follows:
 
-```
+```text
 /proposals/         Core AILIS proposals and specifications
 /reference/         Code examples and implementation guides
 /studies/           Real-world case studies and analyses
@@ -64,7 +64,8 @@ Join the conversation:
 
 ## Philosophy
 
-AILIS is intentionally humble and exploratory. We're not prescribing standards - we're asking questions and learning together. Critical feedback and alternative approaches are especially welcome.
+AILIS is intentionally humble and exploratory. We're not prescribing standards - we're asking
+questions and learning together. Critical feedback and alternative approaches are especially welcome.
 
 ## License
 

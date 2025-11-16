@@ -4,7 +4,9 @@ This document describes the GitHub Actions workflows that build, deploy, and mai
 
 ## Overview
 
-The AILIS website is built using [MkDocs Material](https://squidfunk.github.io/mkdocs-material/), a modern documentation framework. The site is automatically built from the repository's markdown files and deployed to GitHub Pages.
+The AILIS website is built using [MkDocs Material](https://squidfunk.github.io/mkdocs-material/), a modern
+documentation framework. The site is automatically built from the repository's markdown files and deployed to
+GitHub Pages.
 
 ## Workflows
 
@@ -15,10 +17,12 @@ The AILIS website is built using [MkDocs Material](https://squidfunk.github.io/m
 **Purpose**: Builds the documentation site and deploys it to GitHub Pages.
 
 **Triggers**:
+
 - Push to `main` branch (when documentation files change)
 - Manual trigger via workflow dispatch
 
 **What it does**:
+
 1. Checks out the repository with full git history
 2. Installs MkDocs Material and all required plugins
 3. Gathers site statistics (proposal count, page count, etc.)
@@ -28,6 +32,7 @@ The AILIS website is built using [MkDocs Material](https://squidfunk.github.io/m
 7. Deploys to GitHub Pages
 
 **Key Features**:
+
 - **Strict mode**: Build fails on warnings or errors
 - **Git metadata**: Includes last-modified dates for all pages
 - **Build validation**: Checks for required files and broken links
@@ -35,6 +40,7 @@ The AILIS website is built using [MkDocs Material](https://squidfunk.github.io/m
 - **Summary**: Provides detailed build report
 
 **Environment Variables**:
+
 - `SITE_PROPOSALS`: Number of proposals
 - `SITE_PAGES`: Total page count
 - `SITE_UPDATED`: Build timestamp
@@ -47,10 +53,12 @@ The AILIS website is built using [MkDocs Material](https://squidfunk.github.io/m
 **Purpose**: Builds preview versions of the site for pull requests.
 
 **Triggers**:
+
 - Pull request opened, synchronized, or reopened
 - Changes to documentation files or site configuration
 
 **What it does**:
+
 1. Checks out the PR branch
 2. Builds a preview version of the site
 3. Adds a preview banner to all pages
@@ -59,6 +67,7 @@ The AILIS website is built using [MkDocs Material](https://squidfunk.github.io/m
 6. Validates the preview build quality
 
 **Key Features**:
+
 - **Preview banner**: Clearly marks pages as preview builds
 - **PR comments**: Automatic updates with build status
 - **Quality validation**: Checks for broken links and accessibility issues
@@ -66,6 +75,7 @@ The AILIS website is built using [MkDocs Material](https://squidfunk.github.io/m
 - **No auto-deploy**: For security, previews are not automatically deployed
 
 **How to view previews**:
+
 1. Wait for the workflow to complete
 2. Download the `preview-site-pr-{number}` artifact
 3. Extract and open `index.html` locally
@@ -78,10 +88,12 @@ The AILIS website is built using [MkDocs Material](https://squidfunk.github.io/m
 **Purpose**: Monitors the deployed website for issues.
 
 **Triggers**:
+
 - Daily schedule (6 AM UTC)
 - Manual trigger with check type selection
 
 **What it does**:
+
 1. Checks if the site is accessible
 2. Validates all links on the live site
 3. Analyzes site performance (page size, load time)
@@ -91,11 +103,13 @@ The AILIS website is built using [MkDocs Material](https://squidfunk.github.io/m
 7. Auto-closes issues when problems are resolved
 
 **Check Types** (manual trigger):
+
 - **Full**: Complete health check including performance and security
 - **Quick**: Basic availability check only
 - **Links-only**: Just validate links
 
 **Key Features**:
+
 - **Automated monitoring**: Daily checks ensure site health
 - **Issue management**: Auto-creates/closes issues
 - **Performance tracking**: Monitors page size and load times
@@ -103,6 +117,7 @@ The AILIS website is built using [MkDocs Material](https://squidfunk.github.io/m
 - **Security checks**: Validates security headers
 
 **What's checked**:
+
 - ✅ Site availability (HTTP 200 response)
 - ✅ Response time
 - ✅ Internal and external links
@@ -118,6 +133,7 @@ The AILIS website is built using [MkDocs Material](https://squidfunk.github.io/m
 The site is configured via `mkdocs.yml` in the repository root.
 
 **Key settings**:
+
 - **Theme**: Material Design with light/dark mode
 - **Navigation**: Tabs, sections, breadcrumbs, back-to-top
 - **Search**: Suggestions, highlighting, sharing
@@ -125,6 +141,7 @@ The site is configured via `mkdocs.yml` in the repository root.
 - **Plugins**: Git metadata, search, minification, lightbox, RSS
 
 **Installed Plugins**:
+
 - `mkdocs-material`: Main theme
 - `mkdocs-git-revision-date-localized-plugin`: Last updated dates
 - `mkdocs-awesome-pages-plugin`: Flexible navigation
@@ -136,6 +153,7 @@ The site is configured via `mkdocs.yml` in the repository root.
 ### Custom Styling
 
 **CSS**: `docs/assets/stylesheets/extra.css`
+
 - Proposal-specific styling
 - RFC-style status badges
 - Enhanced tables and code blocks
@@ -143,6 +161,7 @@ The site is configured via `mkdocs.yml` in the repository root.
 - Print styles
 
 **JavaScript**: `docs/assets/javascripts/extra.js`
+
 - Exploratory notices on proposal pages
 - Layer reference highlighting
 - Reading time estimates
@@ -153,6 +172,7 @@ The site is configured via `mkdocs.yml` in the repository root.
 ### Hooks
 
 **Proposal Metadata**: `docs/hooks/proposal_metadata.py`
+
 - Automatically extracts metadata from proposals
 - Adds status badges
 - Formats metadata boxes
@@ -160,7 +180,7 @@ The site is configured via `mkdocs.yml` in the repository root.
 
 ## Directory Structure
 
-```
+```text
 /
 ├── mkdocs.yml                    # Site configuration
 ├── index.md                      # Homepage
@@ -222,6 +242,7 @@ The site will be available at `http://localhost:8000`.
 The site is deployed to GitHub Pages automatically when changes are pushed to `main`.
 
 **Required setup**:
+
 1. Enable GitHub Pages in repository settings
 2. Set source to "GitHub Actions"
 3. Configure custom domain (if needed)
@@ -232,6 +253,7 @@ The site is deployed to GitHub Pages automatically when changes are pushed to `m
    - If not set, health checks will default to `https://dollhousemcp.github.io/AILIS`
 
 **Permissions required**:
+
 - `contents: write` - For pushing to gh-pages branch
 - `pages: write` - For deploying to GitHub Pages
 - `id-token: write` - For GitHub Pages deployment
@@ -251,6 +273,7 @@ To use a custom domain:
 **Problem**: MkDocs build fails with errors
 
 **Solutions**:
+
 - Check the workflow logs for specific errors
 - Validate `mkdocs.yml` syntax
 - Ensure all referenced files exist
@@ -261,6 +284,7 @@ To use a custom domain:
 **Problem**: Health check reports broken links
 
 **Solutions**:
+
 - Check the link validation output in workflow summary
 - Update or remove broken links
 - Add redirects in `mkdocs.yml` for moved pages
@@ -270,6 +294,7 @@ To use a custom domain:
 **Problem**: PR preview doesn't reflect recent changes
 
 **Solutions**:
+
 - Ensure workflow completed successfully
 - Download the latest artifact (not an older one)
 - Clear browser cache when viewing locally
@@ -279,6 +304,7 @@ To use a custom domain:
 **Problem**: GitHub Pages deployment fails
 
 **Solutions**:
+
 - Check GitHub Pages is enabled in settings
 - Verify source is set to "GitHub Actions"
 - Check workflow permissions are correct
@@ -340,6 +366,7 @@ mkdocs serve
 ### Monitoring
 
 Key metrics to monitor:
+
 - Build duration (should be < 2 minutes)
 - Deploy duration (should be < 1 minute)
 - Site availability (should be 99.9%+)

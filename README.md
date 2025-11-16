@@ -8,6 +8,7 @@
 [![📚 Spell Check](https://github.com/DollhouseMCP/AILIS/actions/workflows/spell-check.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/spell-check.yml)
 [![♿ Accessibility Check](https://github.com/DollhouseMCP/AILIS/actions/workflows/accessibility-check.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/accessibility-check.yml)
 [![📋 Proposal Lifecycle](https://github.com/DollhouseMCP/AILIS/actions/workflows/proposal-lifecycle.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/proposal-lifecycle.yml)
+[![🌐 Website Deploy](https://github.com/DollhouseMCP/AILIS/actions/workflows/website-build-deploy.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/website-build-deploy.yml)
 
 <!-- Website Deploy badge will be added after workflow runs on main branch -->
 

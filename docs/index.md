@@ -4,20 +4,9 @@ Additional documentation and resources for the AILIS project.
 
 ## What's Here
 
-- **[Session Notes](session-notes/)** - Historical development context and decision history
 - **Process Documentation** - Workflow guides and best practices
 - **Technical Resources** - Developer guides and tools
-
-## Session Notes
-
-Session notes provide context about how AILIS has evolved over time. They're valuable for:
-
-- Understanding why certain decisions were made
-- Learning from past challenges
-- Maintaining continuity across sessions
-- Onboarding new contributors
-
-Browse the [session notes directory](session-notes/) to see the development history.
+- **Repository Structure Analysis** - Detailed codebase overview
 
 ## Project Structure
 
@@ -46,7 +35,6 @@ New to AILIS? Start here:
 
 - **[Contributing Guide](../CONTRIBUTING.md)** - RFC workflow and guidelines
 - **[Feedback Areas](../FEEDBACK.md)** - Where we need input
-- **[Session Notes](session-notes/)** - Development history
 
 ### For Developers
 

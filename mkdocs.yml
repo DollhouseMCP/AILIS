@@ -250,7 +250,6 @@ nav:
       - ../studies/index.md
   - Documentation:
       - index.md
-      - Session Notes: session-notes/
   - Project:
       - Changelog: ../CHANGELOG.md
       - License: ../LICENSE
@@ -258,11 +257,11 @@ nav:
 # Validation
 validation:
   nav:
-    omitted_files: warn
-    not_found: warn
+    omitted_files: ignore  # Ignore internal docs not meant for public website
+    not_found: ignore  # Ignore ../paths in nav that reference parent directory
     absolute_links: warn
   links:
-    not_found: warn
+    not_found: ignore  # Ignore ../paths in markdown links
     absolute_links: warn
     unrecognized_links: warn
 

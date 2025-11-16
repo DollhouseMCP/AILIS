@@ -99,7 +99,9 @@ from physical infrastructure up through application logic:
 
 ## This is a conversation starter
 
-**We don't claim to have all the answers.** This proposal is intentionally incomplete and likely wrong in places. We're sharing it early because we believe the best ideas emerge from open discussion.
+**We don't claim to have all the answers.** This proposal is intentionally incomplete and likely
+wrong in places. We're sharing it early because we believe the best ideas emerge from open
+discussion.
 
 We're particularly interested in:
 

@@ -5,6 +5,19 @@ site_description: >-
 site_author: Mick Darling
 site_url: https://dollhousemcp.github.io/AILIS
 
+# Documentation directory
+docs_dir: .
+
+# Exclude patterns (don't process these directories/files)
+exclude_docs: |
+  .github/
+  .git/
+  site/
+  venv/
+  *.pyc
+  __pycache__/
+  requirements*.txt
+
 # Repository
 repo_name: DollhouseMCP/AILIS
 repo_url: https://github.com/DollhouseMCP/AILIS

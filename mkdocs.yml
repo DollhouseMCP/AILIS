@@ -19,11 +19,11 @@ copyright: |
 # Documentation configuration
 # Explicitly list README.md files that conflict with index.md
 # MkDocs will automatically exclude them, but listing them here suppresses warnings in strict mode
-not_in_nav:
-  - README.md
-  - proposals/README.md
-  - reference/README.md
-  - studies/README.md
+not_in_nav: |
+  README.md
+  proposals/README.md
+  reference/README.md
+  studies/README.md
 
 # Configuration
 theme:

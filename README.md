@@ -132,7 +132,7 @@ Rather than create Yet Another Stack Diagram™, we wondered: could we contribut
 
 ## License
 
-- Documentation and specifications: [CC-BY 4.0](LICENSE-DOCS)
+- Documentation and specifications: [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - Code and examples: [Apache 2.0](LICENSE)
 
 We chose these licenses to enable the widest possible collaboration and adoption, should any of these ideas prove useful.

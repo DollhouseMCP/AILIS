@@ -250,7 +250,6 @@ nav:
       - ../studies/index.md
   - Documentation:
       - index.md
-      - Session Notes: session-notes/
   - Project:
       - Changelog: ../CHANGELOG.md
       - License: ../LICENSE

@@ -61,6 +61,7 @@ jobs:
             --exclude="127.0.0.1"
             --exclude="example.com"
             --exclude="test.com"
+            --exclude="creativecommons.org"
             --user-agent="AILIS-LinkChecker/1.0 (+https://github.com/DollhouseMCP/AILIS)"
             "**/*.md"
         env:

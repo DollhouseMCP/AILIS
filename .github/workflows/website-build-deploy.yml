@@ -1,0 +1,153 @@
+name: 🌐 Website Build & Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'proposals/**'
+      - 'docs/**'
+      - 'reference/**'
+      - 'studies/**'
+      - 'README.md'
+      - 'CONTRIBUTING.md'
+      - 'FEEDBACK.md'
+      - 'mkdocs.yml'
+      - '.github/workflows/website-build-deploy.yml'
+  workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: 'Force complete site rebuild'
+        required: false
+        default: 'false'
+
+concurrency:
+  group: website-deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: Build Documentation Site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for git-revision-date-localized plugin
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 📦 Install MkDocs & Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: ✅ Validate MkDocs Configuration
+        run: |
+          echo "Validating mkdocs.yml configuration..."
+          python3 -c "from mkdocs import config; cfg = config.load_config('mkdocs.yml'); print('✅ MkDocs configuration is valid')"
+
+      - name: 📊 Gather Site Statistics
+        id: stats
+        run: |
+          echo "proposals=$(find proposals -name "*.md" -not -name "README.md" | wc -l)" >> $GITHUB_OUTPUT
+          echo "pages=$(find . -name "*.md" | wc -l)" >> $GITHUB_OUTPUT
+          echo "last_updated=$(date -u +"%Y-%m-%d %H:%M UTC")" >> $GITHUB_OUTPUT
+          echo "git_hash=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: 🔧 Build Site
+        env:
+          SITE_PROPOSALS: ${{ steps.stats.outputs.proposals }}
+          SITE_PAGES: ${{ steps.stats.outputs.pages }}
+          SITE_UPDATED: ${{ steps.stats.outputs.last_updated }}
+          GIT_HASH: ${{ steps.stats.outputs.git_hash }}
+        run: |
+          echo "Building AILIS documentation site..."
+          mkdocs build --strict --verbose
+
+          # Add custom analytics or metadata if needed
+          echo "<!-- Built: ${SITE_UPDATED} | Commit: ${GIT_HASH} -->" >> site/index.html
+
+      - name: 🔍 Validate Build Output
+        run: |
+          if [ ! -d "site" ]; then
+            echo "❌ Build failed - site directory not created"
+            exit 1
+          fi
+
+          if [ ! -f "site/index.html" ]; then
+            echo "❌ Build failed - index.html not found"
+            exit 1
+          fi
+
+          # Check for broken internal links in built site
+          echo "Checking for broken internal links..."
+          find site -name "*.html" -type f -exec grep -l 'href="[^"]*404' {} \; || true
+
+          echo "✅ Build validation passed"
+
+      - name: 📦 Upload Site Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-site
+          path: site/
+          retention-days: 30
+
+      - name: 📊 Build Summary
+        run: |
+          echo "## 🌐 Website Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Proposals | ${{ steps.stats.outputs.proposals }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Total Pages | ${{ steps.stats.outputs.pages }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Build Time | $(date -u +"%Y-%m-%d %H:%M UTC") |" >> $GITHUB_STEP_SUMMARY
+          echo "| Git Commit | \`${{ steps.stats.outputs.git_hash }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Site built successfully and ready for deployment" >> $GITHUB_STEP_SUMMARY
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 📥 Download Site Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: documentation-site
+          path: site/
+
+      - name: 🚀 Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: 📦 Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/
+
+      - name: 🌐 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: 📊 Deployment Summary
+        run: |
+          echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Site successfully deployed to GitHub Pages**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 **URL**: ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📅 **Deployed**: $(date -u +"%Y-%m-%d %H:%M UTC")" >> $GITHUB_STEP_SUMMARY

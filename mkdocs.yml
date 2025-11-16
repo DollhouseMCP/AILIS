@@ -1,0 +1,271 @@
+site_name: AILIS
+site_description: >-
+  AI Layer Interface Specification - A proposal for understanding and discussing AI system architectures through a layered model.
+  Think of it as an OSI model for AI systems.
+site_author: Mick Darling
+site_url: https://dollhousemcp.github.io/AILIS
+
+# Repository
+repo_name: DollhouseMCP/AILIS
+repo_url: https://github.com/DollhouseMCP/AILIS
+edit_uri: edit/main/
+
+# Copyright
+copyright: |
+  &copy; 2025 <a href="https://github.com/DollhouseMCP/AILIS">AILIS Project</a> |
+  Code: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> |
+  Docs: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+
+# Configuration
+theme:
+  name: material
+  custom_dir: docs/overrides
+
+  # Color palette - Professional but approachable
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  # Features
+  features:
+    # Navigation
+    - navigation.instant        # Instant loading
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.tracking       # URL updates with scroll
+    - navigation.tabs           # Top-level sections in tabs
+    - navigation.tabs.sticky    # Sticky navigation tabs
+    - navigation.sections       # Sections in sidebar
+    - navigation.expand         # Expand sections by default
+    - navigation.path           # Breadcrumbs
+    - navigation.indexes        # Section index pages
+    - navigation.top            # Back to top button
+    - navigation.footer         # Footer navigation
+
+    # Search
+    - search.suggest            # Search suggestions
+    - search.highlight          # Highlight search terms
+    - search.share              # Share search results
+
+    # Header
+    - header.autohide          # Hide header on scroll
+
+    # Table of contents
+    - toc.follow               # TOC follows scroll
+    - toc.integrate            # Integrate TOC in sidebar
+
+    # Content
+    - content.code.copy        # Copy code blocks
+    - content.code.annotate    # Code annotations
+    - content.tabs.link        # Link content tabs
+    - content.tooltips         # Improved tooltips
+    - content.action.edit      # Edit page action
+    - content.action.view      # View source action
+
+  # Logo and icons
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+    logo: material/layers
+
+  # Fonts
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+  # Logo - Using SVG logo in assets
+  logo: assets/logo.svg
+
+# Plugins
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+      lang: en
+
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago
+      fallback_to_build_date: true
+
+  - awesome-pages:
+      filename: .pages
+      collapse_single_pages: false
+
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
+      cache_safe: true
+
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: true
+      skip_classes:
+        - skip-lightbox
+
+  - git-authors:
+      show_contribution: true
+      show_line_count: true
+      show_email_address: false
+      count_empty_lines: false
+      fallback_to_empty: false
+      sort_authors_by: contribution
+      authorship_threshold_percent: 0
+      exclude:
+        - index.md
+
+  - rss:
+      match_path: proposals/.*
+      date_from_meta:
+        as_creation: date
+      categories:
+        - categories
+        - tags
+      comments_path: "#__comments"
+
+# Extensions
+markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      permalink_title: Anchor link to this section
+      toc_depth: 3
+  - tables
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.critic
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+
+# Extra CSS and JavaScript
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra_javascript:
+  - assets/javascripts/extra.js
+
+# Additional configuration
+extra:
+  # Social links
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/DollhouseMCP/AILIS
+      name: AILIS on GitHub
+    - icon: fontawesome/solid/users
+      link: https://github.com/DollhouseMCP/AILIS/discussions
+      name: Join the discussion
+
+  # Analytics (add if needed)
+  # analytics:
+  #   provider: google
+  #   property: G-XXXXXXXXXX
+
+  # Version management with mike (not currently implemented)
+  # Uncomment when ready to set up versioned documentation
+  # version:
+  #   provider: mike
+  #   default: stable
+
+  # Tags
+  tags:
+    Proposal: proposal
+    RFC: rfc
+    Discussion: discussion
+    Reference: reference
+    Case Study: case-study
+
+# Page tree
+nav:
+  - Home: ../index.md
+  - Getting Started:
+      - Introduction: ../README.md
+      - Contributing: ../CONTRIBUTING.md
+      - Feedback: ../FEEDBACK.md
+  - Proposals:
+      - ../proposals/index.md
+      - AILIS Primer: ../proposals/AILIS_Primer.md
+      - Cheat Sheet: ../proposals/AILIS_Cheat_Sheet.md
+      - Blog Post Draft: ../proposals/AILIS_BlogPost_Draft.md
+  - Reference:
+      - ../reference/index.md
+  - Case Studies:
+      - ../studies/index.md
+  - Documentation:
+      - index.md
+      - Session Notes: session-notes/
+  - Project:
+      - Changelog: ../CHANGELOG.md
+      - License: ../LICENSE
+
+# Validation
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+    absolute_links: warn
+  links:
+    not_found: warn
+    absolute_links: warn
+    unrecognized_links: warn
+
+# Hooks (for advanced customization)
+hooks:
+  - docs/hooks/proposal_metadata.py

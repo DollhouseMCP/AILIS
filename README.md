@@ -9,6 +9,8 @@
 [![♿ Accessibility Check](https://github.com/DollhouseMCP/AILIS/actions/workflows/accessibility-check.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/accessibility-check.yml)
 [![📋 Proposal Lifecycle](https://github.com/DollhouseMCP/AILIS/actions/workflows/proposal-lifecycle.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/proposal-lifecycle.yml)
 
+<!-- Website Deploy badge will be added after workflow runs on main branch -->
+
 ## What if we had a common language for the AI stack?
 
 The AI ecosystem is evolving rapidly, with countless tools, platforms, and frameworks emerging daily. Yet we lack a shared mental model—a common way to discuss where different capabilities sit, how they interact, and where the gaps might be.
@@ -20,6 +22,30 @@ This repository contains **AILIS** (AI Layer Interface Specification), a proposa
 In networking, the OSI model gave us a shared vocabulary. When someone says "Layer 3," everyone understands we're discussing routing and addressing, not physical cables or application logic. 
 
 Could something similar help in AI? We're not sure, but we think it's worth exploring together.
+
+## Quick Start
+
+**New to AILIS?** Here's how to get oriented:
+
+1. **Read the [AILIS Primer](proposals/AILIS_Primer.md)** (10 min) - Comprehensive overview of the 16-layer model
+2. **Check the [Cheat Sheet](proposals/AILIS_Cheat_Sheet.md)** (2 min) - Quick reference for all layers
+3. **Browse [Case Studies](studies/)** - See how real systems map to the model
+4. **Join the [Discussion](https://github.com/DollhouseMCP/AILIS/discussions)** - Share your thoughts
+
+**Want to contribute?**
+- See [CONTRIBUTING.md](CONTRIBUTING.md) for the RFC process
+- Check [FEEDBACK.md](FEEDBACK.md) for areas where we need input
+- Review [open issues](https://github.com/DollhouseMCP/AILIS/issues) for active discussions
+
+**Building the website locally?**
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Preview site (with live reload)
+mkdocs serve  # http://localhost:8000
+```
 
 ## The AILIS 16+ Proposal
 

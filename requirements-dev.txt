@@ -1,0 +1,14 @@
+# Development Dependencies for AILIS
+# Install with: pip install -r requirements-dev.txt
+
+# Include production dependencies
+-r requirements.txt
+
+# Testing
+pytest==8.3.4
+pytest-cov==6.0.0
+
+# Code quality
+ruff==0.8.4
+black==24.10.0
+mypy==1.13.0

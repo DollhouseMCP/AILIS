@@ -1,6 +1,6 @@
 # AILIS: A Proposed Layer Model for AI Systems
 
-*Version 0.1 - Early Draft for Discussion*
+_Version 0.1 - Early Draft for Discussion_
 
 <!-- Workflow Status Badges -->
 [![🔗 Link Validation](https://github.com/DollhouseMCP/AILIS/actions/workflows/link-validation.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/link-validation.yml)
@@ -20,7 +20,7 @@ This repository contains **AILIS** (AI Layer Interface Specification), a proposa
 
 ## Why explore this?
 
-In networking, the OSI model gave us a shared vocabulary. When someone says "Layer 3," everyone understands we're discussing routing and addressing, not physical cables or application logic. 
+In networking, the OSI model gave us a shared vocabulary. When someone says "Layer 3," everyone understands we're discussing routing and addressing, not physical cables or application logic.
 
 Could something similar help in AI? We're not sure, but we think it's worth exploring together.
 
@@ -34,6 +34,7 @@ Could something similar help in AI? We're not sure, but we think it's worth expl
 4. **Join the [Discussion](https://github.com/DollhouseMCP/AILIS/discussions)** - Share your thoughts
 
 **Want to contribute?**
+
 - See [CONTRIBUTING.md](CONTRIBUTING.md) for the RFC process
 - Check [FEEDBACK.md](FEEDBACK.md) for areas where we need input
 - Review [open issues](https://github.com/DollhouseMCP/AILIS/issues) for active discussions
@@ -53,11 +54,13 @@ mkdocs serve  # http://localhost:8000
 We're proposing a 16-layer model (plus cross-cutting concerns) that attempts to map the AI stack from physical infrastructure up through application logic:
 
 ### Infrastructure Foundation (L0-L2)
+
 - **L0 – Facilities & Power**: Datacenters, power/cooling, physical security
 - **L1 – Compute Fabric**: GPUs/TPUs/NPUs/CPUs, memory, interconnects  
 - **L2 – System & Driver Runtime**: CUDA/ROCm/Metal, device memory management
 
 ### Model & Inference Stack (L3-L7)
+
 - **L3 – ML Graph & Compilation**: XLA/TVM/TensorRT-LLM/ONNX Runtime
 - **L4 – Numeric & Quantization**: FP16/FP8/INT4, sparsity, calibration
 - **L5 – Tokenization & Encoders**: BPE tokenizers, CLIP, audio patchifiers
@@ -65,11 +68,13 @@ We're proposing a 16-layer model (plus cross-cutting concerns) that attempts to 
 - **L7 – Inference Engine & Decoding**: Serving runtimes, caching, speculative decoding
 
 ### AI Application Interface (L8-L10)
+
 - **L8 – Context Construction & Prompting**: System prompts, templates, few-shot
 - **L9 – Knowledge & Retrieval**: Vector/graph indexes, rerankers, grounding, citations
 - **L10 – Tool & Function Invocation**: Typed tool I/O (MCP), function calling, API bindings
 
 ### The Orchestration Layers (L11-L15)
+
 - **L11 – Addressing & Registry**: Signed manifests, discovery, capability vectors, fingerprints
 - **L12 – Routing, Planning & Policy**: Rule DSL + bandits, budgets, privacy, fallback/parallel
 - **L13 – Transport & Flow Semantics**: Idempotent runs, streaming, CANCEL/RESUME, multiplex
@@ -77,9 +82,11 @@ We're proposing a 16-layer model (plus cross-cutting concerns) that attempts to 
 - **L15 – Governance, Safety & Schema**: Redaction, validation/repair, schema change control, audit
 
 ### Application Layer (L16)
+
 - **L16 – Application & Domain Logic**: Product UX, workflows, agent frameworks
 
 ### Cross-Cutting Planes
+
 - **Control**: Policy/configuration management
 - **Management/Observability**: Telemetry, evaluations, monitoring
 - **Security**: mTLS, key management, PII protection
@@ -89,6 +96,7 @@ We're proposing a 16-layer model (plus cross-cutting concerns) that attempts to 
 **We don't claim to have all the answers.** This proposal is intentionally incomplete and likely wrong in places. We're sharing it early because we believe the best ideas emerge from open discussion.
 
 We're particularly interested in:
+
 - Does this framing resonate or feel forced?
 - What's missing or miscategorized?
 - Are there better ways to think about these boundaries?
@@ -117,6 +125,7 @@ We follow an RFC-style process for proposals:
 4. **✅ Reach consensus** Proposal accepted or declined with rationale
 
 Quick ways to help:
+
 - **Share feedback** - Use our issue templates
 - **Submit use cases** - Show us real-world examples
 - **Propose alternatives** - Challenge our assumptions
@@ -144,6 +153,7 @@ We chose these licenses to enable the widest possible collaboration and adoption
 ## Acknowledgments
 
 This proposal draws inspiration from:
+
 - The OSI network model
 - The work of countless AI infrastructure teams
 - Open specifications like OpenAPI and GraphQL
@@ -151,4 +161,4 @@ This proposal draws inspiration from:
 
 ---
 
-*Questions? Thoughts? We'd love to hear from you. Open an issue to start a discussion.*
+_Questions? Thoughts? We'd love to hear from you. Open an issue to start a discussion._

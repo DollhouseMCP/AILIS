@@ -13,6 +13,7 @@ We're actively seeking input on the AILIS proposal. This document highlights spe
 ### 2. Are we drawing the boundaries correctly?
 
 We've proposed 16+ layers, but we're not sure if we've:
+
 - **Split things too finely** (should some layers be combined?)
 - **Lumped things together** (should some layers be split?)
 - **Put things in the right layer** (are capabilities correctly categorized?)
@@ -102,22 +103,27 @@ If you have a different approach:
 ## Specific Stakeholder Perspectives We Need
 
 ### From Model Builders
+
 - Does this help explain where your models fit in the ecosystem?
 - What layers do you actually think about when building?
 
 ### From Infrastructure Teams
+
 - Does this align with how you architect AI systems?
 - What's missing from an ops/deployment perspective?
 
 ### From Application Developers
+
 - Does this help you understand the stack below your code?
 - Would this model help you make technology choices?
 
 ### From Researchers
+
 - Is this academically sound?
 - What theoretical frameworks should we consider?
 
 ### From Standards Bodies
+
 - Is this something that could evolve into a useful standard?
 - What would need to change to make it standards-ready?
 

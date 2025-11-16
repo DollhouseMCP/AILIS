@@ -64,8 +64,8 @@ Join the conversation:
 
 ## Philosophy
 
-AILIS is intentionally humble and exploratory. We're not prescribing standards - we're asking questions
-and learning together. Critical feedback and alternative approaches are especially welcome.
+AILIS is intentionally humble and exploratory. We're not prescribing standards - we're asking
+questions and learning together. Critical feedback and alternative approaches are especially welcome.
 
 ## License
 

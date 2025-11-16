@@ -204,13 +204,13 @@ Context & History
 2. **YAML Linting** (yamllint v1.32.0)
    - Max line length: 150 characters
    - Allows custom tags for GitHub Actions
-   
+
 3. **YAML Syntax Check** (pre-commit v4.5.0)
    - Unsafe mode enabled for custom YAML tags
-   
+
 4. **Markdown Linting** (markdownlint v0.37.0)
    - Auto-fix mode enabled
-   
+
 5. **Trailing Whitespace**
    - Removes trailing whitespace
    - Fixes end-of-file issues
@@ -219,6 +219,7 @@ Context & History
 ### Validation & Quality Tools
 
 **Spell Check Configuration** (`.github/cspell.json`)
+
 - Language: English (US)
 - Dictionaries: Standard + tech terms + companies
 - **Custom Words**: AILIS, OSI, MLOps, DevOps, LLMs, RAG, Anthropic, Claude, etc.
@@ -226,20 +227,23 @@ Context & History
 - Allows compound words, case-insensitive
 
 **Link Validation** (`.github/mlc_config.json`)
+
 - **Ignore Patterns**: localhost, JS protocols, mailto, template variables
 - **HTTP Status Codes**: 200, 201, 202, 204, 206, 300-304, 307-308
 - **Retry Logic**: 3 retries, 429 rate-limit handling
 - **Timeout**: 30 seconds
-- **External Tools**: 
+- **External Tools**:
   - `markdown-link-check` for internal links
   - `lychee` for external links with exponential backoff
 
 **Markdown Linting** (`.github/markdownlint.json`)
+
 - Standard markdown linting rules applied to all .md files
 
 ### Git Configuration
 
 **`.gitignore`** ignores:
+
 - OS files (DS_Store, Thumbs.db)
 - IDE/editor files (VSCode, Sublime, Nova)
 - Build artifacts (build/, dist/, egg-info)
@@ -248,7 +252,7 @@ Context & History
 - Logs and temp files
 - Coverage and test reports
 - Documentation builds (mkdocs, site/)
-- Python cache (__pycache__, .pytest_cache)
+- Python cache (**pycache**, .pytest_cache)
 - Package manager caches
 
 ### GitHub Automation Scripts
@@ -300,11 +304,13 @@ Context & History
 ### Issue & PR Templates
 
 **Issue Templates** (`.github/ISSUE_TEMPLATE/`):
+
 - `proposal.yml` - For submitting new proposals
 - `feedback.yml` - For critiques and suggestions
 - `use-case.yml` - For case study submissions
 
 **Pull Request Template** (`.github/pull_request_template.md`)
+
 - Guides proposal PR submission
 - Links to CONTRIBUTING.md
 
@@ -320,6 +326,7 @@ Context & History
 ### Current State: ✅ Ready for Static Site Generation
 
 **Strengths:**
+
 1. **All content is Markdown** - Compatible with any static site generator
 2. **Clean directory structure** - Natural navigation for site hierarchy
 3. **Automated updates** - README, changelog, TOC auto-generated
@@ -328,6 +335,7 @@ Context & History
 6. **Quality assurance** - Spell check, accessibility, markdown lint
 
 **What Would Be Needed for Website:**
+
 - Static site generator (Hugo, Jekyll, MkDocs, or custom)
 - CSS styling and branding
 - Search functionality (optional but recommended)
@@ -335,12 +343,14 @@ Context & History
 - Domain and hosting
 
 **Recommended Generators:**
+
 - **MkDocs** - Purpose-built for documentation, great for RFC-style projects
 - **Hugo** - Fast, flexible, minimal dependencies
 - **Jekyll** - GitHub-native, simplest GitHub Pages integration
 - **Astro** - Modern, with great markdown support
 
 **Pre-built Hooks:**
+
 - Workflows can trigger site builds and deployments
 - Metadata already in place (version, date, contributors)
 - Content structure supports automated navigation generation
@@ -377,6 +387,7 @@ Context & History
 ### CI/CD Ready
 
 The repository has strong CI/CD foundations:
+
 - Every PR is validated for quality, links, and consistency
 - Main branch only accepts merged, tested content
 - Automation can trigger deployments to a website
@@ -387,22 +398,26 @@ The repository has strong CI/CD foundations:
 ## RECOMMENDATIONS FOR PUBLICATION
 
 ### Phase 1: Static Site Setup
+
 - Choose generator (recommend MkDocs for proposal-style docs)
 - Create basic theme/styling
 - Map current directory structure to site navigation
 
 ### Phase 2: Automation Integration
+
 - Add workflow step to build and deploy site on main branch pushes
 - Configure custom domain and HTTPS
 - Set up redirects for old URLs (if migrating)
 
 ### Phase 3: Enhancement
+
 - Add site search
 - Create RSS feed for changelog
 - Add discussion forum integration
 - Email notifications for major updates
 
 ### Phase 4: Distribution
+
 - Add OpenGraph meta tags for social sharing
 - Create landing page with download options
 - Add API documentation if reference implementations grow

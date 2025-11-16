@@ -10,6 +10,8 @@
 [![📋 Proposal Lifecycle](https://github.com/DollhouseMCP/AILIS/actions/workflows/proposal-lifecycle.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/proposal-lifecycle.yml)
 [![🌐 Website Deploy](https://github.com/DollhouseMCP/AILIS/actions/workflows/website-build-deploy.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/website-build-deploy.yml)
 
+<!-- Website Deploy badge will be added after workflow runs on main branch -->
+
 ## What if we had a common language for the AI stack?
 
 The AI ecosystem is evolving rapidly, with countless tools, platforms, and frameworks emerging daily. Yet we lack a shared mental model—a common way to discuss where different capabilities sit, how they interact, and where the gaps might be.

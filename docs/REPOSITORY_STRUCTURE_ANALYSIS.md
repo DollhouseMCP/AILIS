@@ -77,7 +77,7 @@ The AILIS repository is a well-structured, proposal-based project for an AI Laye
 | `proposal-lifecycle.yml` | PR (proposals/), daily | Auto-label proposals and track stages | 11 KB |
 | `proposal-stage-transitions.yml` | Issue labels | Handle stage transitions (draft→review→final→decision) | 7.6 KB |
 | `readme-compilation.yml` | Push (main), PR, weekly | Dynamically update README with stats | 9.8 KB |
-| `changelog-automation.yml` | Merged PRs | Extract PR titles/descriptions → changelog | 8.9 KB |
+| `changelog-automation.yml` | Merged PRs, releases, manual | Extract PR titles/descriptions → changelog | 8.9 KB |
 | `yaml-validation.yml` | Workflow file changes | Validate GitHub Actions workflow YAML | 2.2 KB |
 | `validate-config.yml` | Config changes, manual | Validate all configuration files | 3.2 KB |
 | `version-consistency.yml` | Workflow changes, manual | Check version consistency across files | 5.0 KB |

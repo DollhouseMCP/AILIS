@@ -600,6 +600,14 @@ body {
   color: var(--ailis-lane-research);
 }
 
+.ailis-routing-table {
+  width: 100%;
+}
+
+.ailis-routing-table table {
+  width: 100%;
+}
+
 .ailis-project-profile h2,
 .ailis-project-profile p {
   margin: 0;
@@ -1626,6 +1634,146 @@ button:focus-visible,
 
   .ailis-button {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 34rem) {
+  .ailis-brand-lockup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+  }
+
+  .ailis-brand-logo {
+    width: 1.82rem;
+    height: 1.82rem;
+    background-size: 1.42rem 1.42rem;
+  }
+
+  .ailis-brand-lockup strong {
+    flex-basis: 100%;
+    font-size: 0.66rem;
+    overflow-wrap: anywhere;
+  }
+
+  .ailis-layer-overview {
+    border-radius: var(--ailis-radius-md);
+    padding: 0.7rem;
+  }
+
+  .ailis-layer-overview h2 {
+    font-size: clamp(19px, 7vw, 23px);
+  }
+
+  .ailis-hero-layer-map {
+    gap: 0.38rem;
+    margin-top: 0.68rem;
+  }
+
+  .md-typeset .ailis-layer-group summary {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "range toggle"
+      "title toggle";
+    column-gap: 0.42rem;
+    row-gap: 0.12rem;
+    min-height: auto;
+    padding: 0.34rem 0.42rem !important;
+  }
+
+  .md-typeset .ailis-layer-group strong {
+    grid-area: range;
+    font-size: 0.61rem;
+    letter-spacing: 0.035em;
+    line-height: 1.15;
+  }
+
+  .md-typeset .ailis-layer-group span {
+    display: block;
+    grid-area: title;
+    font-size: 0.78rem;
+    line-height: 1.14;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .md-typeset .ailis-layer-group summary::after {
+    grid-area: toggle;
+    align-self: center;
+  }
+
+  .md-typeset .ailis-layer-group ul {
+    padding: 0.4rem 0.42rem 0.48rem;
+  }
+
+  .md-typeset .ailis-layer-group a {
+    padding: 0.22rem 0.3rem;
+    font-size: 0.7rem;
+    overflow-wrap: anywhere;
+  }
+
+  .ailis-routing-table {
+    box-shadow: none;
+  }
+
+  .ailis-routing-table table,
+  .ailis-routing-table thead,
+  .ailis-routing-table tbody,
+  .ailis-routing-table tr,
+  .ailis-routing-table th,
+  .ailis-routing-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .ailis-routing-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .ailis-routing-table tr {
+    margin: 0 0 0.66rem;
+    border: 1px solid var(--ailis-line);
+    border-radius: var(--ailis-radius-sm);
+    padding: 0.58rem 0.64rem;
+    background: var(--ailis-paper-strong);
+  }
+
+  .ailis-routing-table tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .ailis-routing-table td {
+    border: 0 !important;
+    padding: 0.18rem 0 !important;
+    overflow-wrap: anywhere;
+  }
+
+  .ailis-routing-table td::before {
+    display: block;
+    margin-bottom: 0.08rem;
+    color: var(--ailis-ink-500);
+    font-family: var(--ailis-font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+  }
+
+  .ailis-routing-table td:nth-child(1)::before {
+    content: "MCP-AQL concern";
+  }
+
+  .ailis-routing-table td:nth-child(2)::before {
+    content: "AILIS lens";
+  }
+
+  .ailis-routing-table td:nth-child(3)::before {
+    content: "Why it matters";
   }
 }
 

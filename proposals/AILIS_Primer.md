@@ -1,161 +1,310 @@
 # The AILIS Primer: A Proposed Layer Model for AI Systems
 
-_Version 0.1 - Draft for Discussion • August 2025_
+_Version 0.2 - Draft for Discussion - April 2026_
 
-> **Proposal:** Could an OSI-style mental model help us better understand and discuss AI systems? This document explores
-a possible 16+ layer framework for organizing our thinking about the AI stack.
+> **Proposal:** Could a shared layer vocabulary make AI systems easier to discuss, compare, evaluate, and improve?
+> AILIS explores one possible 16+ layer map for the AI ecosystem. It is a research proposal and conversation starter,
+> not a compliance standard.
 
----
+AILIS is a Dollhouse Research project. It grew out of practical work with model providers, MCP tools, agent workflows,
+retrieval systems, governance checks, and multi-step AI applications where the same words often mean different things to
+different teams.
 
-## 0) Why explore a layered "AI stack" model?
+The short version: many AI diagrams compress everything into a few broad boxes: infrastructure, model, orchestration,
+application. That can be useful, but it also hides the messy middle where interoperability problems show up. AILIS asks
+whether a more granular map might help us notice those boundaries sooner.
 
-Most diagrams compress AI into 4–7 broad boxes (infra → model → orchestration → app). This might hide what we're calling
-the **under-served middle** where real interoperability challenges exist: **registry, routing, transport semantics,
-session/identity, and governance**. The **AILIS** proposal explores whether more granular layers could help identify
-these gaps.
+## How this primer fits with the Atlas
 
-- **Clarity:** Common vocabulary for planning and architectural reviews.
-- **Interoperability:** Clear layer boundaries invite specs and conformance tests.
-- **Strategy:** Spot duplication (crowded layers) and white space (under‑served layers).
+This primer explains the proposal and the reasoning behind it. The
+[AILIS Layer Atlas](../layers/index.md) gives each layer its own page with representative projects, boundary questions,
+and links into the current ecosystem.
 
+If you are new to AILIS, a good path might be:
 
----
+1. Read this primer for the model and vocabulary.
+2. Open the [Layer Atlas](../layers/index.md) when you want examples.
+3. Keep the [Cheat Sheet](AILIS_Cheat_Sheet.md) nearby when mapping a product, protocol, or architecture.
+4. Bring disagreements to the [GitHub discussion](https://github.com/DollhouseMCP/AILIS/discussions), especially when a
+   layer feels blurry or incorrectly scoped.
 
-## 1) The Layers (L0–L16)
+## Why explore a layered AI stack?
 
-We keep L0 for facility concerns and extend through L16 (Application). Cross‑cutting planes (Control,
-Management/Observability, Security) apply across layers.
+AI systems are no longer just "a model plus an app." Even a relatively ordinary assistant can involve:
 
-**L0 – Facilities & Power** — Datacenters, power/cooling, physical security.  
-**L1 – Compute Fabric** — GPUs/TPUs/NPUs/CPUs, memory, interconnects.  
-**L2 – System & Driver Runtime** — CUDA/ROCm/Metal; device memory management.  
-**L3 – ML Graph & Compilation** — XLA/TVM/TensorRT‑LLM/ONNX Runtime.  
-**L4 – Numeric & Quantization** — FP16/FP8/INT4, sparsity, calibration.  
-**L5 – Tokenization & Encoders** — BPE tokenizers, CLIP, audio patchifiers.  
-**L6 – Model Parameters & Architecture** — Base/foundation weights, MoE, diffusion.  
-**L7 – Inference Engine & Decoding** — Serving runtimes, caching, speculative decoding.  
-**L8 – Context Construction & Prompting** — System prompts, templates, few‑shot.  
-**L9 – Knowledge & Retrieval** — Vector/graph indexes, rerankers, grounding, citations.  
-**L10 – Tool & Function Invocation** — Typed tool I/O (MCP), function calling, API bindings.  
-**L11 – Addressing & Registry** — Signed manifests, discovery, capability vectors, fingerprints.  
-**L12 – Routing, Planning & Policy** — Rule DSL + bandits; budgets, privacy, fallback/parallel.  
-**L13 – Transport & Flow Semantics** — Idempotent runs, streaming, CANCEL/RESUME, multiplex.  
-**L14 – Session, Identity & Memory** — Portable session envelope, capability tokens, budgets; memory tiers.  
-**L15 – Governance, Safety & Schema** — Redaction, validation/repair, schema change control, audit.  
-**L16 – Application & Domain Logic** — Product UX, workflows, agent frameworks.
+- accelerators and runtime stacks;
+- model weights, quantization choices, and inference engines;
+- prompt construction and retrieval;
+- tool invocation protocols;
+- provider routing and policy;
+- streaming transport and cancellation;
+- identity, memory, consent, and session continuity;
+- governance, schema validation, redaction, and audit trails;
+- a product workflow that users actually experience.
 
-**Planes:** Control (policy/config), Management/Observability (telemetry/evals), Security (mTLS, keys, PII).
+The AILIS proposal is not that every team must care about every layer. Instead, it suggests that teams might benefit
+from naming the layer they are discussing before they argue about architecture, risk, cost, or standards.
 
----
+## What a layer model is for
 
-## 2) Where the market is crowded vs. empty
+AILIS is most useful when it helps people separate concerns that are otherwise blended together. It is less useful if it
+becomes a labeling exercise for its own sake.
 
-- **Crowded:** L1–L7 (compute, models, inference) and L9 (vector DBs).  
-- **Under‑served:** **L11–L15** (registry, routing, transport semantics, session, governance). This is where
+A layer model can help ask:
 
+- What is the system actually responsible for?
+- Which concern is being hidden behind a product name or provider name?
+- Where does data cross a boundary?
+- Where does control move from one actor, tool, model, or service to another?
+- Which part could be swapped out, standardized, audited, or governed independently?
 
-multi‑provider, privacy‑aware, cost‑aware AI breaks down today.
+AILIS is not trying to say that every project belongs in exactly one place. Most real projects span layers. The useful
+move is to name the primary layer, the secondary layers, and the handoffs between them.
 
----
+## How to read an AILIS layer
 
-## 3) What good looks like at the middle layers
+Each layer can be read through four questions:
 
-### L11 — Addressing & Registry
+| Question | What it reveals |
+| --- | --- |
+| What artifact lives here? | The tangible thing being produced, stored, invoked, routed, or governed. |
+| What boundary does it expose? | The interface where another layer depends on it. |
+| What evidence would prove it works? | Tests, benchmarks, traces, manifests, evaluations, audits, or examples. |
+| What happens if it is missing? | The failure mode that gets pushed into application code or user experience. |
 
-**Objective:** a portable, signed catalog for models, tools, indices, and **ensembles**.  
-**Artifacts:** manifests, capability vectors, immutable fingerprints (benchmarks + environment descriptors).  
-**APIs:** search/filter, publish/update, signature verification, evidence links.
+This is why the [Layer Atlas](../layers/index.md) contains examples and boundary questions rather than just definitions.
+A layer becomes meaningful only when it helps explain a real system.
 
-### L12 — Routing, Planning & Policy
+## The stack at a glance
 
-**Objective:** pick the **best plan** (single model/tool or **ensemble**) under cost/latency/privacy budgets.  
-**Mechanics:** declarative rules + **bandit learning**; cascade/parallel/reducer; canary & rollback; evaluator feedback
-loop.
+AILIS currently groups the stack into five practical regions. The names and boundaries are open to revision.
 
-### L13 — Transport & Flow Semantics
+| Region | Layers | What it helps separate |
+| --- | --- | --- |
+| Infrastructure foundation | [L0-L2](../layers/index.md#infrastructure-foundation) | Physical sites, compute fabric, driver/runtime substrate. |
+| Model and inference stack | [L3-L7](../layers/index.md#model-and-inference-stack) | Graph compilation, numeric representation, encoders, model artifacts, serving. |
+| AI application interface | [L8-L10](../layers/index.md#ai-application-interface) | Prompt/context construction, retrieval, tools, typed invocation. |
+| Orchestration layers | [L11-L15](../layers/index.md#orchestration-layers) | Discovery, routing, transport, session, identity, memory, governance, schemas. |
+| Application and domain logic | [L16+](../layers/index.md#application-and-domain-logic) | User-facing products, workflows, domain rules, review paths. |
 
-**Objective:** make AI calls **resumable, cancellable, multiplexed**, and stream‑aware across providers/hosts.  
-**Verbs:** `OPEN`, `DATA`, `YIELD`, `NEGOTIATE*GRAMMAR`, `CANCEL`, `PAUSE`, `RESUME`, `CLOSE` + idempotency keys and
-resume tokens.
+## The layers
 
-### L14 — Session, Identity & Memory
+The layer summaries below are intentionally brief. Use the Atlas links for the richer version of each layer.
 
-**Objective:** continuity and **ownership** of context across providers.  
-**Artifacts:** **Portable Session Envelope** (identity, budgets, privacy class, ensemble stack, memory refs) +
-**capability tokens**.
-**Memory tiers:** episodic (per thread), semantic (indices), scratch (structured workspaces).
+### L0 - Facilities & Power
 
-### L15 — Governance, Safety & Schema
+Datacenters, power, cooling, physical security, and site-level resilience.
 
-**Objective:** reduce risk without blocking productivity.  
-**Mechanics:** input redaction; output validation/auto‑repair; **schema diffing** and deprecation windows; approvals &
-audit.
+[Explore L0 in the Layer Atlas](../layers/l0-facilities-power.md)
 
----
+### L1 - Compute Fabric
 
-## 4) Ensembles: composition as a first‑class citizen
+GPUs, TPUs, NPUs, CPUs, memory hierarchy, interconnects, and accelerator topology.
 
-Real systems compose **personas, prompts, templates, and skills**. Ensembles are **measured** (capability vectors) and
-**selected** (routing policies) like any other capability. Evaluation must consider **interaction effects**—small
-changes can have large behavioral consequences.
+[Explore L1 in the Layer Atlas](../layers/l1-compute-fabric.md)
 
----
+### L2 - System & Driver Runtime
 
-## 5) Evidence over hype: fingerprints & capability vectors
+CUDA, ROCm, Metal, device memory management, runtime libraries, and scheduling hooks.
 
-- **Fingerprint** = immutable record of (subject × platform × model‑version × env) performance: behavioral, performance,
+[Explore L2 in the Layer Atlas](../layers/l2-system-driver-runtime.md)
 
+### L3 - ML Graph & Compilation
 
-robustness, safety, compatibility.
+Graph representation, compilation, lowering, optimization, and execution targets.
 
-- **Capability vector** = compact features for routing decisions (reasoning, factuality, structure adherence,
+[Explore L3 in the Layer Atlas](../layers/l3-ml-graph-compilation.md)
 
+### L4 - Numeric & Quantization
 
-latency/cost bands).
+Precision choices, FP8/FP16/INT4, quantization, sparsity, calibration, and compression.
 
-- **Loop:** route → score → action → outcome → update priors.
+[Explore L4 in the Layer Atlas](../layers/l4-numeric-quantization.md)
 
+### L5 - Tokenization & Encoders
 
----
+Text tokenizers, image encoders, audio encoders, patching, embeddings, and modality conversion.
 
-## 6) Security & privacy by design
+[Explore L5 in the Layer Atlas](../layers/l5-tokenization-encoders.md)
 
-- Privacy classes & residency in manifests; **privacy‑aware routing**.  
-- Content‑free telemetry option; on‑device redaction in clients; short‑lived capability tokens.  
-- For premium IP: attested runs, watermark/provenance, rights metering.
+### L6 - Model Parameters & Architecture
 
+Model weights, architectures, adapters, model families, release artifacts, and model metadata.
 
----
+[Explore L6 in the Layer Atlas](../layers/l6-model-parameters-architecture.md)
 
-## 7) How might AILIS be used in your organization?
+### L7 - Inference Engine & Decoding
 
-1. **Map products** to layers (primary/secondary).  
-2. **Identify gaps** in L11–L15; pick standards to adopt/publish.  
-3. **Instrument evaluation** and publish fingerprints to your registry.  
-4. **Write routing policy** (start rules → evolve to bandits).  
-5. **Govern schemas** and introduce a firewall before tool/model calls.
+Serving runtimes, batching, KV cache, speculative decoding, streaming, and local or hosted inference.
 
+[Explore L7 in the Layer Atlas](../layers/l7-inference-engine-decoding.md)
 
----
+### L8 - Context Construction & Prompting
 
-## 8) FAQ
+System prompts, templates, examples, context packing, instruction hierarchy, and prompt tests.
 
-- **Is AILIS meant to replace existing frameworks?** No. It's a **proposed map and a set of ideas for discussion**, not
+[Explore L8 in the Layer Atlas](../layers/l8-context-construction-prompting.md)
 
+### L9 - Knowledge & Retrieval
 
-a framework.
+Vector and graph indexes, hybrid retrieval, reranking, grounding, freshness, permissions, and citations.
 
-- **Why not fewer layers?** The missing interoperability happens precisely in the “extra” layers (L11–L15).  
-- **Does it handle multi‑modal?** Yes—modalities live in manifests/fingerprints; layers remain the same.
+[Explore L9 in the Layer Atlas](../layers/l9-knowledge-retrieval.md)
 
+### L10 - Tool & Function Invocation
 
----
+Typed tool calls, function calling, MCP-style capabilities, API bindings, and result handling.
 
-## 9) What’s next
+[Explore L10 in the Layer Atlas](../layers/l10-tool-function-invocation.md)
 
-- Publish spec drafts for **L11–L15** and the **Portable Session Envelope**.  
-- Provide **reference implementations** (registry server, router DSL engine, transport shim, session libraries).  
-- Invite vendors and users to **contribute fingerprints** and **manifests**.
+### L11 - Addressing & Registry
 
+Discovery, manifests, capability metadata, signatures, provenance, fingerprints, and registries.
 
-*Feedback welcome._
+[Explore L11 in the Layer Atlas](../layers/l11-addressing-registry.md)
+
+### L12 - Routing, Planning & Policy
+
+Provider routing, agent planning, ensemble selection, budgets, privacy rules, fallback, and evaluator feedback.
+
+[Explore L12 in the Layer Atlas](../layers/l12-routing-planning-policy.md)
+
+### L13 - Transport & Flow Semantics
+
+Streaming, cancellation, resume tokens, idempotency, multiplexing, retries, and backpressure.
+
+[Explore L13 in the Layer Atlas](../layers/l13-transport-flow-semantics.md)
+
+### L14 - Session, Identity & Memory
+
+Portable session state, identity, capability tokens, memory tiers, consent, continuity, and ownership.
+
+[Explore L14 in the Layer Atlas](../layers/l14-session-identity-memory.md)
+
+### L15 - Governance, Safety & Schema
+
+Validation, redaction, schema conformance, guardrails, approvals, audit trails, and repair loops.
+
+[Explore L15 in the Layer Atlas](../layers/l15-governance-safety-schema.md)
+
+### L16 - Application & Domain Logic
+
+Product UX, workflows, domain rules, agent frameworks, review paths, and the user's actual experience.
+
+[Explore L16 in the Layer Atlas](../layers/l16-application-domain-logic.md)
+
+## Cross-cutting planes
+
+AILIS also uses three cross-cutting planes. These do not sit above or below the stack; they pass through it.
+
+| Plane | What it asks |
+| --- | --- |
+| Control | What configuration, policy, budget, capability, or routing decision is being applied? |
+| Management and observability | What telemetry, evaluation, trace, cost, quality, and outcome evidence is available? |
+| Security | What trust boundary, authorization, privacy class, key, residency rule, or audit requirement applies? |
+
+## Where the proposal sees pressure
+
+The lower and middle model stack is crowded and fast-moving. L1-L7 and L9 have many strong projects, providers, and
+frameworks. That does not make them solved, but they are visible and heavily funded.
+
+The AILIS proposal pays special attention to L11-L15 because these layers often appear as ad hoc product code:
+
+- registries that cannot describe tools, models, prompts, indices, and ensembles in one vocabulary;
+- routers that select providers without enough evidence, budget, privacy, or outcome feedback;
+- transports that stream tokens but do not always handle cancellation, resumability, or long-running tool work cleanly;
+- sessions and memories that are difficult for users to inspect, move, consent to, or revoke;
+- governance checks that are bolted onto applications instead of treated as shared infrastructure.
+
+That middle may be where shared protocols and public research could be especially useful.
+
+## A worked mapping example
+
+Consider a research assistant that answers questions from private documents and can call approved tools.
+
+| Concern | Likely AILIS layers |
+| --- | --- |
+| The hosted model and serving endpoint | L6-L7 |
+| Prompt template and conversation instructions | L8 |
+| Private document index, embeddings, reranker, citations | L9 |
+| Approved calendar, file, and search tools | L10 |
+| Catalog of which tools and document indices exist | L11 |
+| Decision about local model vs. hosted model vs. specialist tool | L12 |
+| Streaming answer with cancellable tool progress | L13 |
+| User identity, memory policy, and session continuity | L14 |
+| Redaction, output schema checks, audit trail, approval gates | L15 |
+| The final assistant workflow and user experience | L16 |
+
+The point is not that this mapping is final. The point is that the map lets a team discuss where a concern belongs. If
+memory access fails, the team can ask whether the problem is retrieval, session ownership, identity, consent,
+governance, or product UX instead of treating "memory" as one undifferentiated feature.
+
+## What good might look like
+
+AILIS is not prescribing one architecture. It is collecting questions that good architectures might answer.
+
+### L11 - Addressing & Registry
+
+Could models, tools, prompts, datasets, indices, and ensembles publish signed manifests with capability claims, evidence
+links, version constraints, privacy classes, and deprecation state?
+
+### L12 - Routing, Planning & Policy
+
+Could routing decisions consider cost, latency, privacy, capability evidence, region, failure modes, and evaluator
+feedback instead of only provider name and model ID?
+
+### L13 - Transport & Flow Semantics
+
+Could AI calls become resumable, cancellable, multiplexed, and stream-aware across providers, hosts, local tools, and
+human approval pauses?
+
+### L14 - Session, Identity & Memory
+
+Could users and organizations carry session state, memory references, permissions, and privacy budgets across tools
+without handing every application a private copy of everything?
+
+### L15 - Governance, Safety & Schema
+
+Could redaction, schema validation, output repair, policy checks, audit logs, and approvals become reusable parts of the
+stack rather than application-by-application patches?
+
+## How AILIS might be used
+
+AILIS can be used lightly. A team does not need to adopt the whole model to get value from it.
+
+1. **Map a system.** Identify the primary and secondary layers a project touches.
+2. **Name the handoffs.** Ask where data, control, identity, policy, and responsibility cross boundaries.
+3. **Spot duplication.** Notice when two tools solve the same layer while another layer is missing.
+4. **Find risk.** Look for places where memory, tool access, schema validation, or routing policy is implicit.
+5. **Invite critique.** Use unclear cases to improve the model rather than forcing the project to fit.
+
+## FAQ
+
+### Is AILIS trying to become a standard?
+
+Not currently. It is a proposed map for discussion. Some layers might eventually inspire specifications, tests, or
+reference implementations, but the first goal is shared language.
+
+### Why so many layers?
+
+Because many real interoperability problems disappear when the stack is compressed too far. AILIS may still have too
+many, too few, or poorly named layers. The point of the proposal is to make those disagreements easier to discuss.
+
+### Does this handle multimodal AI?
+
+It tries to. Modalities show up most visibly in L5 encoders, L6 architectures, L8 context construction, L9 retrieval,
+and L16 product behavior. The Atlas is a good place to test whether that treatment is strong enough.
+
+### Is a project allowed to span layers?
+
+Yes. Most real projects do. AILIS is more useful when it names primary and secondary layers than when it tries to force
+everything into exactly one box.
+
+## What is next?
+
+- Keep expanding the [Layer Atlas](../layers/index.md) with examples, critiques, and competing placements.
+- Draft deeper proposals for L11-L15, especially addressing, routing, transport, session, and governance.
+- Explore a portable session envelope, capability manifests, and evidence-backed fingerprints.
+- Invite vendors, researchers, builders, and skeptical users to test the model against real systems.
+
+_Feedback welcome. The most useful critique is often a project that does not fit cleanly._

@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Improve accessibility
   safeExecute(improveAccessibility);
+
+  // Highlight discussion-oriented questions in long-form content
+  safeExecute(highlightDiscussionPrompts);
+
+  // Restore labels on generated cheat sheet lists
+  safeExecute(labelCheatSheetLists);
 });
 
 /**
@@ -161,21 +167,14 @@ function enhanceCodeBlocks() {
   codeBlocks.forEach(block => {
     // Add language label if available
     const language = block.className.match(/language-(\w+)/);
-    if (language && !block.previousElementSibling?.classList.contains('code-label')) {
+    const pre = block.parentElement;
+    const existingLabel = pre?.previousElementSibling?.classList.contains('code-label');
+
+    if (language && pre?.parentElement && !existingLabel) {
       const label = document.createElement('div');
       label.className = 'code-label';
       label.textContent = language[1].toUpperCase();
-      label.style.cssText = `
-        background: var(--ailis-accent);
-        color: white;
-        padding: 0.25rem 0.75rem;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        border-radius: 4px 4px 0 0;
-        margin-top: 1rem;
-      `;
-      block.parentElement.parentElement.insertBefore(label, block.parentElement);
+      pre.parentElement?.insertBefore(label, pre);
     }
   });
 }
@@ -222,11 +221,17 @@ function trackOutboundLinks() {
   const links = document.querySelectorAll('a[href^="http"]');
 
   links.forEach(link => {
-    if (!link.hostname.includes('dollhousemcp.github.io')) {
-      link.addEventListener('click', function(e) {
-        // Analytics tracking would go here
-        // Removed console.log for privacy
-      });
+    const url = new URL(link.href, window.location.href);
+    const sameOrigin = url.origin === window.location.origin;
+
+    if (!sameOrigin) {
+      if (!link.dataset.ailisOutboundTracked) {
+        link.dataset.ailisOutboundTracked = 'true';
+        link.addEventListener('click', function(e) {
+          // Analytics tracking would go here
+          // Removed console.log for privacy
+        });
+      }
 
       // Add external link indicator
       if (!link.querySelector('.external-link-icon')) {
@@ -238,6 +243,22 @@ function trackOutboundLinks() {
       }
     }
   });
+}
+
+/**
+ * Add accessible group labels to Markdown-generated cheat sheet card lists
+ */
+function labelCheatSheetLists() {
+  const regionList = document.querySelector('li.ailis-cheat-region-item')?.closest('ul');
+  const layerList = document.querySelector('li.ailis-cheat-layer-item')?.closest('ul');
+
+  if (regionList) {
+    regionList.setAttribute('aria-label', 'AILIS stack regions');
+  }
+
+  if (layerList) {
+    layerList.setAttribute('aria-label', 'AILIS layer field card');
+  }
 }
 
 /**
@@ -263,12 +284,15 @@ function improveAccessibility() {
   // Enhance keyboard navigation
   const navLinks = document.querySelectorAll('.md-nav__link');
   navLinks.forEach(link => {
-    link.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        link.click();
-      }
-    });
+    if (!link.dataset.ailisKeyNavTracked) {
+      link.dataset.ailisKeyNavTracked = 'true';
+      link.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          link.click();
+        }
+      });
+    }
   });
 
   // Add ARIA labels to icon-only buttons
@@ -360,6 +384,10 @@ if (typeof document$ !== 'undefined') {
     safeExecute(enhanceLayerReferences);
     safeExecute(enhanceCodeBlocks);
     safeExecute(addStatusBadges);
+    safeExecute(trackOutboundLinks);
+    safeExecute(improveAccessibility);
+    safeExecute(highlightDiscussionPrompts);
+    safeExecute(labelCheatSheetLists);
     safeExecute(addReadingTime);
   });
 }

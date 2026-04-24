@@ -15,8 +15,11 @@ discuss, critique, and improve.
 
 - **[AILIS Primer](AILIS_Primer.md)** - The main framework specification introducing the 16+ layer
   model for understanding AI systems
-- **[AILIS Cheat Sheet](AILIS_Cheat_Sheet.md)** - Quick reference guide for the layer model
-- **[Blog Post Draft](AILIS_BlogPost_Draft.md)** - Public-facing introduction to AILIS
+- **[AILIS Cheat Sheet](AILIS_Cheat_Sheet.md)** - Scannable field guide for mapping systems to layers
+- **[Layer Atlas](../layers/index.md)** - Richer layer-by-layer examples, boundary questions, and ecosystem references
+
+Publication drafts and outbound essays should probably live in a dedicated blog or articles area if the project chooses
+to maintain one. They are not part of the core proposal set.
 
 ## Proposal Lifecycle
 

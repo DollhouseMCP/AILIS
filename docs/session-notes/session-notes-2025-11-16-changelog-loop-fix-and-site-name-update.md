@@ -324,7 +324,7 @@ gh pr list --limit 10 --json number,title,author
 
 ## Related Documentation
 
-- Previous Session: [Navigation 404 Fix (2025-11-16)](./ailis-navigation-404-fix-2025-11-16.md)
+- Previous Session: Navigation 404 Fix (2025-11-16)
 - Repository: [CLAUDE.md](../../CLAUDE.md)
 - Workflows: [changelog-automation.yml](../../.github/workflows/changelog-automation.yml)
 - Configuration: [mkdocs.yml](../../mkdocs.yml)

@@ -54,13 +54,13 @@ Code, schemas, and tools
 
 ### 2. Draft Phase
 
-```bash
-# Create your proposal branch
-git checkout -b draft/your-proposal-name
+Create a proposal branch:
 
-# Add your proposal document
-proposals/AILIS-XXX-your-proposal.md
+```bash
+git checkout -b draft/your-proposal-name
 ```
+
+Add your proposal document at `proposals/AILIS-XXX-your-proposal.md`.
 
 Proposal document should include:
 

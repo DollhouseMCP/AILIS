@@ -17,7 +17,7 @@ The AILIS repository is a well-structured, proposal-based project for an AI Laye
 ### Root-Level Documentation
 
 | File | Purpose | Size |
-|------|---------|------|
+| --- | --- | --- |
 | `README.md` | Main project introduction, framework overview, and calls to action | ~220 lines |
 | `CONTRIBUTING.md` | RFC-style contribution workflow and guidelines | ~180+ lines |
 | `FEEDBACK.md` | Areas where community input is actively sought | Core guidance |
@@ -69,7 +69,7 @@ The AILIS repository is a well-structured, proposal-based project for an AI Laye
 ### All 15 Workflows at a Glance
 
 | Workflow | Trigger | Purpose | Size |
-|----------|---------|---------|------|
+| --- | --- | --- | --- |
 | `link-validation.yml` | Push (main), PR, weekly | Validate internal and external links | 2.3 KB |
 | `markdown-lint.yml` | PR, push | Style and format checking for markdown | 1.8 KB |
 | `spell-check.yml` | PR, push | Spell checking with project word list | 1.6 KB |
@@ -360,7 +360,7 @@ Context & History
 ## KEY STATISTICS
 
 | Metric | Value |
-|--------|-------|
+| --- | --- |
 | **Total Markdown Files** | 16 |
 | **Total Lines of Documentation** | ~2,000+ |
 | **Proposal Documents** | 3 active + 1 draft (421 lines) |
@@ -422,4 +422,3 @@ The repository has strong CI/CD foundations:
 - Create landing page with download options
 - Add API documentation if reference implementations grow
 - Consider publishing to npm, PyPI, or similar registries
-

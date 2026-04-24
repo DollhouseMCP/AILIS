@@ -36,7 +36,7 @@ theme:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: indigo
-      accent: deep purple
+      accent: orange
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
@@ -45,7 +45,7 @@ theme:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: indigo
-      accent: deep purple
+      accent: orange
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -94,9 +94,7 @@ theme:
     logo: material/layers
 
   # Fonts
-  font:
-    text: Roboto
-    code: Roboto Mono
+  font: false
 
   # Logo - Using SVG logo in assets
   logo: assets/logo.svg
@@ -173,6 +171,7 @@ markdown_extensions:
   - attr_list
   - def_list
   - footnotes
+  - fenced_code
   - md_in_html
   - toc:
       permalink: true
@@ -198,11 +197,6 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
@@ -252,7 +246,7 @@ extra:
 
 # Page tree
 nav:
-  - Home: home-index.md
+  - Home: index.md
   - Getting Started:
       - Contributing: CONTRIBUTING.md
       - Feedback: FEEDBACK.md
@@ -265,8 +259,6 @@ nav:
       - reference/index.md
   - Case Studies:
       - studies/index.md
-  - Documentation:
-      - index.md
   - Project:
       - Changelog: CHANGELOG.md
       - License: LICENSE

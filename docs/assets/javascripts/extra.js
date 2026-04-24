@@ -161,21 +161,14 @@ function enhanceCodeBlocks() {
   codeBlocks.forEach(block => {
     // Add language label if available
     const language = block.className.match(/language-(\w+)/);
-    if (language && !block.previousElementSibling?.classList.contains('code-label')) {
+    const pre = block.parentElement;
+    const existingLabel = pre?.previousElementSibling?.classList.contains('code-label');
+
+    if (language && pre && !existingLabel) {
       const label = document.createElement('div');
       label.className = 'code-label';
       label.textContent = language[1].toUpperCase();
-      label.style.cssText = `
-        background: var(--ailis-accent);
-        color: white;
-        padding: 0.25rem 0.75rem;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        border-radius: 4px 4px 0 0;
-        margin-top: 1rem;
-      `;
-      block.parentElement.parentElement.insertBefore(label, block.parentElement);
+      pre.parentElement.insertBefore(label, pre);
     }
   });
 }
@@ -222,7 +215,11 @@ function trackOutboundLinks() {
   const links = document.querySelectorAll('a[href^="http"]');
 
   links.forEach(link => {
-    if (!link.hostname.includes('dollhousemcp.github.io')) {
+    const url = new URL(link.href, window.location.href);
+    const sameOrigin = url.origin === window.location.origin;
+    const canonicalSite = url.hostname === 'dollhousemcp.github.io' && url.pathname.startsWith('/AILIS');
+
+    if (!sameOrigin && !canonicalSite) {
       link.addEventListener('click', function(e) {
         // Analytics tracking would go here
         // Removed console.log for privacy

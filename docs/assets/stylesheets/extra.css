@@ -1192,6 +1192,156 @@ body {
   line-height: 1.18;
 }
 
+.ailis-atlas-stack {
+  display: grid;
+  gap: 0.9rem;
+  margin: 1.4rem 0 1.8rem;
+}
+
+.ailis-atlas-group {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.44fr) minmax(0, 1fr);
+  gap: 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--ailis-lane-research) 22%, var(--ailis-line));
+  border-radius: var(--ailis-radius-lg);
+  padding: 0.88rem;
+  background:
+    radial-gradient(circle at 98% 10%, color-mix(in srgb, var(--ailis-lane-research-bright) 12%, transparent), transparent 10rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--ailis-lane-research-soft) 32%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+  box-shadow: var(--ailis-shadow-soft);
+}
+
+.ailis-atlas-group.lane-core {
+  border-color: color-mix(in srgb, var(--ailis-lane-core) 26%, var(--ailis-line));
+  background:
+    radial-gradient(circle at 98% 10%, color-mix(in srgb, var(--ailis-lane-core-bright) 12%, transparent), transparent 10rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--ailis-lane-core-soft) 32%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+}
+
+.ailis-atlas-group.lane-protocol {
+  border-color: color-mix(in srgb, var(--ailis-lane-protocol) 26%, var(--ailis-line));
+  background:
+    radial-gradient(circle at 98% 10%, color-mix(in srgb, var(--ailis-lane-protocol-bright) 12%, transparent), transparent 10rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--ailis-lane-protocol-soft) 32%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+}
+
+.ailis-atlas-group-context {
+  display: grid;
+  align-content: start;
+  gap: 0.44rem;
+  border-radius: var(--ailis-radius-md);
+  padding: 0.7rem;
+  background: color-mix(in srgb, var(--ailis-paper-strong) 68%, transparent);
+}
+
+.ailis-atlas-group-context strong {
+  color: var(--ailis-lane-research);
+  font-family: var(--ailis-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.ailis-atlas-group.lane-core .ailis-atlas-group-context strong {
+  color: var(--ailis-lane-core);
+}
+
+.ailis-atlas-group.lane-protocol .ailis-atlas-group-context strong {
+  color: var(--ailis-lane-protocol);
+}
+
+.ailis-atlas-group-context h2,
+.ailis-atlas-group-context p {
+  margin: 0;
+}
+
+.ailis-atlas-group-context h2 {
+  font-size: clamp(1.05rem, 1.8vw, 1.42rem);
+}
+
+.ailis-atlas-group-context p {
+  color: var(--ailis-ink-700);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.ailis-atlas-group ol {
+  display: grid;
+  gap: 0.46rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ailis-atlas-group li {
+  margin: 0;
+}
+
+.md-typeset .ailis-atlas-group a {
+  display: grid;
+  grid-template-columns: 3.4rem minmax(9rem, 0.48fr) minmax(0, 1fr);
+  gap: 0.64rem;
+  align-items: center;
+  min-height: 3.45rem;
+  border: 1px solid color-mix(in srgb, var(--ailis-lane-research) 18%, var(--ailis-line));
+  border-radius: var(--ailis-radius-sm);
+  padding: 0.5rem 0.58rem;
+  background: color-mix(in srgb, var(--ailis-paper-strong) 76%, transparent);
+  color: var(--ailis-ink-900);
+  text-decoration: none;
+}
+
+.md-typeset .ailis-atlas-group.lane-core a {
+  border-color: color-mix(in srgb, var(--ailis-lane-core) 22%, var(--ailis-line));
+}
+
+.md-typeset .ailis-atlas-group.lane-protocol a {
+  border-color: color-mix(in srgb, var(--ailis-lane-protocol) 22%, var(--ailis-line));
+}
+
+.md-typeset .ailis-atlas-group a:hover {
+  transform: translateX(2px);
+  border-color: var(--ailis-lane-research);
+}
+
+.md-typeset .ailis-atlas-group.lane-core a:hover {
+  border-color: var(--ailis-lane-core);
+}
+
+.md-typeset .ailis-atlas-group.lane-protocol a:hover {
+  border-color: var(--ailis-lane-protocol);
+}
+
+.ailis-atlas-group a strong {
+  color: var(--ailis-lane-research);
+  font-family: var(--ailis-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.ailis-atlas-group.lane-core a strong {
+  color: var(--ailis-lane-core);
+}
+
+.ailis-atlas-group.lane-protocol a strong {
+  color: var(--ailis-lane-protocol);
+}
+
+.ailis-atlas-group a span {
+  color: var(--ailis-ink-950);
+  font-family: var(--ailis-font-heading);
+  font-weight: 800;
+  line-height: 1.18;
+}
+
+.ailis-atlas-group a em {
+  color: var(--ailis-ink-700);
+  font-size: 0.76rem;
+  font-style: normal;
+  line-height: 1.42;
+}
+
 .ailis-layer-infographic {
   display: grid;
   grid-template-columns: minmax(9rem, 0.62fr) minmax(0, 1fr);
@@ -1450,6 +1600,7 @@ button:focus-visible,
   .ailis-context-grid,
   .ailis-portfolio-context,
   .ailis-layer-atlas-grid,
+  .ailis-atlas-group,
   .ailis-layer-map {
     grid-template-columns: 1fr;
   }
@@ -1464,6 +1615,8 @@ button:focus-visible,
   .ailis-related-grid,
   .ailis-tree-branches,
   .ailis-layer-atlas-grid,
+  .ailis-atlas-group,
+  .md-typeset .ailis-atlas-group a,
   .ailis-layer-infographic,
   .ailis-layer-infographic ol,
   .ailis-layer-map {

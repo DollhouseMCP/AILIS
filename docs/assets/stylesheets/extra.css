@@ -1,6 +1,8 @@
 /* AILIS custom styles
    Portfolio-aligned with Dollhouse Research, DollhouseMCP, and MCP-AQL. */
 
+/* Fonts */
+
 @font-face {
   font-family: "Manrope";
   font-style: normal;
@@ -32,6 +34,8 @@
   font-display: swap;
   src: url("../fonts/ibm-plex-mono-latin-500.woff2") format("woff2");
 }
+
+/* Design Tokens */
 
 :root {
   --ailis-ink-950: #0b1220;
@@ -111,6 +115,8 @@
   --md-default-bg-color: var(--ailis-paper);
   --md-default-fg-color: var(--ailis-ink-900);
 }
+
+/* MkDocs Material Base Theme */
 
 body {
   background:
@@ -304,6 +310,8 @@ body {
   box-shadow: var(--ailis-shadow-card);
   transform: translateY(-2px);
 }
+
+/* Homepage */
 
 .ailis-home {
   width: min(72rem, 100%);
@@ -702,6 +710,8 @@ body {
 .ailis-layer-detail {
   padding-top: clamp(0.9rem, 2.2vw, 1.35rem);
 }
+
+/* Proposal And Atlas Components */
 
 .ailis-section h2,
 .ailis-band h2 {

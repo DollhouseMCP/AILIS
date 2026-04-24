@@ -171,6 +171,8 @@ markdown_extensions:
   - attr_list
   - def_list
   - footnotes
+  # No mermaid fences exist today. If diagrams are added later, restore
+  # pymdownx.superfences with the mermaid custom fence instead of fenced_code.
   - fenced_code
   - md_in_html
   - toc:

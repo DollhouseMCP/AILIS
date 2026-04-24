@@ -600,11 +600,11 @@ body {
   color: var(--ailis-lane-research);
 }
 
-.ailis-routing-table {
+.ailis-mcpaql-routing-table {
   width: 100%;
 }
 
-.ailis-routing-table table {
+.ailis-mcpaql-routing-table table {
   width: 100%;
 }
 
@@ -1712,21 +1712,21 @@ button:focus-visible,
     overflow-wrap: anywhere;
   }
 
-  .ailis-routing-table {
+  .ailis-mcpaql-routing-table {
     box-shadow: none;
   }
 
-  .ailis-routing-table table,
-  .ailis-routing-table thead,
-  .ailis-routing-table tbody,
-  .ailis-routing-table tr,
-  .ailis-routing-table th,
-  .ailis-routing-table td {
+  .ailis-mcpaql-routing-table table,
+  .ailis-mcpaql-routing-table thead,
+  .ailis-mcpaql-routing-table tbody,
+  .ailis-mcpaql-routing-table tr,
+  .ailis-mcpaql-routing-table th,
+  .ailis-mcpaql-routing-table td {
     display: block;
     width: 100%;
   }
 
-  .ailis-routing-table thead {
+  .ailis-mcpaql-routing-table thead {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -1736,7 +1736,7 @@ button:focus-visible,
     white-space: nowrap;
   }
 
-  .ailis-routing-table tr {
+  .ailis-mcpaql-routing-table tr {
     margin: 0 0 0.66rem;
     border: 1px solid var(--ailis-line);
     border-radius: var(--ailis-radius-sm);
@@ -1744,17 +1744,17 @@ button:focus-visible,
     background: var(--ailis-paper-strong);
   }
 
-  .ailis-routing-table tr:last-child {
+  .ailis-mcpaql-routing-table tr:last-child {
     margin-bottom: 0;
   }
 
-  .ailis-routing-table td {
+  .ailis-mcpaql-routing-table td {
     border: 0 !important;
     padding: 0.18rem 0 !important;
     overflow-wrap: anywhere;
   }
 
-  .ailis-routing-table td::before {
+  .ailis-mcpaql-routing-table td::before {
     display: block;
     margin-bottom: 0.08rem;
     color: var(--ailis-ink-500);
@@ -1764,15 +1764,15 @@ button:focus-visible,
     text-transform: uppercase;
   }
 
-  .ailis-routing-table td:nth-child(1)::before {
+  .ailis-mcpaql-routing-table td:nth-child(1)::before {
     content: "MCP-AQL concern";
   }
 
-  .ailis-routing-table td:nth-child(2)::before {
+  .ailis-mcpaql-routing-table td:nth-child(2)::before {
     content: "AILIS lens";
   }
 
-  .ailis-routing-table td:nth-child(3)::before {
+  .ailis-mcpaql-routing-table td:nth-child(3)::before {
     content: "Why it matters";
   }
 }

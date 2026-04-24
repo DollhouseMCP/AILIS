@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Improve accessibility
   safeExecute(improveAccessibility);
 
+  // Highlight discussion-oriented questions in long-form content
+  safeExecute(highlightDiscussionPrompts);
+
   // Restore labels on generated cheat sheet lists
   safeExecute(labelCheatSheetLists);
 });
@@ -281,12 +284,15 @@ function improveAccessibility() {
   // Enhance keyboard navigation
   const navLinks = document.querySelectorAll('.md-nav__link');
   navLinks.forEach(link => {
-    link.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        link.click();
-      }
-    });
+    if (!link.dataset.ailisKeyNavTracked) {
+      link.dataset.ailisKeyNavTracked = 'true';
+      link.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          link.click();
+        }
+      });
+    }
   });
 
   // Add ARIA labels to icon-only buttons
@@ -380,6 +386,7 @@ if (typeof document$ !== 'undefined') {
     safeExecute(addStatusBadges);
     safeExecute(trackOutboundLinks);
     safeExecute(improveAccessibility);
+    safeExecute(highlightDiscussionPrompts);
     safeExecute(labelCheatSheetLists);
     safeExecute(addReadingTime);
   });

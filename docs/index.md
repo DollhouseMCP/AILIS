@@ -170,7 +170,7 @@ hide:
       separated from application behavior.
     </p>
 
-    <div class="md-typeset__table ailis-routing-table">
+    <div class="md-typeset__table ailis-mcpaql-routing-table">
       <table>
         <thead>
           <tr>

@@ -37,6 +37,9 @@ jobs:
           use-quiet-mode: 'no'
           use-verbose-mode: 'yes'
           config-file: '.github/mlc_config.json'
+          # Proposal files are symlinked into docs/proposals for MkDocs.
+          # Scanning docs validates them from the same source path MkDocs uses;
+          # scanning root proposals as well makes flat-file relative links resolve differently.
           folder-path: 'docs,reference,studies'
           max-depth: -1
           file-path: './README.md,./CONTRIBUTING.md,./FEEDBACK.md,./CLAUDE.md,./CHANGELOG.md'

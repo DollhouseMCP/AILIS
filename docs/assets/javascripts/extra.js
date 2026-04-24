@@ -164,11 +164,11 @@ function enhanceCodeBlocks() {
     const pre = block.parentElement;
     const existingLabel = pre?.previousElementSibling?.classList.contains('code-label');
 
-    if (language && pre && !existingLabel) {
+    if (language && pre?.parentElement && !existingLabel) {
       const label = document.createElement('div');
       label.className = 'code-label';
       label.textContent = language[1].toUpperCase();
-      pre.parentElement.insertBefore(label, pre);
+      pre.parentElement?.insertBefore(label, pre);
     }
   });
 }

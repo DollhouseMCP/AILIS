@@ -2,7 +2,7 @@
 title: L0 - Facilities & Power
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L0 - Facilities & Power
 

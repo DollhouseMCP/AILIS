@@ -2,7 +2,7 @@
 title: L14 - Session, Identity & Memory
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L14 - Session, Identity & Memory
 

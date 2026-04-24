@@ -2,7 +2,7 @@
 title: L6 - Model Parameters & Architecture
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L6 - Model Parameters & Architecture
 

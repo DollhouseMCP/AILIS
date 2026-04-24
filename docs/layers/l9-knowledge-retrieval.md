@@ -2,7 +2,7 @@
 title: L9 - Knowledge & Retrieval
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L9 - Knowledge & Retrieval
 

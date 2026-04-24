@@ -2,7 +2,7 @@
 title: L7 - Inference Engine & Decoding
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L7 - Inference Engine & Decoding
 

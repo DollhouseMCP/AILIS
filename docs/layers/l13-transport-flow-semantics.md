@@ -2,7 +2,7 @@
 title: L13 - Transport & Flow Semantics
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L13 - Transport & Flow Semantics
 

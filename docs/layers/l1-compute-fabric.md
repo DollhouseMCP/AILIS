@@ -2,7 +2,7 @@
 title: L1 - Compute Fabric
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L1 - Compute Fabric
 

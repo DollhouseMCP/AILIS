@@ -2,7 +2,7 @@
 title: L8 - Context Construction & Prompting
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L8 - Context Construction & Prompting
 

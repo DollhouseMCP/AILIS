@@ -2,7 +2,7 @@
 title: L12 - Routing, Planning & Policy
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L12 - Routing, Planning & Policy
 

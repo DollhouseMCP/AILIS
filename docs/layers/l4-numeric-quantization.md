@@ -2,7 +2,7 @@
 title: L4 - Numeric & Quantization
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L4 - Numeric & Quantization
 

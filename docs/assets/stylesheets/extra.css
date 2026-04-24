@@ -1671,6 +1671,52 @@ button:focus-visible,
   top: 0;
 }
 
+@supports not (color: color-mix(in srgb, #000000, #ffffff)) {
+  body {
+    background: var(--ailis-paper);
+  }
+
+  .md-main__inner,
+  .md-search__form,
+  .md-typeset pre,
+  .md-typeset .highlight,
+  .md-typeset table:not([class]),
+  .md-typeset .admonition,
+  .md-typeset details,
+  .md-typeset .grid.cards > ul > li,
+  .md-typeset .card,
+  .ailis-hero,
+  .ailis-layer-overview,
+  .md-typeset .ailis-layer-group,
+  .ailis-portfolio-item,
+  .ailis-layer-card,
+  .ailis-context-panel,
+  .ailis-research-band,
+  .ailis-layer-detail,
+  .md-typeset .ailis-layer-atlas-grid a,
+  .ailis-atlas-group,
+  .md-typeset .ailis-atlas-group a,
+  .md-typeset .ailis-cheat-regions a,
+  .md-typeset .ailis-cheat-layer-list a,
+  .ailis-layer-infographic,
+  .ailis-mcpaql-frame {
+    border-color: var(--ailis-line);
+    background: var(--ailis-paper-strong);
+  }
+
+  .md-typeset summary,
+  .ailis-status-band,
+  .ailis-stack-table {
+    background: var(--ailis-signal-soft);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  .md-search__input:focus {
+    outline-color: var(--ailis-accent);
+  }
+}
+
 @media screen and (max-width: 76rem) {
   .ailis-hero {
     grid-template-columns: 1fr;

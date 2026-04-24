@@ -14,12 +14,12 @@
     </linearGradient>
   </defs>
 
-  
+
   <rect x="23" y="16" width="9" height="15" rx="2" fill="url(#chimneyOrange)" stroke="#0a1020" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke" paint-order="stroke fill"></rect>
   <path d="M50 10 L88 32 H12 Z" fill="url(#roofBlue-orange-chimney)"></path>
 
   <rect x="17" y="32" width="66" height="46" rx="4" fill="#4f8ff7"></rect>
-  
+
   <rect x="22" y="37" width="56" height="36" rx="4" fill="#ffffff"></rect>
 
   <rect x="26" y="40" width="22" height="12" rx="3" fill="#3b82f6" stroke="#0a1020" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke" paint-order="stroke fill"></rect>

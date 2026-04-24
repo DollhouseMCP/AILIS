@@ -2,7 +2,7 @@
 title: L3 - ML Graph & Compilation
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L3 - ML Graph & Compilation
 

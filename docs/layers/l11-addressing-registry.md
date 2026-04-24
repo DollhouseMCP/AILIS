@@ -2,7 +2,7 @@
 title: L11 - Addressing & Registry
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L11 - Addressing & Registry
 

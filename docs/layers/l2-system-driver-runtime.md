@@ -2,7 +2,7 @@
 title: L2 - System & Driver Runtime
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L2 - System & Driver Runtime
 

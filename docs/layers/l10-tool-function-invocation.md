@@ -2,7 +2,7 @@
 title: L10 - Tool & Function Invocation
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L10 - Tool & Function Invocation
 

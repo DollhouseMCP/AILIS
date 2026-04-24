@@ -2,7 +2,7 @@
 title: L5 - Tokenization & Encoders
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L5 - Tokenization & Encoders
 

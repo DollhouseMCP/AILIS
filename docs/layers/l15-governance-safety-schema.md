@@ -2,7 +2,7 @@
 title: L15 - Governance, Safety & Schema
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L15 - Governance, Safety & Schema
 

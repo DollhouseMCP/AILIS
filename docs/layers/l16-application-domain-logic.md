@@ -2,7 +2,7 @@
 title: L16 - Application & Domain Logic
 ---
 
-<!-- markdownlint-disable MD013 MD033 MD046 -->
+<!-- markdownlint-disable MD013 MD033 -->
 
 # L16 - Application & Domain Logic
 

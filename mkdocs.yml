@@ -149,7 +149,6 @@ plugins:
         - FEEDBACK.md
         - CHANGELOG.md
         - LICENSE
-        - home-index.md
         - proposals/*
         - reference/*
         - studies/*
@@ -171,9 +170,6 @@ markdown_extensions:
   - attr_list
   - def_list
   - footnotes
-  # No mermaid fences exist today. If diagrams are added later, restore
-  # pymdownx.superfences with the mermaid custom fence instead of fenced_code.
-  - fenced_code
   - md_in_html
   - toc:
       permalink: true
@@ -208,6 +204,9 @@ markdown_extensions:
   - pymdownx.snippets:
       auto_append:
         - includes/abbreviations.md
+  # Keeps nested fences working. No mermaid fences exist today; add the mermaid
+  # custom fence here if diagrams are introduced later.
+  - pymdownx.superfences
 
 # Extra CSS and JavaScript
 extra_css:

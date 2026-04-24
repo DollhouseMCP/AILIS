@@ -1,187 +1,115 @@
+# AILIS: A Map for Talking About the AI Stack
 
-# The AILIS Proposal: Could We Use a Network-Style Map for the AI Stack?
+_Draft for feedback - April 2026_
 
-_By Mick Darling — Early draft for feedback_
+AI systems are becoming easier to demo and harder to explain.
 
----
+One product might include a frontier model, a local model, a vector database, prompt templates, tool calls, memory,
+provider routing, safety checks, schema validation, identity rules, and a user-facing workflow. Another product might
+use similar words for a very different stack. "Agent," "orchestration," "memory," "tool," and "platform" can mean almost
+anything until someone draws the boundaries.
 
-## 1. Why We Need a Layer Model for AI
+AILIS, the AI Layer Interface Specification, is a Dollhouse Research proposal for drawing those boundaries more
+carefully. It asks a simple question:
 
-The AI space is exploding with tools, platforms, and frameworks. Everyone is building “AI agents,” “orchestration
-layers,” or “foundational models,” but there's no shared mental map of **what sits where**, **what functions are
-duplicated**, and **where the gaps and opportunities lie**.
+> Could AI benefit from a shared layer map, not as a rigid standard, but as a better way to discuss architecture?
 
-Computer networking solved this decades ago with the **OSI model**: seven layers, each with clear boundaries, standard
-interfaces, and protocols. If you say "Layer 3," everyone knows you're talking about IP addressing and routing—not about
-transport reliability or application logic.
+## The problem with four boxes
 
-Could AI benefit from something similar? We're proposing **AILIS**, a granular, network-inspired way to think about the
-AI ecosystem. This is a conversation starter, not a definitive answer.
+Many AI diagrams use a familiar shape:
 
----
+```text
+Infrastructure -> Model -> Orchestration -> Application
+```
 
-## 2. The AILIS Proposal
+That is useful for a slide. It is less useful when a team needs to decide where identity lives, how tool permissions are
+scoped, whether memory belongs to the app or the user, why a cancellation cannot resume, or which provider should handle
+a request under cost, latency, privacy, and quality constraints.
 
-The AILIS proposal suggests breaking down AI systems into **16 functional layers**, plus three **cross-cutting planes**
-for control, management, and security. This framework might help clarify where a given product, tool, or protocol lives,
-where standards could be useful, and where innovation opportunities exist.
+The important problems often live between the obvious boxes.
 
-### **L0 – Facilities & Power**
+AILIS proposes a more granular map: L0 through L16, with cross-cutting planes for control, observability, and security.
+The goal is not to make the diagram bigger for its own sake. The goal is to make hidden handoffs visible.
 
-Physical datacenter infrastructure: power delivery, cooling, EMI shielding, physical security. _Think: data center
-operators, colocation facilities, power management systems._
+## A first pass at the stack
 
-### **L1 – Compute Fabric**
+At the highest level, AILIS groups the AI ecosystem into five regions:
 
-GPUs, NPUs, TPUs, CPUs, memory hierarchies, network interconnects (PCIe, NVLink, InfiniBand). _Think: NVIDIA H100, AMD
-MI300, Intel Gaudi._
+| Region | Layers | What it describes |
+| --- | --- | --- |
+| Infrastructure foundation | L0-L2 | Facilities, compute fabric, and system runtimes. |
+| Model and inference stack | L3-L7 | Graph compilation, quantization, encoders, model artifacts, and serving. |
+| AI application interface | L8-L10 | Prompting, retrieval, and tool/function invocation. |
+| Orchestration layers | L11-L15 | Registry, routing, transport, session, memory, governance, and schema controls. |
+| Application and domain logic | L16+ | Products, workflows, domain rules, and user experience. |
 
-### **L2 – System & Driver Runtime**
+The full [AILIS Layer Atlas](../../layers/) gives each layer a page with examples and open questions. The Atlas matters
+because real systems rarely fit neatly into a single row. The interesting part is often where a project crosses layers.
 
-Vendor-specific runtime stacks for launching compute kernels and managing device memory. _Examples: CUDA, ROCm, Metal._
+## Why the middle deserves attention
 
-### **L3 – ML Graph & Compilation**
+The model and inference layers are crowded. There is intense activity around chips, runtimes, model families, serving
+engines, quantization, and retrieval.
 
-Compilers and runtimes that transform a model graph into efficient kernels. _Examples: PyTorch, TensorRT, XLA, ONNX
-Runtime._
+That work is important, but it is not the whole stack.
 
-### **L4 – Numeric Representation & Quantization**
+AILIS highlights L11-L15 because many teams are already rebuilding those layers inside their own products:
 
-Data types (FP32, FP16, FP8, INT4), quantization and calibration pipelines, sparsity patterns. _Examples: INT4
-quantization toolchains, SmoothQuant, AWQ._
+- **Addressing and registry:** How do we discover models, tools, prompts, indices, and agent capabilities in a way that
+  includes versions, evidence, signatures, and constraints?
+- **Routing, planning, and policy:** How do we choose among providers, tools, local models, remote models, and ensembles
+  under cost, latency, privacy, quality, and failure constraints?
+- **Transport and flow semantics:** How do AI calls stream, cancel, pause, resume, multiplex, and recover?
+- **Session, identity, and memory:** Who is acting, what context is portable, what memory can be used, and what did the
+  user consent to?
+- **Governance, safety, and schema:** What must be redacted, validated, repaired, approved, audited, or blocked before
+  the system takes action?
 
-### **L5 – Tokenization & Encoding**
+These are not edge cases. They are becoming ordinary engineering concerns.
 
-Mapping bytes or multimodal inputs into token sequences. _Examples: BPE tokenizers, CLIP image encoders, speech
-patchifiers._
+## A map, not a mandate
 
-### **L6 – Model Parameters & Architecture**
+AILIS is intentionally a proposal. It is not claiming that L11 must be exactly here forever, or that every project needs
+to present itself in AILIS terminology. The model is useful only if it helps people ask better questions.
 
-The trained model weights and architecture definitions. _Examples: GPT-4 weights, Llama models, Mixtral, Mistral,
-Command R+._
+For example:
 
-### **L7 – Inference Engine & Decoding**
+- Is this tool primarily a retrieval product, a tool invocation protocol, or an application workflow?
+- Is this "memory" a vector index, a user-owned session object, a product feature, or all three?
+- Is a routing layer choosing providers based on evidence, or only hiding API differences?
+- Where does consent live when an agent calls a tool using long-term memory?
+- Which layer owns cancellation when a model stream triggers a long-running action?
 
-Running a forward pass on the model, speculative decoding, caching, beam search, streaming tokens. _Examples: vLLM,
-Fireworks.ai, TensorRT-LLM._
+If the map makes those questions easier to ask, it is doing useful work. If a real system does not fit, that is not a
+failure. It is feedback.
 
-### **L8 – Context Construction & Prompting**
+## What this could unlock
 
-Prompt templates, system instructions, few-shot examples, scratchpads. _Examples: LangChain prompt templates, Semantic
-Kernel planners._
+A shared layer vocabulary could help different groups without forcing them into the same architecture.
 
-### **L9 – Knowledge Access & Retrieval**
+For builders, it could make product boundaries clearer. A team might say, "We are mostly L12-L14. We route across
+providers, maintain session continuity, and manage consented memory. We do not train models."
 
-Embedding stores, vector search, rerankers, grounding documents, citations. _Examples: Pinecone, Weaviate,
-Elasticsearch, RAG pipelines._
+For researchers, it could expose under-studied problems. Instead of another broad claim about "agents," a paper might
+focus on transport resumability, registry evidence, or memory governance.
 
-### **L10 – Tool & Function Invocation**
+For users and organizations, it could make AI systems more inspectable. If a product claims to have memory, routing,
+tools, and governance, the AILIS map gives people a way to ask where those things live and how they interact.
 
-Calling external capabilities—databases, APIs, code execution, calculators—via structured I/O. _Examples: MCP servers,
-function calling APIs, ReAct tool frameworks._
+For protocol designers, it could point toward missing interfaces. MCP, tool calling, vector stores, model registries,
+guardrails, and agent frameworks all touch pieces of the stack. AILIS asks how those pieces might be described together.
 
-### **L11 – Addressing & Service Discovery**
+## What happens next
 
-How models, tools, and services are named and found. _Analogy: DNS for AI._ Currently fragmented—each provider has its
-own catalog.
+The next step is not to declare the model finished. The next step is to test it.
 
-### **L12 – Routing & Policy Forwarding**
+That means mapping real systems, adding examples to the [Layer Atlas](../../layers/), arguing about blurry boundaries,
+and drafting deeper proposals where the gaps are clearest. L11-L15 are obvious candidates, especially addressing,
+routing, flow semantics, portable session envelopes, memory consent, and governance schemas.
 
-Deciding **which model/tool route** to call given cost, latency, privacy, region, and evaluation feedback. _Think:
-multi-provider routers, policy engines, orchestration planners._
+AILIS may change shape as better examples arrive. That is the point.
 
-### **L13 – Transport, Flow & Streaming**
+The AI ecosystem does not need another diagram that pretends everything is settled. It might need a shared workbench for
+the questions that are still open.
 
-The wire protocols that carry requests/responses, handle streaming tokens, retries, cancellations, multiplexed
-sub-streams. _Examples: HTTP, gRPC, WebSockets—but lacking AI-specific semantics today._
-
-### **L14 – Session, Identity & State**
-
-Conversation state, memory layers (episodic, semantic, scratch), identity, tenancy isolation, scoped permissions,
-per-session budgets.
-
-### **L15 – Presentation, Safety & Schema Governance**
-
-Output structuring (JSON, DSL), schema validation, input/output redaction, policy firewalls, jailbreak protection.
-
-### **L16 – Application & Domain Logic**
-
-User-facing apps, workflows, agent frameworks, product logic, human-in-the-loop reviews. _Examples: ChatGPT UI,
-Perplexity, GitHub Copilot, Notion AI._
-
----
-
-### Cross-Cutting Planes
-
-- **Control Plane:** Configuration, policy, budgets, AB/canaries, capability catalogs.
-- **Management & Observability Plane:** Telemetry, evaluation corpora, route→score→action→outcome logs, dashboards.
-- **Security Plane:** mTLS, key management, data residency, PII classification.
-
-
----
-
-## 3. Why This Model Matters
-
-### 3.1 Clarifies Scope
-
-AI vendors often claim to provide an "end-to-end platform." In reality, most products sit in **one or two layers**,
-sometimes spanning adjacent layers. This model makes scope **explicit**.
-
-### 3.2 Highlights Duplication
-
-Layers **L6–L7** (foundation models and inference) are heavily duplicated: many players build yet another LLM host or
-incremental model variant. Similarly, **L9 vector search** is crowded.
-
-### 3.3 Exposes Gaps
-
-Layers **L11–L14** are underdeveloped:
-
-- No standard **addressing/discovery** (DNS for AI)
-- Weak **multi-provider routers** (policy-aware, evaluation-aware)
-- No open **transport semantics** for multiplexed streaming
-- Fragmented **session, memory, and identity** handling
-
-
-### 3.4 Guides Innovation
-
-Entrepreneurs and architects can identify **white space**:
-
-- Cross-provider **AIOS layers** that route, compose, and evaluate capabilities across models and tools.
-- **Safety firewalls** that enforce schemas and policy across toolchains.
-- **Portable capability tokens** for scoped, least-privilege access to models and tools.
-
-
----
-
-## 4. How Might AILIS Be Used?
-
-1. **Map your product or idea** to AILIS layers. What's primary, what's secondary?  
-2. **Check duplication density**: is this layer crowded with competition?  
-3. **Identify adjacent layers** you can connect to add differentiated value.  
-4. **Communicate clearly** with teams, investors, customers: "We're a Layer 12–14 product, we don't build Layer 6
-   models."
-5. **Contribute to open standards** where layers lack protocols (L11–L13 especially).
-
-
----
-
-## 5. Closing Thoughts
-
-AI is following the trajectory of networking: from monolithic, opaque stacks to modular, layered architectures with
-**interoperability standards**. Today, boundaries are blurred, hype conflates layers, and duplication hides where real
-innovation is needed.
-
-The **AILIS proposal** is offered as a potential step toward shared language. It's intentionally imperfect and
-incomplete, but it might help frame:
-
-- **What is infrastructure vs. application logic**
-- **What's vendor-specific vs. what should be standardized**
-- **Where composable orchestration can deliver AGI-like behavior** without owning a frontier model.
-
-
-Use it to ask better questions, design clearer systems, and build the missing protocols and layers that will define the
-next era of AI.
-
----
-
-_Feedback welcome: this draft is open for comments before publication._
+*Feedback welcome. Especially the kind that breaks the model in useful ways.*

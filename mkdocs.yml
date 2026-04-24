@@ -254,7 +254,6 @@ nav:
       - proposals/index.md
       - AILIS Primer: proposals/AILIS_Primer.md
       - Cheat Sheet: proposals/AILIS_Cheat_Sheet.md
-      - Blog Post Draft: proposals/AILIS_BlogPost_Draft.md
   - Layer Atlas:
       - layers/index.md
       - L0 Facilities & Power: layers/l0-facilities-power.md

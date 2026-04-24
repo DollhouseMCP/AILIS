@@ -1352,14 +1352,26 @@ body {
   line-height: 1.42;
 }
 
-.ailis-cheat-regions {
+.ailis-cheat-regions,
+.md-typeset ul:has(> li.ailis-cheat-region-item) {
   display: grid;
   gap: 0.58rem;
   margin: 1.1rem 0 1.4rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.ailis-cheat-regions li,
+.ailis-cheat-layer-list li,
+.md-typeset li.ailis-cheat-region-item,
+.md-typeset li.ailis-cheat-layer-item {
+  display: contents;
 }
 
 .md-typeset .ailis-cheat-regions a,
-.md-typeset .ailis-cheat-layer-list a {
+.md-typeset .ailis-cheat-layer-list a,
+.md-typeset li.ailis-cheat-region-item a,
+.md-typeset li.ailis-cheat-layer-item a {
   display: grid;
   grid-template-columns: 4.4rem minmax(9rem, 0.48fr) minmax(0, 1fr);
   gap: 0.64rem;
@@ -1373,25 +1385,33 @@ body {
 }
 
 .md-typeset .ailis-cheat-regions a.lane-core,
-.md-typeset .ailis-cheat-layer-list a:nth-last-child(-n + 3) {
+.md-typeset .ailis-cheat-layer-list a.lane-core,
+.md-typeset li.ailis-cheat-region-item a.lane-core,
+.md-typeset li.ailis-cheat-layer-item a.lane-core {
   border-color: color-mix(in srgb, var(--ailis-lane-core) 24%, var(--ailis-line));
   background: color-mix(in srgb, var(--ailis-paper-strong) 78%, var(--ailis-lane-core-soft));
 }
 
 .md-typeset .ailis-cheat-regions a.lane-protocol,
-.md-typeset .ailis-cheat-layer-list a:nth-child(n + 2):nth-child(-n + 7) {
+.md-typeset .ailis-cheat-layer-list a.lane-protocol,
+.md-typeset li.ailis-cheat-region-item a.lane-protocol,
+.md-typeset li.ailis-cheat-layer-item a.lane-protocol {
   border-color: color-mix(in srgb, var(--ailis-lane-protocol) 24%, var(--ailis-line));
   background: color-mix(in srgb, var(--ailis-paper-strong) 78%, var(--ailis-lane-protocol-soft));
 }
 
 .md-typeset .ailis-cheat-regions a:hover,
-.md-typeset .ailis-cheat-layer-list a:hover {
+.md-typeset .ailis-cheat-layer-list a:hover,
+.md-typeset li.ailis-cheat-region-item a:hover,
+.md-typeset li.ailis-cheat-layer-item a:hover {
   transform: translateX(2px);
   border-color: var(--ailis-lane-research);
 }
 
 .ailis-cheat-regions .ailis-cheat-code,
-.ailis-cheat-layer-list .ailis-cheat-code {
+.ailis-cheat-layer-list .ailis-cheat-code,
+.ailis-cheat-region-item .ailis-cheat-code,
+.ailis-cheat-layer-item .ailis-cheat-code {
   color: var(--ailis-lane-research);
   font-family: var(--ailis-font-mono);
   font-size: 0.72rem;
@@ -1400,7 +1420,9 @@ body {
 }
 
 .ailis-cheat-regions span,
-.ailis-cheat-layer-list span {
+.ailis-cheat-layer-list span,
+.ailis-cheat-region-item span,
+.ailis-cheat-layer-item span {
   color: var(--ailis-ink-950);
   font-family: var(--ailis-font-heading);
   font-weight: 800;
@@ -1408,17 +1430,22 @@ body {
 }
 
 .ailis-cheat-regions .ailis-cheat-note,
-.ailis-cheat-layer-list .ailis-cheat-note {
+.ailis-cheat-layer-list .ailis-cheat-note,
+.ailis-cheat-region-item .ailis-cheat-note,
+.ailis-cheat-layer-item .ailis-cheat-note {
   color: var(--ailis-ink-700);
   font-size: 0.76rem;
   font-style: normal;
   line-height: 1.42;
 }
 
-.ailis-cheat-layer-list {
+.ailis-cheat-layer-list,
+.md-typeset ul:has(> li.ailis-cheat-layer-item) {
   display: grid;
   gap: 0.34rem;
   margin: 1.1rem 0 1.4rem;
+  padding-left: 0;
+  list-style: none;
 }
 
 .ailis-layer-infographic {

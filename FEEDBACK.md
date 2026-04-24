@@ -82,7 +82,11 @@ What prior art should we be learning from?
 
 ### Quick Feedback
 
-Open an issue with the label `feedback` and share your thoughts. Even a few sentences help!
+Open a [GitHub issue](https://github.com/DollhouseMCP/AILIS/issues/new?labels=feedback)
+with the label `feedback` and share your thoughts. Even a few sentences help.
+
+For open-ended discussion, questions, or exploratory reactions, start or join a
+[GitHub Discussion](https://github.com/DollhouseMCP/AILIS/discussions).
 
 ### Detailed Analysis
 
@@ -92,6 +96,9 @@ If you want to go deeper:
 2. Name it `feedback-[your-topic]-[your-name/handle].md`
 3. Structure it however makes sense for your feedback
 4. Submit as a Pull Request
+
+If you want to talk through an analysis before turning it into a document, use
+[GitHub Discussions](https://github.com/DollhouseMCP/AILIS/discussions).
 
 ### Alternative Proposals
 
@@ -145,8 +152,8 @@ This proposal will only improve through diverse perspectives.
 ## Contact
 
 - **GitHub Issues**: Preferred method for public feedback
-- **Discussions**: Use GitHub Discussions for longer conversations
-- **Email**: [Contact information if you choose to provide it]
+- **Discussions**: Use [GitHub Discussions](https://github.com/DollhouseMCP/AILIS/discussions) for longer conversations
+- **Issue tracker**: Use [GitHub Issues](https://github.com/DollhouseMCP/AILIS/issues) for concrete feedback or bugs
 
 ---
 

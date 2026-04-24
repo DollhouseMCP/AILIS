@@ -26,23 +26,73 @@ these gaps.
 We keep L0 for facility concerns and extend through L16 (Application). Cross‑cutting planes (Control,
 Management/Observability, Security) apply across layers.
 
-**L0 – Facilities & Power** — Datacenters, power/cooling, physical security.  
-**L1 – Compute Fabric** — GPUs/TPUs/NPUs/CPUs, memory, interconnects.  
-**L2 – System & Driver Runtime** — CUDA/ROCm/Metal; device memory management.  
-**L3 – ML Graph & Compilation** — XLA/TVM/TensorRT‑LLM/ONNX Runtime.  
-**L4 – Numeric & Quantization** — FP16/FP8/INT4, sparsity, calibration.  
-**L5 – Tokenization & Encoders** — BPE tokenizers, CLIP, audio patchifiers.  
-**L6 – Model Parameters & Architecture** — Base/foundation weights, MoE, diffusion.  
-**L7 – Inference Engine & Decoding** — Serving runtimes, caching, speculative decoding.  
-**L8 – Context Construction & Prompting** — System prompts, templates, few‑shot.  
-**L9 – Knowledge & Retrieval** — Vector/graph indexes, rerankers, grounding, citations.  
-**L10 – Tool & Function Invocation** — Typed tool I/O (MCP), function calling, API bindings.  
-**L11 – Addressing & Registry** — Signed manifests, discovery, capability vectors, fingerprints.  
-**L12 – Routing, Planning & Policy** — Rule DSL + bandits; budgets, privacy, fallback/parallel.  
-**L13 – Transport & Flow Semantics** — Idempotent runs, streaming, CANCEL/RESUME, multiplex.  
-**L14 – Session, Identity & Memory** — Portable session envelope, capability tokens, budgets; memory tiers.  
-**L15 – Governance, Safety & Schema** — Redaction, validation/repair, schema change control, audit.  
-**L16 – Application & Domain Logic** — Product UX, workflows, agent frameworks.
+### L0 - Facilities & Power
+
+Datacenters, power/cooling, physical security.
+
+### L1 - Compute Fabric
+
+GPUs/TPUs/NPUs/CPUs, memory, interconnects.
+
+### L2 - System & Driver Runtime
+
+CUDA/ROCm/Metal; device memory management.
+
+### L3 - ML Graph & Compilation
+
+XLA/TVM/TensorRT‑LLM/ONNX Runtime.
+
+### L4 - Numeric & Quantization
+
+FP16/FP8/INT4, sparsity, calibration.
+
+### L5 - Tokenization & Encoders
+
+BPE tokenizers, CLIP, audio patchifiers.
+
+### L6 - Model Parameters & Architecture
+
+Base/foundation weights, MoE, diffusion.
+
+### L7 - Inference Engine & Decoding
+
+Serving runtimes, caching, speculative decoding.
+
+### L8 - Context Construction & Prompting
+
+System prompts, templates, few‑shot.
+
+### L9 - Knowledge & Retrieval
+
+Vector/graph indexes, rerankers, grounding, citations.
+
+### L10 - Tool & Function Invocation
+
+Typed tool I/O (MCP), function calling, API bindings.
+
+### L11 - Addressing & Registry
+
+Signed manifests, discovery, capability vectors, fingerprints.
+
+### L12 - Routing, Planning & Policy
+
+Rule DSL + bandits; budgets, privacy, fallback/parallel.
+
+### L13 - Transport & Flow Semantics
+
+Idempotent runs, streaming, CANCEL/RESUME, multiplex.
+
+### L14 - Session, Identity & Memory
+
+Portable session envelope, capability tokens, budgets; memory tiers.
+
+### L15 - Governance, Safety & Schema
+
+Redaction, validation/repair, schema change control, audit.
+
+### L16 - Application & Domain Logic
+
+Product UX, workflows, agent frameworks.
 
 **Planes:** Control (policy/config), Management/Observability (telemetry/evals), Security (mTLS, keys, PII).
 

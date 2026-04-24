@@ -491,27 +491,64 @@ body {
   margin-top: 0.8rem;
 }
 
-.ailis-hero-layer-map > div {
-  display: grid;
-  grid-template-columns: 4.8rem minmax(0, 1fr);
-  gap: 0.65rem;
-  align-items: center;
-  min-height: 2.34rem;
+.md-typeset .ailis-layer-group {
   border: 1px solid color-mix(in srgb, var(--ailis-lane-research) 19%, var(--ailis-line));
   border-radius: var(--ailis-radius-sm);
-  padding: 0.38rem 0.56rem;
   background: color-mix(in srgb, var(--ailis-paper-strong) 78%, var(--ailis-lane-research-soft));
+  box-shadow: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
 }
 
-.ailis-hero-layer-map > div:nth-child(1) {
+.md-typeset .ailis-layer-group:nth-child(1) {
   border-color: color-mix(in srgb, var(--ailis-lane-core) 32%, var(--ailis-line));
 }
 
-.ailis-hero-layer-map > div:nth-child(3) {
+.md-typeset .ailis-layer-group:nth-child(3) {
   border-color: color-mix(in srgb, var(--ailis-lane-protocol) 30%, var(--ailis-line));
 }
 
-.ailis-hero-layer-map strong {
+.md-typeset .ailis-layer-group[open] {
+  background: color-mix(in srgb, var(--ailis-paper-strong) 65%, var(--ailis-lane-research-soft));
+}
+
+.md-typeset .ailis-layer-group summary {
+  display: grid;
+  grid-template-columns: 4.8rem minmax(0, 1fr) auto;
+  gap: 0.65rem;
+  align-items: center;
+  min-height: 2.34rem;
+  margin: 0 !important;
+  padding: 0.38rem 0.56rem !important;
+  background: transparent !important;
+  cursor: pointer;
+  list-style: none;
+}
+
+.md-typeset .ailis-layer-group summary::-webkit-details-marker {
+  display: none;
+}
+
+.md-typeset .ailis-layer-group summary::before {
+  display: none !important;
+}
+
+.md-typeset .ailis-layer-group summary::after {
+  position: static !important;
+  transform: none !important;
+  color: var(--ailis-lane-research);
+  content: "+";
+  font-family: var(--ailis-font-mono);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.md-typeset .ailis-layer-group[open] summary::after {
+  content: "-";
+}
+
+.md-typeset .ailis-layer-group strong {
   color: var(--ailis-lane-research);
   font-family: var(--ailis-font-mono);
   font-size: 0.68rem;
@@ -519,7 +556,7 @@ body {
   text-transform: uppercase;
 }
 
-.ailis-hero-layer-map span {
+.md-typeset .ailis-layer-group span {
   color: var(--ailis-ink-950);
   font-family: var(--ailis-font-heading);
   font-size: 0.9rem;
@@ -527,21 +564,32 @@ body {
   line-height: 1.18;
 }
 
-.ailis-layer-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.36rem;
-  margin-top: 0.72rem;
+.md-typeset .ailis-layer-group ul {
+  display: grid;
+  gap: 0.26rem;
+  margin: 0;
+  border-top: 1px solid color-mix(in srgb, var(--ailis-lane-research) 16%, var(--ailis-line));
+  padding: 0.48rem 0.56rem 0.58rem;
+  list-style: none;
 }
 
-.ailis-layer-meta span {
-  border: 1px solid color-mix(in srgb, var(--ailis-lane-research) 23%, var(--ailis-line));
-  border-radius: 999px;
-  padding: 0.18rem 0.5rem;
-  background: color-mix(in srgb, var(--ailis-paper-strong) 70%, var(--ailis-lane-research-soft));
+.md-typeset .ailis-layer-group li {
+  margin: 0;
+}
+
+.md-typeset .ailis-layer-group a {
+  display: block;
+  border-radius: var(--ailis-radius-sm);
+  padding: 0.23rem 0.36rem;
   color: var(--ailis-ink-700);
-  font-size: 0.68rem;
+  font-size: 0.77rem;
   font-weight: 700;
+  text-decoration: none;
+}
+
+.md-typeset .ailis-layer-group a:hover {
+  background: color-mix(in srgb, var(--ailis-paper-strong) 62%, var(--ailis-lane-research-soft));
+  color: var(--ailis-lane-research);
 }
 
 .ailis-project-profile h2,

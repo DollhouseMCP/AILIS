@@ -37,18 +37,49 @@ hide:
       The boundaries are intentionally open to critique.
     </p>
 
-    <div class="ailis-hero-layer-map">
-      <div><strong>L0-L2</strong><span>Infrastructure foundation</span></div>
-      <div><strong>L3-L7</strong><span>Model and inference stack</span></div>
-      <div><strong>L8-L10</strong><span>AI application interface</span></div>
-      <div><strong>L11-L15</strong><span>Orchestration layers</span></div>
-      <div><strong>L16+</strong><span>Application and domain logic</span></div>
-    </div>
-
-    <div class="ailis-layer-meta" aria-label="Project status">
-      <span>Early public draft</span>
-      <span>RFC-style review</span>
-      <span>Conversation starter</span>
+    <div class="ailis-hero-layer-map" aria-label="Expandable AILIS layer groups">
+      <details class="ailis-layer-group">
+        <summary><strong>L0-L2</strong><span>Infrastructure foundation</span></summary>
+        <ul>
+          <li><a href="proposals/AILIS_Primer/#l0-facilities-power">L0 Facilities & Power</a></li>
+          <li><a href="proposals/AILIS_Primer/#l1-compute-fabric">L1 Compute Fabric</a></li>
+          <li><a href="proposals/AILIS_Primer/#l2-system-driver-runtime">L2 System & Driver Runtime</a></li>
+        </ul>
+      </details>
+      <details class="ailis-layer-group">
+        <summary><strong>L3-L7</strong><span>Model and inference stack</span></summary>
+        <ul>
+          <li><a href="proposals/AILIS_Primer/#l3-ml-graph-compilation">L3 ML Graph & Compilation</a></li>
+          <li><a href="proposals/AILIS_Primer/#l4-numeric-quantization">L4 Numeric & Quantization</a></li>
+          <li><a href="proposals/AILIS_Primer/#l5-tokenization-encoders">L5 Tokenization & Encoders</a></li>
+          <li><a href="proposals/AILIS_Primer/#l6-model-parameters-architecture">L6 Model Parameters & Architecture</a></li>
+          <li><a href="proposals/AILIS_Primer/#l7-inference-engine-decoding">L7 Inference Engine & Decoding</a></li>
+        </ul>
+      </details>
+      <details class="ailis-layer-group">
+        <summary><strong>L8-L10</strong><span>AI application interface</span></summary>
+        <ul>
+          <li><a href="proposals/AILIS_Primer/#l8-context-construction-prompting">L8 Context Construction & Prompting</a></li>
+          <li><a href="proposals/AILIS_Primer/#l9-knowledge-retrieval">L9 Knowledge & Retrieval</a></li>
+          <li><a href="proposals/AILIS_Primer/#l10-tool-function-invocation">L10 Tool & Function Invocation</a></li>
+        </ul>
+      </details>
+      <details class="ailis-layer-group">
+        <summary><strong>L11-L15</strong><span>Orchestration layers</span></summary>
+        <ul>
+          <li><a href="proposals/AILIS_Primer/#l11-addressing-registry">L11 Addressing & Registry</a></li>
+          <li><a href="proposals/AILIS_Primer/#l12-routing-planning-policy">L12 Routing, Planning & Policy</a></li>
+          <li><a href="proposals/AILIS_Primer/#l13-transport-flow-semantics">L13 Transport & Flow Semantics</a></li>
+          <li><a href="proposals/AILIS_Primer/#l14-session-identity-memory">L14 Session, Identity & Memory</a></li>
+          <li><a href="proposals/AILIS_Primer/#l15-governance-safety-schema">L15 Governance, Safety & Schema</a></li>
+        </ul>
+      </details>
+      <details class="ailis-layer-group">
+        <summary><strong>L16+</strong><span>Application and domain logic</span></summary>
+        <ul>
+          <li><a href="proposals/AILIS_Primer/#l16-application-domain-logic">L16 Application & Domain Logic</a></li>
+        </ul>
+      </details>
     </div>
   </aside>
 </section>

@@ -21,7 +21,7 @@ L3   ML Graph & Compilation
 L2   System & Driver Runtime
 L1   Compute Fabric
 L0   Facilities & Power
-```text
+```
 
 **Under‑served (biggest opportunities):** **L11–L15**.  
 **Crowded:** L1–L7, L9.

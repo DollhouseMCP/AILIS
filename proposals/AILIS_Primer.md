@@ -26,73 +26,109 @@ these gaps.
 We keep L0 for facility concerns and extend through L16 (Application). Cross‑cutting planes (Control,
 Management/Observability, Security) apply across layers.
 
+For a deeper, example-driven view of each layer, see the [AILIS Layer Atlas](../../layers/).
+
 ### L0 - Facilities & Power
 
 Datacenters, power/cooling, physical security.
+
+[Explore L0 in the Layer Atlas](../../layers/l0-facilities-power/)
 
 ### L1 - Compute Fabric
 
 GPUs/TPUs/NPUs/CPUs, memory, interconnects.
 
+[Explore L1 in the Layer Atlas](../../layers/l1-compute-fabric/)
+
 ### L2 - System & Driver Runtime
 
 CUDA/ROCm/Metal; device memory management.
+
+[Explore L2 in the Layer Atlas](../../layers/l2-system-driver-runtime/)
 
 ### L3 - ML Graph & Compilation
 
 XLA/TVM/TensorRT‑LLM/ONNX Runtime.
 
+[Explore L3 in the Layer Atlas](../../layers/l3-ml-graph-compilation/)
+
 ### L4 - Numeric & Quantization
 
 FP16/FP8/INT4, sparsity, calibration.
+
+[Explore L4 in the Layer Atlas](../../layers/l4-numeric-quantization/)
 
 ### L5 - Tokenization & Encoders
 
 BPE tokenizers, CLIP, audio patchifiers.
 
+[Explore L5 in the Layer Atlas](../../layers/l5-tokenization-encoders/)
+
 ### L6 - Model Parameters & Architecture
 
 Base/foundation weights, MoE, diffusion.
+
+[Explore L6 in the Layer Atlas](../../layers/l6-model-parameters-architecture/)
 
 ### L7 - Inference Engine & Decoding
 
 Serving runtimes, caching, speculative decoding.
 
+[Explore L7 in the Layer Atlas](../../layers/l7-inference-engine-decoding/)
+
 ### L8 - Context Construction & Prompting
 
 System prompts, templates, few‑shot.
+
+[Explore L8 in the Layer Atlas](../../layers/l8-context-construction-prompting/)
 
 ### L9 - Knowledge & Retrieval
 
 Vector/graph indexes, rerankers, grounding, citations.
 
+[Explore L9 in the Layer Atlas](../../layers/l9-knowledge-retrieval/)
+
 ### L10 - Tool & Function Invocation
 
 Typed tool I/O (MCP), function calling, API bindings.
+
+[Explore L10 in the Layer Atlas](../../layers/l10-tool-function-invocation/)
 
 ### L11 - Addressing & Registry
 
 Signed manifests, discovery, capability vectors, fingerprints.
 
+[Explore L11 in the Layer Atlas](../../layers/l11-addressing-registry/)
+
 ### L12 - Routing, Planning & Policy
 
 Rule DSL + bandits; budgets, privacy, fallback/parallel.
+
+[Explore L12 in the Layer Atlas](../../layers/l12-routing-planning-policy/)
 
 ### L13 - Transport & Flow Semantics
 
 Idempotent runs, streaming, CANCEL/RESUME, multiplex.
 
+[Explore L13 in the Layer Atlas](../../layers/l13-transport-flow-semantics/)
+
 ### L14 - Session, Identity & Memory
 
 Portable session envelope, capability tokens, budgets; memory tiers.
+
+[Explore L14 in the Layer Atlas](../../layers/l14-session-identity-memory/)
 
 ### L15 - Governance, Safety & Schema
 
 Redaction, validation/repair, schema change control, audit.
 
+[Explore L15 in the Layer Atlas](../../layers/l15-governance-safety-schema/)
+
 ### L16 - Application & Domain Logic
 
 Product UX, workflows, agent frameworks.
+
+[Explore L16 in the Layer Atlas](../../layers/l16-application-domain-logic/)
 
 **Planes:** Control (policy/config), Management/Observability (telemetry/evals), Security (mTLS, keys, PII).
 

@@ -1143,6 +1143,141 @@ body {
   font-weight: 800;
 }
 
+.ailis-layer-atlas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 1.3rem 0 1.6rem;
+}
+
+.md-typeset .ailis-layer-atlas-grid a {
+  display: grid;
+  gap: 0.32rem;
+  min-height: 5.7rem;
+  border: 1px solid color-mix(in srgb, var(--ailis-lane-research) 18%, var(--ailis-line));
+  border-radius: var(--ailis-radius-md);
+  padding: 0.78rem;
+  background:
+    linear-gradient(180deg, var(--ailis-paper-strong), color-mix(in srgb, var(--ailis-lane-research-soft) 30%, var(--ailis-paper-strong)));
+  color: var(--ailis-ink-900);
+  text-decoration: none;
+  box-shadow: var(--ailis-shadow-soft);
+}
+
+.md-typeset .ailis-layer-atlas-grid a:nth-child(-n + 3) {
+  border-color: color-mix(in srgb, var(--ailis-lane-core) 28%, var(--ailis-line));
+}
+
+.md-typeset .ailis-layer-atlas-grid a:nth-child(n + 10):nth-child(-n + 14) {
+  border-color: color-mix(in srgb, var(--ailis-lane-protocol) 28%, var(--ailis-line));
+}
+
+.md-typeset .ailis-layer-atlas-grid a:hover {
+  transform: translateY(-1px);
+  border-color: var(--ailis-lane-research);
+}
+
+.ailis-layer-atlas-grid strong {
+  color: var(--ailis-lane-research);
+  font-family: var(--ailis-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ailis-layer-atlas-grid span {
+  color: var(--ailis-ink-950);
+  font-family: var(--ailis-font-heading);
+  font-weight: 800;
+  line-height: 1.18;
+}
+
+.ailis-layer-infographic {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.62fr) minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: stretch;
+  margin: 1.2rem 0 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--ailis-lane-research) 24%, var(--ailis-line));
+  border-radius: var(--ailis-radius-lg);
+  padding: 0.9rem;
+  background:
+    radial-gradient(circle at 96% 12%, color-mix(in srgb, var(--ailis-lane-research-bright) 18%, transparent), transparent 9rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--ailis-lane-research-soft) 44%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+  box-shadow: var(--ailis-shadow-soft);
+}
+
+.ailis-layer-infographic.lane-core {
+  border-color: color-mix(in srgb, var(--ailis-lane-core) 28%, var(--ailis-line));
+  background:
+    radial-gradient(circle at 96% 12%, color-mix(in srgb, var(--ailis-lane-core-bright) 18%, transparent), transparent 9rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--ailis-lane-core-soft) 44%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+}
+
+.ailis-layer-infographic.lane-protocol {
+  border-color: color-mix(in srgb, var(--ailis-lane-protocol) 28%, var(--ailis-line));
+  background:
+    radial-gradient(circle at 96% 12%, color-mix(in srgb, var(--ailis-lane-protocol-bright) 18%, transparent), transparent 9rem),
+    linear-gradient(135deg, color-mix(in srgb, var(--ailis-lane-protocol-soft) 44%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+}
+
+.ailis-layer-infographic > div {
+  display: grid;
+  align-content: center;
+  min-height: 8.2rem;
+  border-radius: var(--ailis-radius-md);
+  padding: 0.9rem;
+  background: color-mix(in srgb, var(--ailis-paper-strong) 72%, transparent);
+}
+
+.ailis-layer-infographic strong {
+  color: var(--ailis-lane-research);
+  font-family: var(--ailis-font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ailis-layer-infographic.lane-core strong {
+  color: var(--ailis-lane-core);
+}
+
+.ailis-layer-infographic.lane-protocol strong {
+  color: var(--ailis-lane-protocol);
+}
+
+.ailis-layer-infographic span {
+  margin-top: 0.42rem;
+  color: var(--ailis-ink-950);
+  font-family: var(--ailis-font-heading);
+  font-size: clamp(1.2rem, 2.2vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.12;
+}
+
+.ailis-layer-infographic ol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ailis-layer-infographic li {
+  display: grid;
+  align-items: center;
+  min-height: 3.82rem;
+  margin: 0;
+  border: 1px solid color-mix(in srgb, var(--ailis-lane-research) 17%, var(--ailis-line));
+  border-radius: var(--ailis-radius-sm);
+  padding: 0.55rem;
+  background: color-mix(in srgb, var(--ailis-paper-strong) 70%, transparent);
+  color: var(--ailis-ink-900);
+  font-weight: 800;
+  line-height: 1.18;
+}
+
 .ailis-timeline {
   display: grid;
   gap: 0.95rem;
@@ -1314,6 +1449,7 @@ button:focus-visible,
 
   .ailis-context-grid,
   .ailis-portfolio-context,
+  .ailis-layer-atlas-grid,
   .ailis-layer-map {
     grid-template-columns: 1fr;
   }
@@ -1327,6 +1463,9 @@ button:focus-visible,
   .ailis-card-grid,
   .ailis-related-grid,
   .ailis-tree-branches,
+  .ailis-layer-atlas-grid,
+  .ailis-layer-infographic,
+  .ailis-layer-infographic ol,
   .ailis-layer-map {
     grid-template-columns: 1fr;
   }

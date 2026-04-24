@@ -255,6 +255,25 @@ nav:
       - AILIS Primer: proposals/AILIS_Primer.md
       - Cheat Sheet: proposals/AILIS_Cheat_Sheet.md
       - Blog Post Draft: proposals/AILIS_BlogPost_Draft.md
+  - Layer Atlas:
+      - layers/index.md
+      - L0 Facilities & Power: layers/l0-facilities-power.md
+      - L1 Compute Fabric: layers/l1-compute-fabric.md
+      - L2 System & Driver Runtime: layers/l2-system-driver-runtime.md
+      - L3 ML Graph & Compilation: layers/l3-ml-graph-compilation.md
+      - L4 Numeric & Quantization: layers/l4-numeric-quantization.md
+      - L5 Tokenization & Encoders: layers/l5-tokenization-encoders.md
+      - L6 Model Parameters & Architecture: layers/l6-model-parameters-architecture.md
+      - L7 Inference Engine & Decoding: layers/l7-inference-engine-decoding.md
+      - L8 Context Construction & Prompting: layers/l8-context-construction-prompting.md
+      - L9 Knowledge & Retrieval: layers/l9-knowledge-retrieval.md
+      - L10 Tool & Function Invocation: layers/l10-tool-function-invocation.md
+      - L11 Addressing & Registry: layers/l11-addressing-registry.md
+      - L12 Routing, Planning & Policy: layers/l12-routing-planning-policy.md
+      - L13 Transport & Flow Semantics: layers/l13-transport-flow-semantics.md
+      - L14 Session, Identity & Memory: layers/l14-session-identity-memory.md
+      - L15 Governance, Safety & Schema: layers/l15-governance-safety-schema.md
+      - L16 Application & Domain Logic: layers/l16-application-domain-logic.md
   - Reference:
       - reference/index.md
   - Case Studies:

@@ -929,167 +929,6 @@ body {
   color: var(--lane-accent);
 }
 
-.ailis-project-tree {
-  display: grid;
-  gap: 1.05rem;
-  margin-top: 1.25rem;
-}
-
-.ailis-tree-root,
-.ailis-tree-node {
-  border: 1px solid var(--ailis-line);
-  border-radius: var(--ailis-radius-md);
-  background: var(--ailis-paper-strong);
-  padding: 0.9rem;
-}
-
-.ailis-tree-root {
-  justify-self: center;
-  max-width: 34rem;
-  position: relative;
-  text-align: center;
-  width: min(100%, 34rem);
-}
-
-.ailis-tree-root::after {
-  background: color-mix(in srgb, var(--ailis-signal) 28%, var(--ailis-line));
-  bottom: -1.06rem;
-  content: "";
-  height: 1.06rem;
-  left: 50%;
-  position: absolute;
-  width: 2px;
-}
-
-.ailis-tree-branches {
-  display: grid;
-  gap: 0.75rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  position: relative;
-}
-
-.ailis-tree-branches::before {
-  background: color-mix(in srgb, var(--ailis-signal) 22%, var(--ailis-line));
-  content: "";
-  height: 2px;
-  left: 16.5%;
-  position: absolute;
-  right: 16.5%;
-  top: -0.54rem;
-}
-
-.ailis-tree-node {
-  background: color-mix(in srgb, var(--ailis-paper-strong) 94%, var(--ailis-signal-soft));
-}
-
-.ailis-tree-current {
-  border-color: color-mix(in srgb, var(--ailis-signal) 48%, var(--ailis-line));
-  background: var(--ailis-paper-strong);
-  box-shadow: var(--ailis-shadow-soft);
-}
-
-.ailis-tree-root h3,
-.ailis-tree-root p,
-.ailis-tree-node h3,
-.ailis-tree-node p {
-  margin: 0;
-}
-
-.ailis-tree-root h3,
-.ailis-tree-node h3 {
-  margin-top: 0.32rem;
-}
-
-.ailis-tree-root p,
-.ailis-tree-node p {
-  color: var(--ailis-ink-700);
-  margin-top: 0.38rem;
-}
-
-.ailis-tree-root a,
-.ailis-tree-node a {
-  display: inline-flex;
-  margin-top: 0.6rem;
-}
-
-.ailis-project-tree-view {
-  border: 1px solid var(--ailis-line);
-  border-radius: var(--ailis-radius-md);
-  background: var(--ailis-paper-strong);
-  box-shadow: var(--ailis-shadow-soft);
-  margin-top: 1.25rem;
-  padding: 1rem;
-}
-
-.ailis-tree-view-root,
-.ailis-tree-view-children li {
-  align-items: baseline;
-  display: grid;
-  gap: 0.45rem 0.8rem;
-  grid-template-columns: minmax(10rem, 0.8fr) minmax(0, 1.3fr) auto;
-}
-
-.ailis-tree-view-root {
-  border-bottom: 1px solid color-mix(in srgb, var(--ailis-line) 76%, transparent);
-  padding-bottom: 0.75rem;
-}
-
-.ailis-tree-view-children {
-  list-style: none;
-  margin: 0.75rem 0 0;
-  padding: 0;
-  position: relative;
-}
-
-.ailis-tree-view-children::before {
-  background: color-mix(in srgb, var(--ailis-signal) 24%, var(--ailis-line));
-  bottom: 1.2rem;
-  content: "";
-  left: 0.55rem;
-  position: absolute;
-  top: 1.2rem;
-  width: 2px;
-}
-
-.ailis-tree-view-children li {
-  margin: 0;
-  min-height: 2.7rem;
-  padding: 0.55rem 0 0.55rem 2.1rem;
-  position: relative;
-}
-
-.ailis-tree-view-children li::before {
-  background: color-mix(in srgb, var(--ailis-signal) 24%, var(--ailis-line));
-  content: "";
-  height: 2px;
-  left: 0.55rem;
-  position: absolute;
-  top: 1.55rem;
-  width: 1.1rem;
-}
-
-.ailis-tree-view-children li.is-current {
-  border: 1px solid color-mix(in srgb, var(--ailis-signal) 34%, var(--ailis-line));
-  border-radius: var(--ailis-radius-sm);
-  background: color-mix(in srgb, var(--ailis-signal-soft) 48%, var(--ailis-paper-strong));
-}
-
-.ailis-tree-title {
-  color: var(--ailis-ink-950);
-  font-family: var(--ailis-font-heading);
-  font-weight: 800;
-}
-
-.ailis-tree-meta {
-  color: var(--ailis-ink-700);
-}
-
-.ailis-tree-view-root a,
-.ailis-tree-view-children a {
-  justify-self: end;
-  white-space: nowrap;
-}
-
 .ailis-card {
   display: flex;
   flex-direction: column;
@@ -1765,7 +1604,6 @@ button:focus-visible,
 
   .ailis-card-grid,
   .ailis-related-grid,
-  .ailis-tree-branches,
   .ailis-layer-atlas-grid,
   .ailis-atlas-group,
   .md-typeset .ailis-atlas-group a,
@@ -1775,21 +1613,6 @@ button:focus-visible,
   .ailis-layer-infographic ol,
   .ailis-layer-map {
     grid-template-columns: 1fr;
-  }
-
-  .ailis-tree-root::after,
-  .ailis-tree-branches::before {
-    display: none;
-  }
-
-  .ailis-tree-view-root,
-  .ailis-tree-view-children li {
-    grid-template-columns: 1fr;
-  }
-
-  .ailis-tree-view-root a,
-  .ailis-tree-view-children a {
-    justify-self: start;
   }
 
   .ailis-hero h1 {

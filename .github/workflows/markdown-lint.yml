@@ -17,11 +17,11 @@ jobs:
   markdown-lint:
     name: Lint Markdown Files
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: 🔍 Checkout Repository
         uses: actions/checkout@v4
-        
+
       - name: 📝 Run Markdownlint
         uses: articulate/actions-markdownlint@v1
         with:
@@ -38,8 +38,7 @@ jobs:
             docs/proposals/**
             docs/reference/**
             docs/studies/**
-            docs/home-index.md
-          
+
       - name: 🎯 Check Markdown Table Formatting
         run: |
           echo "Checking markdown table formatting..."
@@ -52,7 +51,7 @@ jobs:
             fi
           done
           echo "✅ Table format check completed"
-          
+
       - name: 📊 Markdown Quality Summary
         if: always()
         run: |

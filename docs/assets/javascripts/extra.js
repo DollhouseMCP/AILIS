@@ -19,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Improve accessibility
   safeExecute(improveAccessibility);
+
+  // Restore labels on generated cheat sheet lists
+  safeExecute(labelCheatSheetLists);
 });
 
 /**
@@ -217,13 +220,15 @@ function trackOutboundLinks() {
   links.forEach(link => {
     const url = new URL(link.href, window.location.href);
     const sameOrigin = url.origin === window.location.origin;
-    const canonicalSite = url.hostname === 'dollhousemcp.github.io' && url.pathname.startsWith('/AILIS');
 
-    if (!sameOrigin && !canonicalSite) {
-      link.addEventListener('click', function(e) {
-        // Analytics tracking would go here
-        // Removed console.log for privacy
-      });
+    if (!sameOrigin) {
+      if (!link.dataset.ailisOutboundTracked) {
+        link.dataset.ailisOutboundTracked = 'true';
+        link.addEventListener('click', function(e) {
+          // Analytics tracking would go here
+          // Removed console.log for privacy
+        });
+      }
 
       // Add external link indicator
       if (!link.querySelector('.external-link-icon')) {
@@ -235,6 +240,22 @@ function trackOutboundLinks() {
       }
     }
   });
+}
+
+/**
+ * Add accessible group labels to Markdown-generated cheat sheet card lists
+ */
+function labelCheatSheetLists() {
+  const regionList = document.querySelector('li.ailis-cheat-region-item')?.closest('ul');
+  const layerList = document.querySelector('li.ailis-cheat-layer-item')?.closest('ul');
+
+  if (regionList) {
+    regionList.setAttribute('aria-label', 'AILIS stack regions');
+  }
+
+  if (layerList) {
+    layerList.setAttribute('aria-label', 'AILIS layer field card');
+  }
 }
 
 /**
@@ -357,6 +378,9 @@ if (typeof document$ !== 'undefined') {
     safeExecute(enhanceLayerReferences);
     safeExecute(enhanceCodeBlocks);
     safeExecute(addStatusBadges);
+    safeExecute(trackOutboundLinks);
+    safeExecute(improveAccessibility);
+    safeExecute(labelCheatSheetLists);
     safeExecute(addReadingTime);
   });
 }

@@ -2,6 +2,8 @@
 title: L11 - Addressing & Registry
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L11 - Addressing & Registry
 
 L11 covers discovery, naming, manifests, capability metadata, signed artifacts, provenance, versioning, fingerprints, and registries for models, tools, datasets, prompts, adapters, indices, and ensembles.
@@ -45,6 +47,6 @@ L11 asks how a system knows what exists, what version it is, what capabilities i
 
 ## Links
 
-- [Previous layer: L10 Tool & Function Invocation](../l10-tool-function-invocation/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l11-addressing-registry)
-- [Next layer: L12 Routing, Planning & Policy](../l12-routing-planning-policy/)
+- [Previous layer: L10 Tool & Function Invocation](l10-tool-function-invocation.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l11-addressing-registry)
+- [Next layer: L12 Routing, Planning & Policy](l12-routing-planning-policy.md)

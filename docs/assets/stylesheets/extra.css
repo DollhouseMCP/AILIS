@@ -1380,8 +1380,8 @@ body {
   border-color: var(--ailis-lane-research);
 }
 
-.ailis-cheat-regions strong,
-.ailis-cheat-layer-list strong {
+.ailis-cheat-regions .ailis-cheat-code,
+.ailis-cheat-layer-list .ailis-cheat-code {
   color: var(--ailis-lane-research);
   font-family: var(--ailis-font-mono);
   font-size: 0.72rem;
@@ -1397,8 +1397,8 @@ body {
   line-height: 1.18;
 }
 
-.ailis-cheat-regions em,
-.ailis-cheat-layer-list em {
+.ailis-cheat-regions .ailis-cheat-note,
+.ailis-cheat-layer-list .ailis-cheat-note {
   color: var(--ailis-ink-700);
   font-size: 0.76rem;
   font-style: normal;

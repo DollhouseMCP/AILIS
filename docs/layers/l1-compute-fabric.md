@@ -2,6 +2,8 @@
 title: L1 - Compute Fabric
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L1 - Compute Fabric
 
 L1 covers the hardware substrate exposed to system software: GPUs, TPUs, NPUs, CPUs, memory hierarchy, accelerators, interconnects, and cluster topology. It is where AI capability becomes a physical allocation problem.
@@ -28,7 +30,7 @@ L1 is concerned with the compute resources themselves. It does not decide how a 
 | [AMD Instinct](https://www.amd.com/en/products/accelerators/instinct.html) | Accelerator hardware used in AI and HPC deployments. | L2 ROCm, L7 serving |
 | [Google Cloud TPU](https://cloud.google.com/tpu) | Tensor processing hardware exposed through Google Cloud. | L2 runtime, L3 XLA |
 | [AWS Trainium and Inferentia](https://aws.amazon.com/machine-learning/trainium/) | Purpose-built AWS chips for model training and inference. | L2 runtime, L7 inference |
-| [Cerebras Wafer-Scale Engine](https://www.cerebras.net/technology/) | Wafer-scale AI compute that challenges typical cluster assumptions. | L1 compute, L3 compilation |
+| [Cerebras Wafer-Scale Engine](https://www.cerebras.ai/chip/) | Wafer-scale AI compute that challenges typical cluster assumptions. | L1 compute, L3 compilation |
 | [Groq LPU](https://groq.com/technology/) | Inference-oriented processing architecture with distinct latency tradeoffs. | L7 decoding, L12 routing |
 
 ## Boundary questions
@@ -45,6 +47,6 @@ L1 is concerned with the compute resources themselves. It does not decide how a 
 
 ## Links
 
-- [Previous layer: L0 Facilities & Power](../l0-facilities-power/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l1-compute-fabric)
-- [Next layer: L2 System & Driver Runtime](../l2-system-driver-runtime/)
+- [Previous layer: L0 Facilities & Power](l0-facilities-power.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l1-compute-fabric)
+- [Next layer: L2 System & Driver Runtime](l2-system-driver-runtime.md)

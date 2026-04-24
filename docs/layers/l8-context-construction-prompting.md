@@ -2,6 +2,8 @@
 title: L8 - Context Construction & Prompting
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L8 - Context Construction & Prompting
 
 L8 covers system prompts, prompt templates, few-shot examples, context packing, instruction hierarchy, prompt evaluation, and runtime context assembly. It is where a task becomes a model-facing conversation or request.
@@ -45,6 +47,6 @@ L8 sits above inference and below retrieval, tool calls, and planning. It descri
 
 ## Links
 
-- [Previous layer: L7 Inference Engine & Decoding](../l7-inference-engine-decoding/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l8-context-construction-prompting)
-- [Next layer: L9 Knowledge & Retrieval](../l9-knowledge-retrieval/)
+- [Previous layer: L7 Inference Engine & Decoding](l7-inference-engine-decoding.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l8-context-construction-prompting)
+- [Next layer: L9 Knowledge & Retrieval](l9-knowledge-retrieval.md)

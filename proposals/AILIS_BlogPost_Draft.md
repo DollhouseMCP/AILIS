@@ -43,8 +43,9 @@ At the highest level, AILIS groups the AI ecosystem into five regions:
 | Orchestration layers | L11-L15 | Registry, routing, transport, session, memory, governance, and schema controls. |
 | Application and domain logic | L16+ | Products, workflows, domain rules, and user experience. |
 
-The full [AILIS Layer Atlas](../../layers/) gives each layer a page with examples and open questions. The Atlas matters
-because real systems rarely fit neatly into a single row. The interesting part is often where a project crosses layers.
+The full [AILIS Layer Atlas](../layers/index.md) gives each layer a page with examples and open questions. The Atlas
+matters because real systems rarely fit neatly into a single row. The interesting part is often where a project crosses
+layers.
 
 ## Why the middle deserves attention
 
@@ -103,13 +104,13 @@ guardrails, and agent frameworks all touch pieces of the stack. AILIS asks how t
 
 The next step is not to declare the model finished. The next step is to test it.
 
-That means mapping real systems, adding examples to the [Layer Atlas](../../layers/), arguing about blurry boundaries,
-and drafting deeper proposals where the gaps are clearest. L11-L15 are obvious candidates, especially addressing,
-routing, flow semantics, portable session envelopes, memory consent, and governance schemas.
+That means mapping real systems, adding examples to the [Layer Atlas](../layers/index.md), arguing about blurry
+boundaries, and drafting deeper proposals where the gaps are clearest. L11-L15 are obvious candidates, especially
+addressing, routing, flow semantics, portable session envelopes, memory consent, and governance schemas.
 
 AILIS may change shape as better examples arrive. That is the point.
 
 The AI ecosystem does not need another diagram that pretends everything is settled. It might need a shared workbench for
 the questions that are still open.
 
-*Feedback welcome. Especially the kind that breaks the model in useful ways.*
+_Feedback welcome. Especially the kind that breaks the model in useful ways._

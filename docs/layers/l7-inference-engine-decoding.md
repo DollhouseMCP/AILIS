@@ -2,6 +2,8 @@
 title: L7 - Inference Engine & Decoding
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L7 - Inference Engine & Decoding
 
 L7 covers model serving, batching, KV cache management, decoding algorithms, speculative execution, streaming output, and deployment runtime choices. This layer turns model artifacts into live responses.
@@ -45,6 +47,6 @@ L7 is not the model itself and not the application policy that chooses among pro
 
 ## Links
 
-- [Previous layer: L6 Model Parameters & Architecture](../l6-model-parameters-architecture/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l7-inference-engine-decoding)
-- [Next layer: L8 Context Construction & Prompting](../l8-context-construction-prompting/)
+- [Previous layer: L6 Model Parameters & Architecture](l6-model-parameters-architecture.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l7-inference-engine-decoding)
+- [Next layer: L8 Context Construction & Prompting](l8-context-construction-prompting.md)

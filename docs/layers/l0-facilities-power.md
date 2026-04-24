@@ -2,6 +2,8 @@
 title: L0 - Facilities & Power
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L0 - Facilities & Power
 
 L0 covers the physical substrate that makes AI systems possible: datacenters, power, cooling, physical security, network access, and site-level resilience. It may seem distant from model behavior, but large-scale AI architecture is increasingly constrained by energy, cooling, rack density, and regional availability.
@@ -24,8 +26,8 @@ L0 is about conditions below the compute fabric. A GPU cluster, TPU pod, or infe
 
 | Project or organization | Why it might fit | Adjacent layers |
 | --- | --- | --- |
-| [Equinix AI-ready data centers](https://www.equinix.com/solutions/ai) | Colocation and interconnection infrastructure for AI deployments. | L1 compute fabric, L13 transport |
-| [Vertiv liquid cooling](https://www.vertiv.com/en-us/solutions/liquid-cooling/) | Cooling systems that make dense accelerated compute practical. | L1 compute fabric |
+| [Equinix AI-ready infrastructure](https://www.equinix.com/product-solutions/ai) | Colocation and interconnection infrastructure for AI deployments. | L1 compute fabric, L13 transport |
+| [Vertiv liquid cooling](https://www.vertiv.com/en-us/products-catalog/thermal-management/) | Cooling systems that make dense accelerated compute practical. | L1 compute fabric |
 | [Schneider Electric data center infrastructure](https://www.se.com/us/en/work/solutions/data-centers-and-networks/) | Power management, electrical infrastructure, and datacenter operations. | L0 facilities, L1 compute |
 | [Crusoe Cloud](https://crusoe.ai/cloud/) | AI cloud infrastructure tied to energy-aware compute deployment. | L0 facilities, L1 compute |
 | [Google data centers](https://www.google.com/about/datacenters/) | Large-scale facilities, energy, and sustainability work for AI and cloud services. | L0 facilities, L16 products |
@@ -44,5 +46,5 @@ L0 is about conditions below the compute fabric. A GPU cluster, TPU pod, or infe
 
 ## Links
 
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l0-facilities-power)
-- [Next layer: L1 Compute Fabric](../l1-compute-fabric/)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l0-facilities-power)
+- [Next layer: L1 Compute Fabric](l1-compute-fabric.md)

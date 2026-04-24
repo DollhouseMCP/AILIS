@@ -2,6 +2,8 @@
 title: L9 - Knowledge & Retrieval
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L9 - Knowledge & Retrieval
 
 L9 covers knowledge stores, vector indexes, graph retrieval, embeddings for search, reranking, grounding, citations, and data freshness. It is where systems decide what external knowledge should become available to the model.
@@ -25,11 +27,11 @@ L9 is broader than vector databases. It includes ingestion, retrieval strategy, 
 | Project | Why it might fit | Adjacent layers |
 | --- | --- | --- |
 | [Pinecone](https://docs.pinecone.io/) | Managed vector database for semantic retrieval. | L9 retrieval, L15 governance |
-| [Milvus](https://milvus.io/docs) | Open-source vector database and similarity search engine. | L9 retrieval, L11 registry |
+| [Milvus](https://github.com/milvus-io/milvus) | Open-source vector database and similarity search engine. | L9 retrieval, L11 registry |
 | [Weaviate](https://weaviate.io/developers/weaviate) | Vector database with schema, hybrid search, and integrations. | L9 retrieval, L15 schema |
 | [Qdrant](https://qdrant.tech/documentation/) | Vector search engine and database for embeddings. | L9 retrieval, L16 applications |
 | [Chroma](https://docs.trychroma.com/) | Embedding database often used in local and developer RAG workflows. | L9 retrieval, L8 context |
-| [Elasticsearch vector search](https://www.elastic.co/search-labs/vector-search) | Search platform adding vector and hybrid retrieval patterns. | L9 retrieval, L16 search products |
+| [Elasticsearch vector search](https://www.elastic.co/docs/solutions/search/vector) | Search platform adding vector and hybrid retrieval patterns. | L9 retrieval, L16 search products |
 
 ## Boundary questions
 
@@ -45,6 +47,6 @@ L9 is broader than vector databases. It includes ingestion, retrieval strategy, 
 
 ## Links
 
-- [Previous layer: L8 Context Construction & Prompting](../l8-context-construction-prompting/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l9-knowledge-retrieval)
-- [Next layer: L10 Tool & Function Invocation](../l10-tool-function-invocation/)
+- [Previous layer: L8 Context Construction & Prompting](l8-context-construction-prompting.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l9-knowledge-retrieval)
+- [Next layer: L10 Tool & Function Invocation](l10-tool-function-invocation.md)

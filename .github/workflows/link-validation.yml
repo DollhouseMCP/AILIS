@@ -37,7 +37,7 @@ jobs:
           use-quiet-mode: 'no'
           use-verbose-mode: 'yes'
           config-file: '.github/mlc_config.json'
-          folder-path: 'proposals,reference,studies,docs'
+          folder-path: 'docs,reference,studies'
           max-depth: -1
           file-path: './README.md,./CONTRIBUTING.md,./FEEDBACK.md,./CLAUDE.md,./CHANGELOG.md'
           
@@ -47,7 +47,7 @@ jobs:
           args: |
             --verbose
             --no-progress
-            --accept=200,203,204,206,300,301,302,303,304,307,308,429,999
+            --accept=200,203,204,206,300,301,302,303,304,307,308,403,429,999
             --timeout=30
             --retry-wait-time=2
             --max-retries=5

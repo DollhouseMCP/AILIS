@@ -2,6 +2,8 @@
 title: L6 - Model Parameters & Architecture
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L6 - Model Parameters & Architecture
 
 L6 covers model weights, architectures, model families, adapter strategies, and release artifacts. It is where a system's learned capability is packaged before serving, routing, prompting, retrieval, or application logic comes into play.
@@ -45,6 +47,6 @@ L6 asks what model is being used and how it is structured. The same L6 artifact 
 
 ## Links
 
-- [Previous layer: L5 Tokenization & Encoders](../l5-tokenization-encoders/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l6-model-parameters-architecture)
-- [Next layer: L7 Inference Engine & Decoding](../l7-inference-engine-decoding/)
+- [Previous layer: L5 Tokenization & Encoders](l5-tokenization-encoders.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l6-model-parameters-architecture)
+- [Next layer: L7 Inference Engine & Decoding](l7-inference-engine-decoding.md)

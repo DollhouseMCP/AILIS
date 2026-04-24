@@ -2,6 +2,8 @@
 title: L14 - Session, Identity & Memory
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L14 - Session, Identity & Memory
 
 L14 covers portable session state, user and agent identity, capability tokens, memory tiers, consent, continuity, and ownership of context across tools and providers. It is one of the places where AI systems most visibly touch human trust.
@@ -45,6 +47,6 @@ L14 asks who or what is acting, what context is portable, what memory can be use
 
 ## Links
 
-- [Previous layer: L13 Transport & Flow Semantics](../l13-transport-flow-semantics/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l14-session-identity-memory)
-- [Next layer: L15 Governance, Safety & Schema](../l15-governance-safety-schema/)
+- [Previous layer: L13 Transport & Flow Semantics](l13-transport-flow-semantics.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l14-session-identity-memory)
+- [Next layer: L15 Governance, Safety & Schema](l15-governance-safety-schema.md)

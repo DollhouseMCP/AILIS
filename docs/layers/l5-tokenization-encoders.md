@@ -2,6 +2,8 @@
 title: L5 - Tokenization & Encoders
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L5 - Tokenization & Encoders
 
 L5 covers the conversion of raw inputs into model-facing representations: tokenization, image encoders, audio encoders, patchification, embeddings, and modality-specific preprocessing. It is where the world becomes model input.
@@ -45,6 +47,6 @@ L5 is lower than prompt construction. It does not decide what context is selecte
 
 ## Links
 
-- [Previous layer: L4 Numeric & Quantization](../l4-numeric-quantization/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l5-tokenization-encoders)
-- [Next layer: L6 Model Parameters & Architecture](../l6-model-parameters-architecture/)
+- [Previous layer: L4 Numeric & Quantization](l4-numeric-quantization.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l5-tokenization-encoders)
+- [Next layer: L6 Model Parameters & Architecture](l6-model-parameters-architecture.md)

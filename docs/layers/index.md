@@ -2,6 +2,8 @@
 title: Layer Atlas
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # AILIS Layer Atlas
 
 The atlas is a working map of projects, protocols, services, and research areas that might fit within the AILIS layer model. It is intentionally incomplete: each page is meant to help contributors test whether the layer boundaries are useful, too broad, too narrow, or missing important vocabulary.
@@ -9,7 +11,7 @@ The atlas is a working map of projects, protocols, services, and research areas 
 The primer keeps the model short. These pages give each layer enough room for examples, adjacent concerns, open questions, and source links. The atlas below follows the same bands used on the home page, but presents them vertically so the stack reads from physical foundations up through products and domain behavior.
 
 <div class="ailis-atlas-stack" aria-label="AILIS layer atlas grouped by stack region">
-  <section class="ailis-atlas-group lane-core">
+  <section id="infrastructure-foundation" class="ailis-atlas-group lane-core">
     <div class="ailis-atlas-group-context">
       <strong>L0-L2</strong>
       <h2>Infrastructure Foundation</h2>
@@ -22,7 +24,7 @@ The primer keeps the model short. These pages give each layer enough room for ex
     </ol>
   </section>
 
-  <section class="ailis-atlas-group lane-research">
+  <section id="model-and-inference-stack" class="ailis-atlas-group lane-research">
     <div class="ailis-atlas-group-context">
       <strong>L3-L7</strong>
       <h2>Model and Inference Stack</h2>
@@ -37,7 +39,7 @@ The primer keeps the model short. These pages give each layer enough room for ex
     </ol>
   </section>
 
-  <section class="ailis-atlas-group lane-protocol">
+  <section id="ai-application-interface" class="ailis-atlas-group lane-protocol">
     <div class="ailis-atlas-group-context">
       <strong>L8-L10</strong>
       <h2>AI Application Interface</h2>
@@ -50,7 +52,7 @@ The primer keeps the model short. These pages give each layer enough room for ex
     </ol>
   </section>
 
-  <section class="ailis-atlas-group lane-protocol">
+  <section id="orchestration-layers" class="ailis-atlas-group lane-protocol">
     <div class="ailis-atlas-group-context">
       <strong>L11-L15</strong>
       <h2>Orchestration Layers</h2>
@@ -65,7 +67,7 @@ The primer keeps the model short. These pages give each layer enough room for ex
     </ol>
   </section>
 
-  <section class="ailis-atlas-group lane-research">
+  <section id="application-and-domain-logic" class="ailis-atlas-group lane-research">
     <div class="ailis-atlas-group-context">
       <strong>L16+</strong>
       <h2>Application and Domain Logic</h2>
@@ -86,6 +88,6 @@ The primer keeps the model short. These pages give each layer enough room for ex
 
 ## Starting points
 
-- [Return to the AILIS Primer](../proposals/AILIS_Primer/)
-- [Open the AILIS Cheat Sheet](../proposals/AILIS_Cheat_Sheet/)
+- [Return to the AILIS Primer](../proposals/AILIS_Primer.md)
+- [Open the AILIS Cheat Sheet](../proposals/AILIS_Cheat_Sheet.md)
 - [Join the GitHub discussion](https://github.com/DollhouseMCP/AILIS/discussions)

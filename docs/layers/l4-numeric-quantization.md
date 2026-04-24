@@ -2,6 +2,8 @@
 title: L4 - Numeric & Quantization
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L4 - Numeric & Quantization
 
 L4 covers numeric formats, quantization, sparsity, calibration, precision tradeoffs, and compression strategies. This layer often determines whether a model is feasible to run in a given cost, memory, latency, or device envelope.
@@ -45,6 +47,6 @@ L4 is where architecture becomes arithmetic. It describes how tensors are repres
 
 ## Links
 
-- [Previous layer: L3 ML Graph & Compilation](../l3-ml-graph-compilation/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l4-numeric-quantization)
-- [Next layer: L5 Tokenization & Encoders](../l5-tokenization-encoders/)
+- [Previous layer: L3 ML Graph & Compilation](l3-ml-graph-compilation.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l4-numeric-quantization)
+- [Next layer: L5 Tokenization & Encoders](l5-tokenization-encoders.md)

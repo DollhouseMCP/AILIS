@@ -2,6 +2,8 @@
 title: L2 - System & Driver Runtime
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L2 - System & Driver Runtime
 
 L2 covers the runtime bridge between hardware and ML frameworks: drivers, kernel APIs, device memory management, container integration, scheduling hooks, and low-level libraries. It is where hardware becomes programmable by the rest of the stack.
@@ -27,7 +29,7 @@ L2 is lower than model graph compilation. It asks whether accelerated hardware c
 | [NVIDIA CUDA](https://docs.nvidia.com/cuda/) | Programming model, libraries, and runtime for NVIDIA GPU computing. | L1 GPUs, L3 compilation |
 | [AMD ROCm](https://rocm.docs.amd.com/) | Open software stack for AMD GPU acceleration. | L1 accelerators, L3 frameworks |
 | [Apple Metal](https://developer.apple.com/metal/) | Low-level graphics and compute API used by Apple silicon workloads. | L1 devices, L7 local inference |
-| [Intel oneAPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/overview.html) | Cross-architecture programming model and toolkits. | L1 CPU/GPU, L3 compilation |
+| [Intel oneAPI](https://github.com/oneapi-src/oneAPI-samples) | Cross-architecture programming model and toolkits. | L1 CPU/GPU, L3 compilation |
 | [NVIDIA GPU Operator](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/index.html) | Kubernetes integration for GPU drivers, runtime components, and monitoring. | L2 runtime, L12 policy |
 
 ## Boundary questions
@@ -44,6 +46,6 @@ L2 is lower than model graph compilation. It asks whether accelerated hardware c
 
 ## Links
 
-- [Previous layer: L1 Compute Fabric](../l1-compute-fabric/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l2-system-driver-runtime)
-- [Next layer: L3 ML Graph & Compilation](../l3-ml-graph-compilation/)
+- [Previous layer: L1 Compute Fabric](l1-compute-fabric.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l2-system-driver-runtime)
+- [Next layer: L3 ML Graph & Compilation](l3-ml-graph-compilation.md)

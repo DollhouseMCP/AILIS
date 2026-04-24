@@ -2,6 +2,8 @@
 title: L15 - Governance, Safety & Schema
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L15 - Governance, Safety & Schema
 
 L15 covers validation, policy controls, safety filters, redaction, auditability, schema conformance, repair, approvals, provenance, and change management. It is where systems try to make AI behavior inspectable enough to use responsibly.
@@ -47,6 +49,6 @@ L15 is not only moderation. It includes structured output validation, schema evo
 
 ## Links
 
-- [Previous layer: L14 Session, Identity & Memory](../l14-session-identity-memory/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l15-governance-safety-schema)
-- [Next layer: L16 Application & Domain Logic](../l16-application-domain-logic/)
+- [Previous layer: L14 Session, Identity & Memory](l14-session-identity-memory.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l15-governance-safety-schema)
+- [Next layer: L16 Application & Domain Logic](l16-application-domain-logic.md)

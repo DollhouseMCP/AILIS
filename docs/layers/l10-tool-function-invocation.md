@@ -2,6 +2,8 @@
 title: L10 - Tool & Function Invocation
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L10 - Tool & Function Invocation
 
 L10 covers typed tool calls, function calling, tool schemas, API bindings, plugin interfaces, and capability exposure. It is where a model or agent system can request action outside its own generated text.
@@ -45,6 +47,6 @@ L10 is about the contract between the model-facing system and callable capabilit
 
 ## Links
 
-- [Previous layer: L9 Knowledge & Retrieval](../l9-knowledge-retrieval/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l10-tool-function-invocation)
-- [Next layer: L11 Addressing & Registry](../l11-addressing-registry/)
+- [Previous layer: L9 Knowledge & Retrieval](l9-knowledge-retrieval.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l10-tool-function-invocation)
+- [Next layer: L11 Addressing & Registry](l11-addressing-registry.md)

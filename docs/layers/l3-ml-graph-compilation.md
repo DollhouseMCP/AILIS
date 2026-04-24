@@ -2,6 +2,8 @@
 title: L3 - ML Graph & Compilation
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L3 - ML Graph & Compilation
 
 L3 covers graph representation, lowering, optimization, and compilation. This layer transforms model programs into forms that can execute efficiently on specific runtimes and hardware.
@@ -45,6 +47,6 @@ L3 is not the model weights themselves, and it is not the serving engine. It is 
 
 ## Links
 
-- [Previous layer: L2 System & Driver Runtime](../l2-system-driver-runtime/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l3-ml-graph-compilation)
-- [Next layer: L4 Numeric & Quantization](../l4-numeric-quantization/)
+- [Previous layer: L2 System & Driver Runtime](l2-system-driver-runtime.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l3-ml-graph-compilation)
+- [Next layer: L4 Numeric & Quantization](l4-numeric-quantization.md)

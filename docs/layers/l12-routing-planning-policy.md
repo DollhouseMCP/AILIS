@@ -2,6 +2,8 @@
 title: L12 - Routing, Planning & Policy
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L12 - Routing, Planning & Policy
 
 L12 covers model routing, agent planning, policy enforcement, budget constraints, fallback paths, privacy rules, ensemble selection, and evaluator feedback loops. It is where the system decides what to do next and under what constraints.
@@ -45,6 +47,6 @@ L12 sits above individual model and tool capabilities. It may choose between pro
 
 ## Links
 
-- [Previous layer: L11 Addressing & Registry](../l11-addressing-registry/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l12-routing-planning-policy)
-- [Next layer: L13 Transport & Flow Semantics](../l13-transport-flow-semantics/)
+- [Previous layer: L11 Addressing & Registry](l11-addressing-registry.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l12-routing-planning-policy)
+- [Next layer: L13 Transport & Flow Semantics](l13-transport-flow-semantics.md)

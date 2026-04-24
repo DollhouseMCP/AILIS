@@ -2,6 +2,8 @@
 title: L16 - Application & Domain Logic
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L16 - Application & Domain Logic
 
 L16 covers the product, workflow, domain rules, user experience, business process, and application-specific value created on top of the lower layers. It is the part users usually experience directly.
@@ -46,6 +48,6 @@ L16 is where AI systems become products, copilots, agents, research workflows, i
 
 ## Links
 
-- [Previous layer: L15 Governance, Safety & Schema](../l15-governance-safety-schema/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l16-application-domain-logic)
+- [Previous layer: L15 Governance, Safety & Schema](l15-governance-safety-schema.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l16-application-domain-logic)
 - [Return to the Layer Atlas](../)

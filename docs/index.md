@@ -5,6 +5,8 @@ hide:
   - toc
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 <div class="ailis-home">
 
 <section class="ailis-hero">

@@ -2,6 +2,8 @@
 title: L13 - Transport & Flow Semantics
 ---
 
+<!-- markdownlint-disable MD013 MD033 MD046 -->
+
 # L13 - Transport & Flow Semantics
 
 L13 covers the mechanics of AI calls as flows: streaming, cancellation, resume tokens, multiplexing, idempotency, retries, backpressure, and transport negotiation. It is where AI interaction becomes a durable protocol conversation rather than a single request-response call.
@@ -45,6 +47,6 @@ L13 is not simply "HTTP." It describes flow behavior that AI systems increasingl
 
 ## Links
 
-- [Previous layer: L12 Routing, Planning & Policy](../l12-routing-planning-policy/)
-- [Back to the primer layer](../../proposals/AILIS_Primer/#l13-transport-flow-semantics)
-- [Next layer: L14 Session, Identity & Memory](../l14-session-identity-memory/)
+- [Previous layer: L12 Routing, Planning & Policy](l12-routing-planning-policy.md)
+- [Back to the primer layer](../proposals/AILIS_Primer.md#l13-transport-flow-semantics)
+- [Next layer: L14 Session, Identity & Memory](l14-session-identity-memory.md)

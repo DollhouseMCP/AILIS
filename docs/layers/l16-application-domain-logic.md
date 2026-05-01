@@ -33,6 +33,10 @@ L16 is where AI systems become products, copilots, agents, research workflows, i
 | [Cursor](https://www.cursor.com/) | AI coding environment where application UX and domain workflow are central. | L8 context, L10 tools |
 | [Perplexity](https://www.perplexity.ai/) | Answer and research product where retrieval, citations, and UX combine. | L9 retrieval, L16 product |
 | [Harvey](https://www.harvey.ai/) | Domain-focused AI product for legal and professional services workflows. | L15 governance, L16 domain logic |
+| [Dollhouse Collection](../../studies/dollhouse-public-stack-mapping/#dollhouse-collection) | Catalog and activation product where discovery, install flows, and artifact handling define the user experience. | L9 retrieval, L11 registry |
+| [Elemental Surveys](../../studies/dollhouse-public-stack-mapping/#elemental-surveys) | Applied research workflow where domain framing, review paths, and outcome ownership sit squarely in the application layer. | L8 context, L15 governance |
+| [Merview](../../studies/dollhouse-public-stack-mapping/#merview) | Companion review and rendering utility that makes outputs, drafts, and artifact inspection usable to people. | L15 governance, L16 workflow |
+| [DollhouseMCP](../../studies/dollhouse-public-stack-mapping/#dollhousemcp) | User-facing runtime surface where many lower-layer capabilities become a coherent product and workflow. | L10 tools, L14 memory |
 
 ## Boundary questions
 

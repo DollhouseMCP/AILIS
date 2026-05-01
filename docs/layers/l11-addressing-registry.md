@@ -32,6 +32,8 @@ L11 asks how a system knows what exists, what version it is, what capabilities i
 | [Sigstore](https://docs.sigstore.dev/) | Signing and provenance infrastructure relevant to artifact trust. | L11 addressing, L15 governance |
 | [OpenAPI descriptions](https://spec.openapis.org/oas/latest.html) | Machine-readable API descriptions that can be registered and discovered. | L10 tools, L11 registry |
 | [Model Context Protocol server ecosystem](https://modelcontextprotocol.io/) | MCP servers raise registry and capability-discovery questions for AI tools. | L10 tools, L13 transport |
+| [Dollhouse Collection](../../studies/dollhouse-public-stack-mapping/#dollhouse-collection) | Public metadata and activation surface where catalog entries, artifact descriptions, and discovery cues act like a lightweight registry. | L9 retrieval, L16 product |
+| [MCP-AQL spec and generator tooling](../../studies/dollhouse-public-stack-mapping/#mcp-aql-generator) | Introspection, manifest generation, and capability-description work that makes protocol artifacts easier to name, inspect, and compare. | L11 registry, L15 schema |
 
 ## Boundary questions
 

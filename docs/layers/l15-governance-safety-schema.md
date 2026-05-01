@@ -34,6 +34,8 @@ L15 is not only moderation. It includes structured output validation, schema evo
 | [Microsoft Presidio](https://microsoft.github.io/presidio/) | PII detection and anonymization framework. | L15 redaction, L14 identity |
 | [JSON Schema](https://json-schema.org/) | Schema vocabulary used for validating structured data. | L10 tool schemas, L15 validation |
 | [Great Expectations](https://docs.greatexpectations.io/) | Data validation framework relevant to pipeline governance and quality. | L9 knowledge, L15 governance |
+| [MCP-AQL generator and validator-style tooling](../../studies/dollhouse-public-stack-mapping/#mcp-aql-generator) | Public tooling surface for conformance checks, artifact validation, and schema shaping around protocol behavior. | L15 validation, L11 registry |
+| [DollhouseMCP approvals and danger-zone controls](../../studies/dollhouse-public-stack-mapping/#dollhousemcp) | Review gates and high-risk action controls that make governance visible to users and operators. | L15 governance, L16 product UX |
 
 ## Boundary questions
 

@@ -1,5 +1,7 @@
 ---
 title: Home
+description: AILIS is a Dollhouse Research white paper exploring a 16+ layer vocabulary for AI systems, from compute and models to orchestration, governance, protocols, and application behavior.
+social_title: AILIS | AI Layer Interface Specification
 hide:
   - navigation
   - toc

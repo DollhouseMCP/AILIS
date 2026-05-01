@@ -32,6 +32,8 @@ L10 is about the contract between the model-facing system and callable capabilit
 | [Semantic Kernel plugins](https://learn.microsoft.com/en-us/semantic-kernel/concepts/plugins/) | Plugin abstraction for functions callable by AI orchestration. | L10 tools, L12 planning |
 | [OpenAPI](https://www.openapis.org/) | API description format that can become a source for tool schemas. | L10 invocation, L11 registry |
 | [LangChain tools](https://python.langchain.com/docs/concepts/tools/) | Tool abstraction used in agent and chain workflows. | L10 tools, L12 orchestration |
+| [DollhouseMCP server](../../studies/dollhouse-public-stack-mapping/#dollhousemcp) | Public Dollhouse Research runtime where callable capabilities, tool result handling, and user-facing actions are exposed through one server surface. | L10 invocation, L14 memory |
+| [MCP-AQL spec and adapters](../../studies/dollhouse-public-stack-mapping/#mcp-aql-spec) | Semantic operation design and reference adapter behavior that make typed invocation more explicit than raw API calls alone. | L10 invocation, L11 registry, L13 transport |
 
 ## Boundary questions
 

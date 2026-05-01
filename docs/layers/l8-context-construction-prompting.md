@@ -32,6 +32,8 @@ L8 sits above inference and below retrieval, tool calls, and planning. It descri
 | [promptfoo](https://www.promptfoo.dev/docs/) | Evaluation and testing workflows for prompts and model behavior. | L8 prompting, L15 governance |
 | [Guidance](https://github.com/guidance-ai/guidance) | Structured generation and prompting library for controlling model output. | L8 prompting, L15 schema |
 | [Microsoft Prompt Flow](https://microsoft.github.io/promptflow/) | Tooling for prompt and LLM workflow development and evaluation. | L8 prompting, L12 orchestration |
+| [DollhouseMCP personas and skills](../../studies/dollhouse-public-stack-mapping/#dollhousemcp) | Public Dollhouse Research examples where reusable personas, skills, and activation patterns shape model-facing context. | L8 context, L16 product UX |
+| [Elemental Surveys](../../studies/dollhouse-public-stack-mapping/#elemental-surveys) | Applied research workflow where framing, instructions, and context assembly are part of the visible product behavior. | L8 context, L12 planning |
 
 ## Boundary questions
 

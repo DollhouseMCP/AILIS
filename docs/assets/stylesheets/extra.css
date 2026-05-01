@@ -1447,6 +1447,13 @@ body {
   padding: 1.15rem;
 }
 
+.ailis-case-study-lead.lane-research {
+  border-color: color-mix(in srgb, var(--ailis-lane-research) 24%, var(--ailis-line));
+  background:
+    radial-gradient(circle at 94% 10%, color-mix(in srgb, var(--ailis-lane-research-bright) 14%, transparent), transparent 9rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--ailis-lane-research-soft) 38%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+}
+
 .ailis-case-study-lead h2,
 .ailis-case-study-lead p,
 .ailis-case-study-side p {

@@ -24,7 +24,7 @@
   ],
   "replacementPatterns": [
     {
-      "pattern": "^l((?:0|[1-9]|1[0-6])-[^/]*)/$",
+      "pattern": "^l((?:\\d+)-[^/]*)/$",
       "replacement": "l$1.md"
     },
     {
@@ -40,7 +40,7 @@
       "replacement": "website-workflows.md"
     },
     {
-      "pattern": "^\\.\\./\\.\\./layers/l((?:0|[1-9]|1[0-6])-[^/]+)/$",
+      "pattern": "^\\.\\./\\.\\./layers/l((?:\\d+)-[^/]+)/$",
       "replacement": "../docs/layers/l$1.md"
     }
   ],

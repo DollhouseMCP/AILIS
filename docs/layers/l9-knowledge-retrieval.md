@@ -32,7 +32,7 @@ L9 is broader than vector databases. It includes ingestion, retrieval strategy, 
 | [Qdrant](https://qdrant.tech/documentation/) | Vector search engine and database for embeddings. | L9 retrieval, L16 applications |
 | [Chroma](https://docs.trychroma.com/) | Embedding database often used in local and developer RAG workflows. | L9 retrieval, L8 context |
 | [Elasticsearch vector search](https://www.elastic.co/docs/solutions/search/vector) | Search platform adding vector and hybrid retrieval patterns. | L9 retrieval, L16 search products |
-| [Dollhouse Collection](../../studies/dollhouse-public-stack-mapping/#dollhouse-collection) | Public catalog and activation surface where artifact discovery, lookup, and installation metadata become part of retrieval behavior. | L9 retrieval, L11 registry |
+| [Dollhouse Collection](../studies/dollhouse-public-stack-mapping.md#dollhouse-collection) | Public catalog and activation surface where artifact discovery, lookup, and installation metadata become part of retrieval behavior. | L9 retrieval, L11 registry |
 
 ## Boundary questions
 

@@ -22,13 +22,13 @@ This case study maps the current public Dollhouse Research portfolio into the AI
   <aside class="ailis-case-study-side">
     <span class="ailis-card-kicker">Projects included</span>
     <ul class="ailis-case-study-list">
-      <li><strong>DollhouseMCP</strong><span>Core platform and runtime surface</span></li>
-      <li><strong>Dollhouse Collection</strong><span>Catalog and activation product</span></li>
-      <li><strong>MCP-AQL spec</strong><span>Protocol semantics and introspection</span></li>
-      <li><strong>MCP-AQL adapters</strong><span>Reference runtime surface</span></li>
-      <li><strong>MCP-AQL generator</strong><span>Generation and validation tooling</span></li>
-      <li><strong>Elemental Surveys</strong><span>Applied research workflow</span></li>
-      <li><strong>Merview</strong><span>Companion review utility</span></li>
+      <li><a href="#dollhousemcp"><strong>DollhouseMCP</strong><span>Core platform and runtime surface</span></a></li>
+      <li><a href="#dollhouse-collection"><strong>Dollhouse Collection</strong><span>Catalog and activation product</span></a></li>
+      <li><a href="#mcp-aql-spec"><strong>MCP-AQL spec</strong><span>Protocol semantics and introspection</span></a></li>
+      <li><a href="#mcp-aql-adapters"><strong>MCP-AQL adapters</strong><span>Reference runtime surface</span></a></li>
+      <li><a href="#mcp-aql-generator"><strong>MCP-AQL generator</strong><span>Generation and validation tooling</span></a></li>
+      <li><a href="#elemental-surveys"><strong>Elemental Surveys</strong><span>Applied research workflow</span></a></li>
+      <li><a href="#merview"><strong>Merview</strong><span>Companion review utility</span></a></li>
     </ul>
   </aside>
 </div>

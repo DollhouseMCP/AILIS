@@ -2,29 +2,33 @@
 
 Real-world examples of applying the AILIS framework to understand and analyze AI systems.
 
-<div class="ailis-case-study-feature">
-  <article class="ailis-case-study-lead lane-research">
-    <span class="ailis-card-kicker">Featured case study</span>
-    <h2><a href="dollhouse-public-stack-mapping/">Mapping the public Dollhouse Research portfolio into AILIS</a></h2>
-    <p>
-      A concrete pass across the current public Dollhouse Research stack,
-      including DollhouseMCP, MCP-AQL, Dollhouse Collection, Elemental Surveys,
-      and Merview.
-    </p>
-    <a href="dollhouse-public-stack-mapping/">Open the case study</a>
-  </article>
+<div class="ailis-case-study-feature" markdown="1">
 
-  <aside class="ailis-case-study-side">
-    <span class="ailis-card-kicker">Portfolio scope</span>
-    <ul class="ailis-case-study-list">
-      <li><a href="dollhouse-public-stack-mapping/#dollhouse-research"><strong>Dollhouse Research</strong><span>Parent research organization</span></a></li>
-      <li><a href="dollhouse-public-stack-mapping/#dollhousemcp"><strong>DollhouseMCP</strong><span>Core platform and runtime surface</span></a></li>
-      <li><a href="dollhouse-public-stack-mapping/#mcp-aql-spec"><strong>MCP-AQL</strong><span>Spec, adapters, and generator tooling</span></a></li>
-      <li><a href="dollhouse-public-stack-mapping/#dollhouse-collection"><strong>Dollhouse Collection</strong><span>Catalog and activation product</span></a></li>
-      <li><a href="dollhouse-public-stack-mapping/#elemental-surveys"><strong>Elemental Surveys</strong><span>Applied research workflow</span></a></li>
-      <li><a href="dollhouse-public-stack-mapping/#merview"><strong>Merview</strong><span>Companion utility and review surface</span></a></li>
-    </ul>
-  </aside>
+<div class="ailis-case-study-lead lane-research" markdown="1">
+<span class="ailis-card-kicker">Featured case study</span>
+
+## [Mapping the public Dollhouse Research portfolio into AILIS](dollhouse-public-stack-mapping.md)
+
+A concrete pass across the current public Dollhouse Research stack,
+including DollhouseMCP, MCP-AQL, Dollhouse Collection, Elemental Surveys,
+and Merview.
+
+[Open the case study](dollhouse-public-stack-mapping.md)
+</div>
+
+<div class="ailis-case-study-side" markdown="1">
+<span class="ailis-card-kicker">Portfolio scope</span>
+
+- [**Dollhouse Research**<span>Parent research organization</span>](dollhouse-public-stack-mapping.md#dollhouse-research)
+- [**DollhouseMCP**<span>Core platform and runtime surface</span>](dollhouse-public-stack-mapping.md#dollhousemcp)
+- [**MCP-AQL**<span>Spec, adapters, and generator tooling</span>](dollhouse-public-stack-mapping.md#mcp-aql-spec)
+- [**Dollhouse Collection**<span>Catalog and activation product</span>](dollhouse-public-stack-mapping.md#dollhouse-collection)
+- [**Elemental Surveys**<span>Applied research workflow</span>](dollhouse-public-stack-mapping.md#elemental-surveys)
+- [**Merview**<span>Companion utility and review surface</span>](dollhouse-public-stack-mapping.md#merview)
+{: .ailis-case-study-list }
+
+</div>
+
 </div>
 
 ## Purpose

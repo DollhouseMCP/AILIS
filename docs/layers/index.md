@@ -6,7 +6,7 @@ title: Layer Atlas
 
 # AILIS Layer Atlas
 
-The atlas is a working map of projects, protocols, services, and research areas that fit within the AILIS layer model. It is intentionally incomplete: each page is meant to help contributors test whether the layer boundaries are useful, too broad, too narrow, or missing important vocabulary.
+The atlas is a working map of projects, protocols, services, and research areas that might fit within the AILIS layer model. It is intentionally incomplete: each page is meant to help contributors test whether the layer boundaries are useful, too broad, too narrow, or missing important vocabulary.
 
 The primer keeps the model short. These pages give each layer enough room for examples, adjacent concerns, open questions, and source links. The atlas below follows the same bands used on the home page, but presents them vertically so the stack reads from physical foundations up through products and domain behavior.
 

@@ -32,8 +32,8 @@ L14 asks who or what is acting, what context is portable, what memory can be use
 | [LangGraph memory](https://langchain-ai.github.io/langgraph/concepts/memory/) | Short-term and long-term memory concepts in graph-based agents. | L12 planning, L14 memory |
 | [OAuth 2.0](https://oauth.net/2/) | Authorization framework relevant to delegated access and capability tokens. | L14 identity, L15 governance |
 | [W3C Verifiable Credentials](https://www.w3.org/TR/vc-data-model-2.0/) | Standardized credential model that may inform portable identity and claims. | L14 identity, L11 registry |
-| [DollhouseMCP memory and session continuity](../../studies/dollhouse-public-stack-mapping/#dollhousemcp) | Public product behavior where user-scoped context, persistent memory, and session carryover are part of the runtime experience. | L14 memory, L12 planning |
-| [Elemental Surveys](../../studies/dollhouse-public-stack-mapping/#elemental-surveys) | Applied research workflow where iterative sessions, review continuity, and remembered context may matter more than one-shot prompting. | L14 memory, L16 workflow |
+| [DollhouseMCP memory and session continuity](../studies/dollhouse-public-stack-mapping.md#dollhousemcp) | Public product behavior where user-scoped context, persistent memory, and session carryover are part of the runtime experience. | L14 memory, L12 planning |
+| [Elemental Surveys](../studies/dollhouse-public-stack-mapping.md#elemental-surveys) | Applied research workflow where iterative sessions, review continuity, and remembered context may matter more than one-shot prompting. | L14 memory, L16 workflow |
 
 ## Boundary questions
 

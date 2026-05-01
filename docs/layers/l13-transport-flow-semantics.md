@@ -32,7 +32,7 @@ L13 is not simply "HTTP." It describes flow behavior that AI systems increasingl
 | [NATS](https://docs.nats.io/) | Messaging system for distributed systems and event-driven coordination. | L13 transport, L12 orchestration |
 | [Server-Sent Events](https://html.spec.whatwg.org/multipage/server-sent-events.html) | Common browser-facing streaming primitive used by AI APIs and apps. | L13 streaming, L16 UX |
 | [Temporal](https://docs.temporal.io/) | Durable execution framework relevant to long-running AI workflows. | L13 durability, L12 planning |
-| [MCP-AQL adapters and reference implementations](../../studies/dollhouse-public-stack-mapping/#mcp-aql-adapters) | Public reference runtime work where streaming behavior, execution lifecycle, and transport expectations become concrete. | L13 transport, L10 invocation |
+| [MCP-AQL adapters and reference implementations](../studies/dollhouse-public-stack-mapping.md#mcp-aql-adapters) | Public reference runtime work where streaming behavior, execution lifecycle, and transport expectations become concrete. | L13 transport, L10 invocation |
 
 ## Boundary questions
 

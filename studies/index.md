@@ -2,6 +2,35 @@
 
 Real-world examples of applying the AILIS framework to understand and analyze AI systems.
 
+<div class="ailis-case-study-feature" markdown="1">
+
+<div class="ailis-case-study-lead lane-research" markdown="1">
+<span class="ailis-card-kicker">Featured case study</span>
+
+## [Mapping the public Dollhouse Research portfolio into AILIS](dollhouse-public-stack-mapping.md)
+
+A concrete pass across the current public Dollhouse Research stack,
+including DollhouseMCP, MCP-AQL, Dollhouse Collection, Elemental Surveys,
+and Merview.
+
+[Open the case study](dollhouse-public-stack-mapping.md)
+</div>
+
+<div class="ailis-case-study-side lane-research" markdown="1">
+<span class="ailis-card-kicker">Portfolio scope</span>
+
+- [**Dollhouse Research**<span>Parent research organization</span>](dollhouse-public-stack-mapping.md#dollhouse-research)
+- [**DollhouseMCP**<span>Core platform and runtime surface</span>](dollhouse-public-stack-mapping.md#dollhousemcp)
+- [**MCP-AQL**<span>Spec, adapters, and generator tooling</span>](dollhouse-public-stack-mapping.md#mcp-aql-spec)
+- [**Dollhouse Collection**<span>Catalog and activation product</span>](dollhouse-public-stack-mapping.md#dollhouse-collection)
+- [**Elemental Surveys**<span>Applied research workflow</span>](dollhouse-public-stack-mapping.md#elemental-surveys)
+- [**Merview**<span>Companion utility and review surface</span>](dollhouse-public-stack-mapping.md#merview)
+{: .ailis-case-study-list }
+
+</div>
+
+</div>
+
 ## Purpose
 
 Case studies demonstrate how AILIS can be used to:
@@ -11,9 +40,7 @@ Case studies demonstrate how AILIS can be used to:
 - Compare different system designs
 - Guide architectural decisions
 
-## Status
-
-🚧 **Coming Soon** - We're collecting case studies from the community.
+More community-driven case studies are still very much wanted.
 
 ## Contributing Case Studies
 

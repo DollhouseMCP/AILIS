@@ -22,7 +22,28 @@
       "pattern": "^{{.*}}$"
     }
   ],
-  "replacementPatterns": [],
+  "replacementPatterns": [
+    {
+      "pattern": "^l((?:\\d+)-[^/]*)/$",
+      "replacement": "l$1.md"
+    },
+    {
+      "pattern": "^proposals/(AILIS_[^/]+)/$",
+      "replacement": "proposals/$1.md"
+    },
+    {
+      "pattern": "^FEEDBACK/$",
+      "replacement": "FEEDBACK.md"
+    },
+    {
+      "pattern": "^website-workflows/$",
+      "replacement": "website-workflows.md"
+    },
+    {
+      "pattern": "^\\.\\./\\.\\./layers/l((?:\\d+)-[^/]+)/$",
+      "replacement": "../docs/layers/l$1.md"
+    }
+  ],
   "httpStatusCodes": [200, 201, 202, 204, 206, 300, 301, 302, 303, 304, 307, 308],
   "timeout": "30s",
   "retryOn429": true,

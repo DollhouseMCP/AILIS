@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">AILIS Open Graph Preview</title>
+  <desc id="desc">AILIS social preview card with Dollhouse Research branding and a simplified layered AI systems ladder.</desc>
+  <defs>
+    <linearGradient id="bg-base" x1="78" y1="20" x2="1114" y2="610" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#08101f" />
+      <stop offset="0.56" stop-color="#10203a" />
+      <stop offset="1" stop-color="#172b49" />
+    </linearGradient>
+    <radialGradient id="glow-blue" cx="0" cy="0" r="1" gradientTransform="translate(1010 82) rotate(90) scale(356 372)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3b82f6" stop-opacity="0.42" />
+      <stop offset="1" stop-color="#3b82f6" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glow-violet" cx="0" cy="0" r="1" gradientTransform="translate(230 556) rotate(-22) scale(408 280)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e879f9" stop-opacity="0.22" />
+      <stop offset="1" stop-color="#e879f9" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0H0V46" fill="none" stroke="#d7e4ff" stroke-opacity="0.07" stroke-width="1" />
+    </pattern>
+    <linearGradient id="chip" x1="84" y1="80" x2="342" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12243f" />
+      <stop offset="1" stop-color="#1a3153" />
+    </linearGradient>
+    <linearGradient id="ladder-foundation" x1="0" y1="0" x2="258" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2563eb" />
+      <stop offset="1" stop-color="#60a5fa" />
+    </linearGradient>
+    <linearGradient id="ladder-model" x1="0" y1="0" x2="258" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1e40af" />
+      <stop offset="1" stop-color="#38bdf8" />
+    </linearGradient>
+    <linearGradient id="ladder-context" x1="0" y1="0" x2="258" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f766e" />
+      <stop offset="1" stop-color="#67e8f9" />
+    </linearGradient>
+    <linearGradient id="ladder-orchestration" x1="0" y1="0" x2="258" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a21caf" />
+      <stop offset="1" stop-color="#f0abfc" />
+    </linearGradient>
+    <linearGradient id="ladder-application" x1="0" y1="0" x2="258" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f97316" />
+      <stop offset="1" stop-color="#fdba74" />
+    </linearGradient>
+    <linearGradient id="logo-layer-blue" x1="18" y1="12" x2="82" y2="82" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3b82f6" />
+      <stop offset="1" stop-color="#1e40af" />
+    </linearGradient>
+    <linearGradient id="logo-layer-research" x1="20" y1="18" x2="78" y2="84" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e879f9" />
+      <stop offset="1" stop-color="#a21caf" />
+    </linearGradient>
+    <linearGradient id="logo-layer-protocol" x1="22" y1="57" x2="78" y2="67" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38bdf8" />
+      <stop offset="1" stop-color="#0e7490" />
+    </linearGradient>
+    <linearGradient id="roof-blue-research" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f8ff7" />
+      <stop offset="100%" stop-color="#2f6ddd" />
+    </linearGradient>
+    <linearGradient id="base-blue-research" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2b5ec8" />
+      <stop offset="100%" stop-color="#1f4caf" />
+    </linearGradient>
+    <linearGradient id="chimney-research" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e879f9" />
+      <stop offset="100%" stop-color="#a21caf" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg-base)" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+  <rect width="1200" height="630" fill="url(#glow-blue)" />
+  <rect width="1200" height="630" fill="url(#glow-violet)" />
+
+  <path d="M718 86H1096" stroke="#d7e4ff" stroke-opacity="0.1" stroke-width="1.5" />
+  <path d="M718 550H1096" stroke="#d7e4ff" stroke-opacity="0.08" stroke-width="1.5" />
+
+  <g transform="translate(84 70)">
+    <rect x="132" y="6" width="258" height="34" rx="17" fill="url(#chip)" stroke="#7aa8ff" stroke-opacity="0.24" />
+    <text x="156" y="28" fill="#d7e4ff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.4">DOLLHOUSE RESEARCH PROJECT</text>
+
+    <g transform="scale(0.58)">
+      <rect x="23" y="16" width="9" height="15" rx="2" fill="url(#chimney-research)" stroke="#0a1020" stroke-width="1" stroke-opacity="0.4" />
+      <path d="M50 10 L88 32 H12 Z" fill="url(#roof-blue-research)" />
+      <rect x="17" y="32" width="66" height="46" rx="4" fill="#4f8ff7" />
+      <rect x="22" y="37" width="56" height="36" rx="4" fill="#ffffff" />
+      <rect x="26" y="40" width="22" height="12" rx="3" fill="#f0abfc" stroke="#0a1020" stroke-width="1" stroke-opacity="0.4" />
+      <rect x="52" y="40" width="22" height="12" rx="3" fill="#e879f9" stroke="#0a1020" stroke-width="1" stroke-opacity="0.4" />
+      <rect x="26" y="56" width="22" height="12" rx="3" fill="#c026d3" stroke="#0a1020" stroke-width="1" stroke-opacity="0.4" />
+      <rect x="52" y="56" width="22" height="12" rx="3" fill="#a21caf" stroke="#0a1020" stroke-width="1" stroke-opacity="0.4" />
+      <rect x="14" y="78" width="72" height="7" rx="3" fill="url(#base-blue-research)" />
+    </g>
+
+    <g transform="translate(70 0) scale(0.58)">
+      <rect x="16" y="13" width="68" height="11" rx="3" fill="url(#logo-layer-blue)" />
+      <rect x="22" y="28" width="56" height="10" rx="3" fill="#1e40af" opacity="0.88" />
+      <rect x="16" y="42" width="68" height="11" rx="3" fill="url(#logo-layer-research)" />
+      <rect x="22" y="57" width="56" height="10" rx="3" fill="url(#logo-layer-protocol)" />
+      <rect x="16" y="72" width="68" height="11" rx="3" fill="#0b1220" opacity="0.82" />
+      <path d="M50 24v4m0 10v4m0 11v4m0 10v5" fill="none" stroke="#d7e4ff" stroke-width="2.4" stroke-linecap="round" />
+    </g>
+  </g>
+
+  <g transform="translate(84 190)">
+    <text x="0" y="0" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="92" font-weight="800">AILIS</text>
+    <text x="2" y="42" fill="#d7e4ff" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="600">AI Layer Interface Specification</text>
+
+    <text x="0" y="132" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="40" font-weight="700">A research language for the AI stack.</text>
+    <text x="0" y="190" fill="#b9cae8" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="500">A public Dollhouse Research white paper exploring a 16+ layer</text>
+    <text x="0" y="224" fill="#b9cae8" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="500">vocabulary for models, tools, memory, protocols, governance,</text>
+    <text x="0" y="258" fill="#b9cae8" font-family="Helvetica, Arial, sans-serif" font-size="24" font-weight="500">and application behavior.</text>
+
+    <text x="0" y="346" fill="#9fc2ff" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="1.6">PUBLIC DRAFT</text>
+    <text x="126" y="346" fill="#90a7ca" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700">•</text>
+    <text x="148" y="346" fill="#9fc2ff" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="1.4">16+ LAYERS</text>
+    <text x="272" y="346" fill="#90a7ca" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700">•</text>
+    <text x="294" y="346" fill="#9fc2ff" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="1.4">OPEN FOR CRITIQUE</text>
+  </g>
+
+  <g transform="translate(818 118)">
+    <text x="0" y="0" fill="#9fc2ff" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="1.5">ONE VIEW OF THE LAYER MODEL</text>
+    <path d="M50 34V404" stroke="#88aef7" stroke-opacity="0.34" stroke-width="3" stroke-linecap="round" />
+
+    <g transform="translate(0 46)">
+      <circle cx="50" cy="22" r="8" fill="#60a5fa" />
+      <rect x="84" y="0" width="258" height="44" rx="18" fill="url(#ladder-foundation)" />
+      <text x="106" y="28" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="800">L0-L2</text>
+      <text x="176" y="28" fill="#eef5ff" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700">Infrastructure</text>
+    </g>
+
+    <g transform="translate(0 122)">
+      <circle cx="50" cy="22" r="8" fill="#38bdf8" />
+      <rect x="84" y="0" width="258" height="44" rx="18" fill="url(#ladder-model)" />
+      <text x="106" y="28" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="800">L3-L7</text>
+      <text x="176" y="28" fill="#eef8ff" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700">Models and inference</text>
+    </g>
+
+    <g transform="translate(0 198)">
+      <circle cx="50" cy="22" r="8" fill="#67e8f9" />
+      <rect x="84" y="0" width="258" height="44" rx="18" fill="url(#ladder-context)" />
+      <text x="106" y="28" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="800">L8-L10</text>
+      <text x="184" y="28" fill="#effeff" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700">Context and tools</text>
+    </g>
+
+    <g transform="translate(0 274)">
+      <circle cx="50" cy="22" r="8" fill="#f0abfc" />
+      <rect x="84" y="0" width="258" height="44" rx="18" fill="url(#ladder-orchestration)" />
+      <text x="106" y="28" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="800">L11-L15</text>
+      <text x="191" y="28" fill="#fff4ff" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700">Orchestration</text>
+    </g>
+
+    <g transform="translate(0 350)">
+      <circle cx="50" cy="22" r="8" fill="#fdba74" />
+      <rect x="84" y="0" width="258" height="44" rx="18" fill="url(#ladder-application)" />
+      <text x="106" y="28" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="800">L16+</text>
+      <text x="174" y="28" fill="#fff7ed" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700">Applications</text>
+    </g>
+  </g>
+</svg>

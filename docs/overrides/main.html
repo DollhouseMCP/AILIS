@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% set page_meta = page.meta if page and page.meta else {} %}
+  {% set default_title = config.site_name %}
+  {% set social_title = page_meta.get("social_title") %}
+  {% if not social_title %}
+    {% if page and page.title and page.title != "Home" %}
+      {% set social_title = page.title ~ " | " ~ config.site_name %}
+    {% else %}
+      {% set social_title = default_title %}
+    {% endif %}
+  {% endif %}
+  {% set social_description = page_meta.get("description", config.site_description) %}
+  {% set configured_site_url = config.site_url or "" %}
+  {% set social_url = page.canonical_url if page and page.canonical_url else configured_site_url %}
+  {% set site_root = configured_site_url[:-1] if configured_site_url.endswith("/") else configured_site_url %}
+  {% set social_image = site_root ~ "/assets/images/social/ailis-open-graph.png" if site_root else "" %}
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="{{ config.site_name | e }}" />
+  <meta property="og:title" content="{{ social_title | e }}" />
+  <meta property="og:description" content="{{ social_description | e }}" />
+  <meta property="og:url" content="{{ social_url | e }}" />
+  {% if social_image %}
+    <meta property="og:image" content="{{ social_image | e }}" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="AILIS layered AI systems preview card with Dollhouse Research branding" />
+  {% endif %}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ social_title | e }}" />
+  <meta name="twitter:description" content="{{ social_description | e }}" />
+  {% if social_image %}
+    <meta name="twitter:image" content="{{ social_image | e }}" />
+    <meta name="twitter:image:alt" content="AILIS layered AI systems preview card with Dollhouse Research branding" />
+  {% endif %}
+{% endblock %}

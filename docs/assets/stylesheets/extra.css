@@ -1419,6 +1419,192 @@ body {
   padding: 0.95rem;
 }
 
+.ailis-dollhouse-project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.2rem 0 1.6rem;
+}
+
+.ailis-case-study-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(18rem, 0.82fr);
+  gap: 1rem;
+  margin: 1.2rem 0 1.8rem;
+}
+
+.ailis-case-study-lead,
+.ailis-case-study-side {
+  border: 1px solid color-mix(in srgb, var(--ailis-case-study-lane, var(--ailis-lane-research)) 24%, var(--ailis-line));
+  border-radius: var(--ailis-radius-lg);
+  background:
+    radial-gradient(circle at 94% 10%, color-mix(in srgb, var(--ailis-case-study-lane-bright, var(--ailis-lane-research-bright)) 14%, transparent), transparent 9rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--ailis-case-study-lane-soft, var(--ailis-lane-research-soft)) 38%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+  box-shadow: var(--ailis-shadow-soft);
+}
+
+.ailis-case-study-lead {
+  padding: 1.15rem;
+}
+
+.ailis-case-study-lead.lane-research,
+.ailis-case-study-side.lane-research {
+  --ailis-case-study-lane: var(--ailis-lane-research);
+  --ailis-case-study-lane-bright: var(--ailis-lane-research-bright);
+  --ailis-case-study-lane-soft: var(--ailis-lane-research-soft);
+}
+
+.ailis-case-study-lead h2,
+.ailis-case-study-lead p,
+.ailis-case-study-side p {
+  margin: 0;
+}
+
+.ailis-case-study-lead h2 {
+  margin-top: 0.3rem;
+}
+
+.ailis-case-study-lead h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ailis-case-study-lead h2 a:hover {
+  color: var(--ailis-lane-research);
+}
+
+.ailis-case-study-lead p {
+  margin-top: 0.62rem;
+  color: var(--ailis-ink-700);
+}
+
+.ailis-case-study-lead a {
+  display: inline-flex;
+  margin-top: 0.85rem;
+  color: var(--ailis-lane-research);
+  font-weight: 800;
+}
+
+.ailis-case-study-side {
+  padding: 1rem;
+}
+
+.ailis-case-study-list {
+  display: grid;
+  gap: 0.58rem;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ailis-case-study-list li {
+  margin: 0;
+}
+
+.ailis-case-study-list a {
+  display: grid;
+  gap: 0.16rem;
+  border-top: 1px solid color-mix(in srgb, var(--ailis-lane-research) 14%, var(--ailis-line));
+  color: inherit;
+  padding-top: 0.58rem;
+  text-decoration: none;
+  transition: transform 150ms ease, color 150ms ease;
+}
+
+.ailis-case-study-list a:hover {
+  color: var(--ailis-lane-research);
+  transform: translateX(2px);
+}
+
+.ailis-case-study-list strong {
+  color: var(--ailis-ink-950);
+  font-size: 0.92rem;
+}
+
+.ailis-case-study-list span {
+  color: var(--ailis-ink-700);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.ailis-dollhouse-project {
+  border: 1px solid color-mix(in srgb, var(--ailis-lane-research) 22%, var(--ailis-line));
+  border-radius: var(--ailis-radius-lg);
+  padding: 1rem;
+  background:
+    radial-gradient(circle at 95% 10%, color-mix(in srgb, var(--ailis-lane-research-bright) 14%, transparent), transparent 9rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--ailis-lane-research-soft) 36%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+  box-shadow: var(--ailis-shadow-soft);
+}
+
+.ailis-dollhouse-project.lane-core {
+  border-color: color-mix(in srgb, var(--ailis-lane-core) 24%, var(--ailis-line));
+  background:
+    radial-gradient(circle at 95% 10%, color-mix(in srgb, var(--ailis-lane-core-bright) 14%, transparent), transparent 9rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--ailis-lane-core-soft) 36%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+}
+
+.ailis-dollhouse-project.lane-protocol {
+  border-color: color-mix(in srgb, var(--ailis-lane-protocol) 24%, var(--ailis-line));
+  background:
+    radial-gradient(circle at 95% 10%, color-mix(in srgb, var(--ailis-lane-protocol-bright) 14%, transparent), transparent 9rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--ailis-lane-protocol-soft) 36%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+}
+
+.ailis-dollhouse-project h3,
+.ailis-dollhouse-project p {
+  margin: 0;
+}
+
+.ailis-dollhouse-project h3 {
+  margin-top: 0.3rem;
+}
+
+.ailis-dollhouse-project p + p,
+.ailis-dollhouse-project .ailis-dollhouse-note {
+  margin-top: 0.72rem;
+}
+
+.ailis-dollhouse-project p {
+  color: var(--ailis-ink-700);
+}
+
+.ailis-dollhouse-layer-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ailis-dollhouse-layer-tags li {
+  margin: 0;
+  border: 1px solid color-mix(in srgb, var(--ailis-lane-research) 28%, var(--ailis-line));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ailis-paper-strong) 78%, transparent);
+  color: var(--ailis-lane-research);
+  padding: 0.2rem 0.55rem;
+  font-family: var(--ailis-font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.ailis-dollhouse-project.lane-core .ailis-dollhouse-layer-tags li {
+  border-color: color-mix(in srgb, var(--ailis-lane-core) 30%, var(--ailis-line));
+  color: var(--ailis-lane-core);
+}
+
+.ailis-dollhouse-project.lane-protocol .ailis-dollhouse-layer-tags li {
+  border-color: color-mix(in srgb, var(--ailis-lane-protocol) 30%, var(--ailis-line));
+  color: var(--ailis-lane-protocol);
+}
+
+.ailis-dollhouse-note strong {
+  color: var(--ailis-ink-950);
+}
+
 .proposal-meta {
   margin: 1.5rem 0;
   border-left: 4px solid var(--ailis-signal);
@@ -1611,6 +1797,8 @@ button:focus-visible,
   }
 
   .ailis-card-grid,
+  .ailis-case-study-feature,
+  .ailis-dollhouse-project-grid,
   .ailis-related-grid,
   .ailis-layer-atlas-grid,
   .ailis-atlas-group,

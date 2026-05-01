@@ -1,5 +1,6 @@
 ---
 title: Case Study - Public Dollhouse Research Portfolio Mapping
+description: A case study mapping public Dollhouse Research projects across the AILIS layer model.
 ---
 
 <!-- markdownlint-disable MD013 MD033 -->

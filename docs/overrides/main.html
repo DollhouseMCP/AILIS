@@ -16,20 +16,26 @@
   {% set configured_site_url = config.site_url or "" %}
   {% set social_url = page.canonical_url if page and page.canonical_url else configured_site_url %}
   {% set site_root = configured_site_url[:-1] if configured_site_url.endswith("/") else configured_site_url %}
-  {% set social_image = site_root ~ "/assets/images/social/ailis-open-graph.png" if site_root else "assets/images/social/ailis-open-graph.png" %}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="{{ config.site_name | e }}" />
   <meta property="og:title" content="{{ social_title | e }}" />
   <meta property="og:description" content="{{ social_description | e }}" />
   <meta property="og:url" content="{{ social_url | e }}" />
-  <meta property="og:image" content="{{ social_image | e }}" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="AILIS layered AI systems preview card with Dollhouse Research branding" />
+  {% if site_root %}
+    {% set social_image = site_root ~ "/assets/images/social/ailis-open-graph.png" %}
+    <meta property="og:image" content="{{ social_image | e }}" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="AILIS layered AI systems preview card with Dollhouse Research branding" />
+  {% else %}
+    <!-- AILIS social image omitted because config.site_url is not set. -->
+  {% endif %}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{{ social_title | e }}" />
   <meta name="twitter:description" content="{{ social_description | e }}" />
-  <meta name="twitter:image" content="{{ social_image | e }}" />
-  <meta name="twitter:image:alt" content="AILIS layered AI systems preview card with Dollhouse Research branding" />
+  {% if site_root %}
+    <meta name="twitter:image" content="{{ social_image | e }}" />
+    <meta name="twitter:image:alt" content="AILIS layered AI systems preview card with Dollhouse Research branding" />
+  {% endif %}
 {% endblock %}

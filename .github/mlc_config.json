@@ -24,7 +24,7 @@
   ],
   "replacementPatterns": [
     {
-      "pattern": "^l([0-9][^/]*)/$",
+      "pattern": "^l((?:0|[1-9]|1[0-6])-[^/]*)/$",
       "replacement": "l$1.md"
     },
     {
@@ -40,8 +40,8 @@
       "replacement": "website-workflows.md"
     },
     {
-      "pattern": "^\\.\\./\\.\\./layers/([^/]+)/$",
-      "replacement": "../docs/layers/$1.md"
+      "pattern": "^\\.\\./\\.\\./layers/l((?:0|[1-9]|1[0-6])-[^/]+)/$",
+      "replacement": "../docs/layers/l$1.md"
     }
   ],
   "httpStatusCodes": [200, 201, 202, 204, 206, 300, 301, 302, 303, 304, 307, 308],

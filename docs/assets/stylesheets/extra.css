@@ -1435,11 +1435,11 @@ body {
 
 .ailis-case-study-lead,
 .ailis-case-study-side {
-  border: 1px solid color-mix(in srgb, var(--ailis-lane-research) 24%, var(--ailis-line));
+  border: 1px solid color-mix(in srgb, var(--ailis-case-study-lane, var(--ailis-lane-research)) 24%, var(--ailis-line));
   border-radius: var(--ailis-radius-lg);
   background:
-    radial-gradient(circle at 94% 10%, color-mix(in srgb, var(--ailis-lane-research-bright) 14%, transparent), transparent 9rem),
-    linear-gradient(180deg, color-mix(in srgb, var(--ailis-lane-research-soft) 38%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+    radial-gradient(circle at 94% 10%, color-mix(in srgb, var(--ailis-case-study-lane-bright, var(--ailis-lane-research-bright)) 14%, transparent), transparent 9rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--ailis-case-study-lane-soft, var(--ailis-lane-research-soft)) 38%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
   box-shadow: var(--ailis-shadow-soft);
 }
 
@@ -1448,10 +1448,9 @@ body {
 }
 
 .ailis-case-study-lead.lane-research {
-  border-color: color-mix(in srgb, var(--ailis-lane-research) 24%, var(--ailis-line));
-  background:
-    radial-gradient(circle at 94% 10%, color-mix(in srgb, var(--ailis-lane-research-bright) 14%, transparent), transparent 9rem),
-    linear-gradient(180deg, color-mix(in srgb, var(--ailis-lane-research-soft) 38%, var(--ailis-paper-strong)), var(--ailis-paper-strong));
+  --ailis-case-study-lane: var(--ailis-lane-research);
+  --ailis-case-study-lane-bright: var(--ailis-lane-research-bright);
+  --ailis-case-study-lane-soft: var(--ailis-lane-research-soft);
 }
 
 .ailis-case-study-lead h2,

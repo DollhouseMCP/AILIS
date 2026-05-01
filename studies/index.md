@@ -16,7 +16,7 @@ and Merview.
 [Open the case study](dollhouse-public-stack-mapping.md)
 </div>
 
-<div class="ailis-case-study-side" markdown="1">
+<div class="ailis-case-study-side lane-research" markdown="1">
 <span class="ailis-card-kicker">Portfolio scope</span>
 
 - [**Dollhouse Research**<span>Parent research organization</span>](dollhouse-public-stack-mapping.md#dollhouse-research)

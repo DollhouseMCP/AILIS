@@ -20,7 +20,7 @@ This case study maps the current public Dollhouse Research portfolio into the AI
     </p>
   </article>
 
-  <aside class="ailis-case-study-side">
+  <aside class="ailis-case-study-side lane-research">
     <span class="ailis-card-kicker">Projects included</span>
     <ul class="ailis-case-study-list">
       <li><a href="#dollhousemcp"><strong>DollhouseMCP</strong><span>Core platform and runtime surface</span></a></li>

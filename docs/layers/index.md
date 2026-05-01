@@ -81,7 +81,7 @@ The primer keeps the model short. These pages give each layer enough room for ex
 
 ## How to read these pages
 
-- **Representative projects** are not endorsements or definitive placement decisions. They are examples that make the layer concrete, including the public Dollhouse Research portfolio where it contributes real signal.
+- **Representative projects** are not endorsements or definitive placement decisions. They are examples that make the layer concrete, including the public Dollhouse Research portfolio where it adds concrete examples.
 - **Adjacent layers** show where boundaries are blurry. Many real systems span multiple layers.
 - **Boundary questions** are prompts for contributors: if a project does not fit cleanly, the model may need revision.
 - **Signals to watch** are ecosystem changes that might make the layer more important, less useful, or differently shaped.

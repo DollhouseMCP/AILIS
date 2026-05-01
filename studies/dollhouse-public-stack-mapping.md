@@ -207,7 +207,7 @@ The second read turns the same portfolio back into the layer model. This view ma
 
 ## Implications for the atlas
 
-This case study suggests a simple editorial rule for the layer pages: only add named Dollhouse Research examples where the public portfolio contributes real signal.
+This case study suggests a simple editorial rule for the layer pages: only add named Dollhouse Research examples where the public portfolio adds concrete examples.
 
 - It shows that a real portfolio can span many layers without collapsing the model.
 - It highlights that the current public Dollhouse Research work is strongest in the application-interface and orchestration bands.

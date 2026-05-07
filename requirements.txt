@@ -17,7 +17,7 @@ mkdocs-git-authors-plugin==0.9.2
 
 # Extensions (installed as dependencies of above, but pinned for clarity)
 pymdown-extensions==10.11.2
-markdown==3.7
+markdown==3.8.1
 
 # Dependencies
 pyyaml>=6.0.2

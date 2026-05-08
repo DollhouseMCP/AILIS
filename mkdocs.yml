@@ -191,6 +191,7 @@ markdown_extensions:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
+      use_pygments: false
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.mark
@@ -204,8 +205,7 @@ markdown_extensions:
   - pymdownx.snippets:
       auto_append:
         - includes/abbreviations.md
-  # Render top-level fenced code blocks.
-  - fenced_code
+  - pymdownx.superfences
 
 # Extra CSS and JavaScript
 extra_css:

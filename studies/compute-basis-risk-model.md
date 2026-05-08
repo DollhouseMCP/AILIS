@@ -83,40 +83,183 @@ If a buyer needs disconnected, on-prem, or sovereign infrastructure, a global pu
 
 Relevant evidence: Microsoft's February 2026 Sovereign Cloud announcement emphasized fully disconnected local operations and large-model support within customer-controlled boundaries. The EU AI Factories initiative similarly ties compute capacity to regional industrial, research, public-sector, and sovereignty goals.
 
-## Data Schema For Analysis
+## Layered Exposure Record Schema
 
-The following schema could support an internal research notebook, spreadsheet, or agent memory:
+The following schema could support an internal research notebook, spreadsheet, or agent memory. It uses a
+JSON-Schema-style shape so the fields can be validated rather than read as shorthand.
 
 ```yaml
-compute_exposure:
+title: LayeredComputeExposure
+type: object
+required:
+  - workload
+  - capacity
+  - layer_constraints
+  - hedge_or_index
+  - residual_basis_risks
+properties:
   workload:
-    type: training | inference | evaluation | batch | edge | sovereign
-    model_family: string
-    sequence_profile: input_tokens/output_tokens/context_window
-    latency_requirement: p50/p95/p99
+    type: object
+    required:
+      - exposure_type
+      - model_family
+      - sequence_profile
+      - latency_requirement
+    properties:
+      exposure_type:
+        type: string
+        enum:
+          - training
+          - inference
+          - evaluation
+          - batch
+          - edge
+          - sovereign
+      model_family:
+        type: string
+      sequence_profile:
+        type: object
+        properties:
+          input_tokens:
+            type: integer
+          output_tokens:
+            type: integer
+          context_window:
+            type: integer
+      latency_requirement:
+        type: object
+        properties:
+          p50_ms:
+            type: integer
+          p95_ms:
+            type: integer
+          p99_ms:
+            type: integer
+
   capacity:
-    accelerator: sku
-    memory_gb: number
-    interconnect: topology
-    region: string
-    tenancy: shared | dedicated | on_prem | sovereign
-    duration: spot | monthly | reserved | multi_year
+    type: object
+    required:
+      - accelerator_sku
+      - memory_gb
+      - interconnect
+      - region
+      - tenancy
+      - duration
+    properties:
+      accelerator_sku:
+        type: string
+      memory_gb:
+        type: number
+      interconnect:
+        type: string
+      region:
+        type: string
+      tenancy:
+        type: string
+        enum:
+          - shared
+          - dedicated
+          - on_prem
+          - sovereign
+      duration:
+        type: string
+        enum:
+          - spot
+          - monthly
+          - reserved
+          - multi_year
+
   layer_constraints:
-    l0_power: grid | colocated | bridge | flexible
-    l1_memory: hbm | dram | kv_cache | storage
-    l2_runtime: cuda | rocm | custom
-    l3_engine: vllm | tensorrt_llm | other
-    l4_precision: fp16 | fp8 | fp4 | int4 | mixed
-    l15_policy: public_cloud | regulated | disconnected | classified
+    type: object
+    properties:
+      l0_power:
+        type: string
+        enum:
+          - grid
+          - colocated
+          - bridge
+          - flexible
+      l1_memory:
+        type: string
+        enum:
+          - hbm
+          - dram
+          - kv_cache
+          - storage
+      l2_runtime:
+        type: string
+        enum:
+          - cuda
+          - rocm
+          - custom
+      l3_engine:
+        type: string
+      l4_precision:
+        type: string
+        enum:
+          - fp16
+          - fp8
+          - fp4
+          - int4
+          - mixed
+      l15_policy:
+        type: string
+        enum:
+          - public_cloud
+          - regulated
+          - disconnected
+          - classified
+
   hedge_or_index:
-    reference_name: string
-    settlement_type: financial | physical | parametric | hybrid
-    methodology_url: string
-    coverage_layers: [L0, L1, L2, L3, L4, L15]
+    type: object
+    required:
+      - reference_name
+      - settlement_type
+      - methodology_url
+      - coverage_layers
+    properties:
+      reference_name:
+        type: string
+      settlement_type:
+        type: string
+        enum:
+          - financial
+          - physical
+          - parametric
+          - hybrid
+      methodology_url:
+        type: string
+      coverage_layers:
+        type: array
+        items:
+          type: string
+          enum:
+            - L0
+            - L1
+            - L2
+            - L3
+            - L4
+            - L15
+
   residual_basis_risks:
-    - type: sku_basis
-      severity: low | medium | high
-      note: string
+    type: array
+    items:
+      type: object
+      required:
+        - risk_type
+        - severity
+        - note
+      properties:
+        risk_type:
+          type: string
+        severity:
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+        note:
+          type: string
 ```
 
 ## Layer-Aware Arbitrage Questions

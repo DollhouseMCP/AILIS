@@ -1,5 +1,7 @@
 # Case Studies
 
+<!-- markdownlint-disable MD013 MD033 -->
+
 Real-world examples of applying the AILIS framework to understand and analyze AI systems.
 
 <div class="ailis-case-study-feature">

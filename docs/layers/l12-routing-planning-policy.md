@@ -31,7 +31,7 @@ L12 sits above individual model and tool capabilities. It may choose between pro
 | [LangGraph](https://langchain-ai.github.io/langgraph/) | Graph-based orchestration for controllable agent workflows. | L12 planning, L14 memory |
 | [Microsoft AutoGen](https://microsoft.github.io/autogen/) | Multi-agent framework for planning and collaboration patterns. | L12 planning, L16 applications |
 | [CrewAI](https://docs.crewai.com/) | Agent orchestration framework centered on roles, tasks, and crews. | L12 planning, L16 applications |
-| [Open Policy Agent](https://www.openpolicyagent.org/docs/latest/) | General policy engine that can inform AI routing and authorization decisions. | L12 policy, L15 governance |
+| [Open Policy Agent](https://www.openpolicyagent.org/docs) | General policy engine that can inform AI routing and authorization decisions. | L12 policy, L15 governance |
 | [MCP-AQL spec](../studies/dollhouse-public-stack-mapping.md#mcp-aql-spec) | Public protocol work that introduces routing cues, semantic operation choices, and execution policy questions above basic tool invocation. | L12 routing, L10 invocation |
 | [DollhouseMCP approvals and workflow policy](../studies/dollhouse-public-stack-mapping.md#dollhousemcp) | Human review paths and execution constraints that make policy visible in the product rather than hiding it in infrastructure. | L12 policy, L15 governance |
 

@@ -2,32 +2,52 @@
 
 Real-world examples of applying the AILIS framework to understand and analyze AI systems.
 
-<div class="ailis-case-study-feature" markdown="1">
+<div class="ailis-case-study-feature">
 
-<div class="ailis-case-study-lead lane-research" markdown="1">
-<span class="ailis-card-kicker">Featured case study</span>
+<article class="ailis-case-study-lead lane-research">
+  <span class="ailis-card-kicker">Featured case study</span>
+  <h2><a href="dollhouse-public-stack-mapping.md">Mapping the public Dollhouse Research portfolio into AILIS</a></h2>
+  <p>A concrete pass across the current public Dollhouse Research stack, including DollhouseMCP, MCP-AQL, Dollhouse Collection, Elemental Surveys, and Merview.</p>
+  <a class="ailis-case-study-cta" href="dollhouse-public-stack-mapping.md">Open the case study</a>
+</article>
 
-## [Mapping the public Dollhouse Research portfolio into AILIS](dollhouse-public-stack-mapping.md)
-
-A concrete pass across the current public Dollhouse Research stack,
-including DollhouseMCP, MCP-AQL, Dollhouse Collection, Elemental Surveys,
-and Merview.
-
-[Open the case study](dollhouse-public-stack-mapping.md)
-</div>
-
-<div class="ailis-case-study-side lane-research" markdown="1">
-<span class="ailis-card-kicker">Portfolio scope</span>
-
-- [**Dollhouse Research**<span>Parent research organization</span>](dollhouse-public-stack-mapping.md#dollhouse-research)
-- [**DollhouseMCP**<span>Core platform and runtime surface</span>](dollhouse-public-stack-mapping.md#dollhousemcp)
-- [**MCP-AQL**<span>Spec, adapters, and generator tooling</span>](dollhouse-public-stack-mapping.md#mcp-aql-spec)
-- [**Dollhouse Collection**<span>Catalog and activation product</span>](dollhouse-public-stack-mapping.md#dollhouse-collection)
-- [**Elemental Surveys**<span>Applied research workflow</span>](dollhouse-public-stack-mapping.md#elemental-surveys)
-- [**Merview**<span>Companion utility and review surface</span>](dollhouse-public-stack-mapping.md#merview)
-{: .ailis-case-study-list }
+<aside class="ailis-case-study-side lane-research">
+  <span class="ailis-card-kicker">Portfolio scope</span>
+  <ul class="ailis-case-study-list">
+    <li><a href="dollhouse-public-stack-mapping.md#dollhouse-research"><strong>Dollhouse Research</strong><span>Parent research organization</span></a></li>
+    <li><a href="dollhouse-public-stack-mapping.md#dollhousemcp"><strong>DollhouseMCP</strong><span>Core platform and runtime surface</span></a></li>
+    <li><a href="dollhouse-public-stack-mapping.md#mcp-aql-spec"><strong>MCP-AQL</strong><span>Spec, adapters, and generator tooling</span></a></li>
+    <li><a href="dollhouse-public-stack-mapping.md#dollhouse-collection"><strong>Dollhouse Collection</strong><span>Catalog and activation product</span></a></li>
+    <li><a href="dollhouse-public-stack-mapping.md#elemental-surveys"><strong>Elemental Surveys</strong><span>Applied research workflow</span></a></li>
+    <li><a href="dollhouse-public-stack-mapping.md#merview"><strong>Merview</strong><span>Companion utility and review surface</span></a></li>
+  </ul>
+</aside>
 
 </div>
+
+## Compute Market Research
+
+These newer drafts use AILIS as a lens for the emerging compute-market discussion:
+
+<div class="ailis-case-study-card-grid">
+
+<article class="ailis-case-study-card lane-core">
+  <span class="ailis-card-kicker">Layered market framing</span>
+  <h3><a href="compute-as-layered-market.md">Compute as a Layered Market</a></h3>
+  <p>Why compute financialization might depend on which layers are standardized, priced, and ignored.</p>
+</article>
+
+<article class="ailis-case-study-card lane-protocol">
+  <span class="ailis-card-kicker">Analytical model</span>
+  <h3><a href="compute-basis-risk-model.md">A Layered Basis Risk Model for Compute Capacity</a></h3>
+  <p>A draft quality-adjusted compute model for analyzing hedge and capacity mismatch.</p>
+</article>
+
+<article class="ailis-case-study-card lane-research">
+  <span class="ailis-card-kicker">Market structure checklist</span>
+  <h3><a href="compute-market-structure-checklist.md">Compute Capacity Contract and Benchmark Checklist</a></h3>
+  <p>A practical checklist for contracts, benchmarks, swaps, forwards, and insurance products.</p>
+</article>
 
 </div>
 

@@ -204,9 +204,8 @@ markdown_extensions:
   - pymdownx.snippets:
       auto_append:
         - includes/abbreviations.md
-  # Keeps nested fences working. No mermaid fences exist today; add the mermaid
-  # custom fence here if diagrams are introduced later.
-  - pymdownx.superfences
+  # Render top-level fenced code blocks.
+  - fenced_code
 
 # Extra CSS and JavaScript
 extra_css:

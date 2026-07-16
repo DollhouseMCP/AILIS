@@ -26,7 +26,7 @@ L5 is lower than prompt construction. It does not decide what context is selecte
 
 | Project | Why it might fit | Adjacent layers |
 | --- | --- | --- |
-| [Hugging Face Tokenizers](https://huggingface.co/docs/tokenizers/) | Fast tokenization library used across transformer workflows. | L5 tokenization, L6 model compatibility |
+| [Hugging Face Tokenizers](https://github.com/huggingface/tokenizers) | Fast tokenization library used across transformer workflows. | L5 tokenization, L6 model compatibility |
 | [OpenAI tiktoken](https://github.com/openai/tiktoken) | Tokenizer library used for OpenAI model token accounting and encoding. | L5 tokenization, L8 prompting |
 | [SentencePiece](https://github.com/google/sentencepiece) | Unsupervised text tokenizer and detokenizer commonly used in NLP models. | L5 tokenization, L6 models |
 | [CLIP](https://github.com/openai/CLIP) | Vision-text representation model that illustrates multimodal encoding boundaries. | L5 encoders, L6 architecture |

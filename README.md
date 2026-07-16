@@ -9,6 +9,7 @@ _Version 0.1 - Early Draft for Discussion_
 [![♿ Accessibility Check](https://github.com/DollhouseMCP/AILIS/actions/workflows/accessibility-check.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/accessibility-check.yml)
 [![📋 Proposal Lifecycle](https://github.com/DollhouseMCP/AILIS/actions/workflows/proposal-lifecycle.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/proposal-lifecycle.yml)
 [![🌐 Website Deploy](https://github.com/DollhouseMCP/AILIS/actions/workflows/website-build-deploy.yml/badge.svg)](https://github.com/DollhouseMCP/AILIS/actions/workflows/website-build-deploy.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21398506.svg)](https://doi.org/10.5281/zenodo.21398506)
 
 <!-- Website Deploy badge will be added after workflow runs on main branch -->
 
@@ -174,6 +175,12 @@ This proposal draws inspiration from:
 - The work of countless AI infrastructure teams
 - Open specifications like OpenAPI and GraphQL
 - The Model Context Protocol (MCP) community
+
+## Citation
+
+If you reference AILIS, please cite it via its DOI (see also `CITATION.cff`):
+
+> Darling, M. (2026). *AILIS: A Proposed Layer Model for AI Systems* (v0.2.0). Dollhouse Research. Zenodo. https://doi.org/10.5281/zenodo.21398506
 
 ---
 

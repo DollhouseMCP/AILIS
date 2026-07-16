@@ -1,0 +1,23 @@
+{
+  "title": "AILIS: A Proposed Layer Model for AI Systems",
+  "upload_type": "publication",
+  "publication_type": "workingpaper",
+  "description": "<p>AILIS (AI Layer Interface Specification) is an OSI-inspired proposal for discussing AI systems in shared, layered terms. It defines a common architecture language for the AI stack — layers, interfaces, and case studies — so that builders, researchers, and operators can locate capabilities, boundaries, and interoperability points consistently across systems. Documentation is licensed CC BY 4.0; accompanying tooling in the repository is licensed Apache 2.0.</p>",
+  "creators": [
+    {
+      "name": "Darling, Mick",
+      "orcid": "0009-0008-7116-1393",
+      "affiliation": "Dollhouse Research"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "keywords": [
+    "AI systems architecture",
+    "layered architecture",
+    "AI infrastructure",
+    "large language models",
+    "interoperability",
+    "specification",
+    "AILIS"
+  ]
+}

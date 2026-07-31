@@ -249,8 +249,8 @@ The site is deployed to GitHub Pages automatically when changes are pushed to `m
 4. **(Optional)** Set `SITE_URL` repository variable for health checks:
    - Go to repository Settings → Secrets and variables → Actions → Variables
    - Add variable name: `SITE_URL`
-   - Add variable value: `https://dollhousemcp.github.io/AILIS` (or your custom domain)
-   - If not set, health checks will default to `https://dollhousemcp.github.io/AILIS`
+   - Add variable value: `https://ailis.dollhouseresearch.com` (or your custom domain)
+   - If not set, health checks will default to `https://ailis.dollhouseresearch.com`
 
 **Permissions required**:
 

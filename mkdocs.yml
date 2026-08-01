@@ -3,7 +3,7 @@ site_description: >-
   AI Layer Interface Specification - A proposal for understanding and discussing AI system architectures through a layered model.
   Think of it as an OSI model for AI systems.
 site_author: Mick Darling
-site_url: https://dollhousemcp.github.io/AILIS
+site_url: https://ailis.dollhouseresearch.com/
 
 # Repository
 repo_name: DollhouseMCP/AILIS

@@ -46,7 +46,7 @@ jobs:
       - name: 🌐 Check Site Availability
         id: availability
         env:
-          SITE_URL: ${{ vars.SITE_URL || 'https://dollhousemcp.github.io/AILIS' }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://ailis.dollhouseresearch.com' }}
         run: |
           echo "Checking site availability at ${SITE_URL}..."
 
@@ -79,7 +79,7 @@ jobs:
             --max-retries=3
             --exclude-mail
             --user-agent="AILIS-HealthCheck/1.0"
-            ${{ vars.SITE_URL || 'https://dollhousemcp.github.io/AILIS' }}
+            ${{ vars.SITE_URL || 'https://ailis.dollhouseresearch.com' }}
           fail: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -88,7 +88,7 @@ jobs:
         id: performance
         if: github.event.inputs.check_type == 'full'
         env:
-          SITE_URL: ${{ vars.SITE_URL || 'https://dollhousemcp.github.io/AILIS' }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://ailis.dollhouseresearch.com' }}
         run: |
           echo "Analyzing site performance..."
 
@@ -110,7 +110,7 @@ jobs:
       - name: 🔍 Check Site Content
         id: content
         env:
-          SITE_URL: ${{ vars.SITE_URL || 'https://dollhousemcp.github.io/AILIS' }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://ailis.dollhouseresearch.com' }}
         run: |
           echo "Validating site content..."
 
@@ -138,7 +138,7 @@ jobs:
         id: security
         if: github.event.inputs.check_type == 'full'
         env:
-          SITE_URL: ${{ vars.SITE_URL || 'https://dollhousemcp.github.io/AILIS' }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://ailis.dollhouseresearch.com' }}
         run: |
           echo "Checking security headers..."
 
